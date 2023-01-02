@@ -1,6 +1,8 @@
+import 'package:clone_everytime/provider/bottom_nav_provider.dart';
 import 'package:clone_everytime/screen/temp_screen.dart';
 import 'package:clone_everytime/utils/scroll_behavior.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,21 +13,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      builder: (context, child) {
-        return ScrollConfiguration(behavior: MyScrollBehavior(), child: child!);
-      },
-      title: '에브리타임',
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-          elevation: 0.0,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (BuildContext context) => BottomNavigationProvider()),
+      ],
+      child: MaterialApp(
+        builder: (context, child) {
+          return ScrollConfiguration(behavior: MyScrollBehavior(), child: child!);
+        },
+        title: '에브리타임',
+        theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.white,
+            foregroundColor: Colors.black,
+            elevation: 0.0,
+          ),
+          primarySwatch: Colors.blue,
+          scaffoldBackgroundColor: Colors.white,
         ),
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.white,
+        home: const TempScreen(),
       ),
-      home: const TempScreen(),
     );
   }
 }
