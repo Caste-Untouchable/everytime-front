@@ -1,4 +1,4 @@
-import 'package:clone_everytime/screen/login_screen.dart';
+import 'package:clone_everytime/screen/temp_screen.dart';
 import 'package:clone_everytime/utils/scroll_behavior.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: LoginScreen(),
+      home: const TempScreen(),
     );
   }
 }
