@@ -17,6 +17,11 @@ class MyApp extends StatelessWidget {
       },
       title: '에브리타임',
       theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+          elevation: 0.0,
+        ),
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Colors.white,
       ),
