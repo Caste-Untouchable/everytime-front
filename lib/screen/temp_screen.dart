@@ -22,7 +22,7 @@ class TempScreen extends StatelessWidget {
                 child: const Text("로그인 화면")),
             ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: ((context) => const MainScreen())));
+                  Navigator.push(context, MaterialPageRoute(builder: ((context) => MainScreen())));
                 },
                 child: const Text("메인 화면")),
           ],
