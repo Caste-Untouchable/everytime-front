@@ -1,3 +1,4 @@
+import 'package:clone_everytime/screen/term_screen.dart';
 import 'package:clone_everytime/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
@@ -104,7 +105,9 @@ class LoginScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: ((context) => TermScreen(term: "privacy"))));
+                        },
                         child: const Text(
                           "개인정보 처리방침",
                           style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 13.0),
@@ -118,7 +121,9 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: ((context) => TermScreen(term: "serviceagreement"))));
+                        },
                         child: const Text(
                           "이용약관",
                           style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
