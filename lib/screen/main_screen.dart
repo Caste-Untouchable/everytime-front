@@ -1,5 +1,6 @@
 import 'package:clone_everytime/provider/bottom_nav_provider.dart';
 import 'package:clone_everytime/screen/home_screen.dart';
+import 'package:clone_everytime/screen/time_table_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,11 +11,11 @@ class MainScreen extends StatelessWidget {
 
   PreferredSizeWidget _navigationAppBar() {
     switch (_bottomNavigationProvider.currentPage) {
+      // TODO : Implement AppBar
       case 0:
         return const HomeAppBar();
-      // TODO : Implement AppBar
-      // case 1:
-      //   return TimeTableAppBar();
+      case 1:
+        return const TimeTableAppBar();
       // case 2:
       //   return BoardAppBar();
       // case 3:
@@ -27,11 +28,11 @@ class MainScreen extends StatelessWidget {
 
   Widget _navigationBody() {
     switch (_bottomNavigationProvider.currentPage) {
+      // TODO : Implement Screen
       case 0:
         return const HomeScreen();
-      // TODO : Implement Screen
-      // case 1:
-      //   return TimeTableScreen();
+      case 1:
+        return const TimeTableScreen();
       // case 2:
       //   return BoardScreen();
       // case 3:
