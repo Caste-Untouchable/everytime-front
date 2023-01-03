@@ -1,6 +1,7 @@
 import 'package:clone_everytime/const.dart';
 import 'package:clone_everytime/widgets/custom_button.dart';
 import 'package:clone_everytime/widgets/custom_card.dart';
+import 'package:clone_everytime/widgets/custom_container.dart';
 import 'package:flutter/material.dart';
 
 class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -103,6 +104,47 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  Widget buildFavoriteBoard() {
+    return CustomButtonContainer(
+      title: "즐겨찾는 게시판",
+      button: TextButton(
+        child: const Text(
+          "더 보기 >",
+          style: TextStyle(color: EveryTimeColor.red, fontSize: 15.0),
+        ),
+        onPressed: () {},
+      ),
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemCount: 5,
+        itemBuilder: (BuildContext context, int index) {
+          return InkWell(
+            onTap: () {},
+            child: Container(
+              margin: const EdgeInsets.only(top: 12.0, bottom: 12.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  const Text(
+                    "게시판",
+                    style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.w500),
+                  ),
+                  const SizedBox(width: 15),
+                  const Text(
+                    "내용",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  const Flexible(fit: FlexFit.tight, child: SizedBox()),
+                  SizedBox(width: 13, height: 13, child: Image.asset('assets/icons/icn_e_new.png'))
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -111,6 +153,8 @@ class HomeScreen extends StatelessWidget {
         buildNotiCard(context),
         const SizedBox(height: 20),
         buildQuickBtn(),
+        const SizedBox(height: 20),
+        buildFavoriteBoard(),
       ],
     );
   }
