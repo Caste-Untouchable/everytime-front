@@ -66,7 +66,7 @@ class TimeTableScreen extends StatelessWidget {
   const TimeTableScreen({super.key});
 
   Widget buildGPA() {
-    return CustomButtonContainer(
+    return CustomTitleContainer(
       title: "학점계산기",
       button: NoSplashIconButton(
         icon: const ImageIcon(AssetImage("assets/icons/icn_m_edit_gray800.png")),
@@ -100,7 +100,7 @@ class TimeTableScreen extends StatelessWidget {
   }
 
   Widget buildFriendTimeTable() {
-    return CustomButtonContainer(
+    return CustomTitleContainer(
       title: "친구 시간표",
       button: NoSplashIconButton(
         icon: const ImageIcon(AssetImage("assets/icons/icn_m_add_gray800.png")),
