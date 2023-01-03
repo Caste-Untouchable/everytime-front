@@ -147,15 +147,17 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        buildNotiCard(context),
-        const SizedBox(height: 20),
-        buildQuickBtn(),
-        const SizedBox(height: 20),
-        buildFavoriteBoard(),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          buildNotiCard(context),
+          const SizedBox(height: 20),
+          buildQuickBtn(),
+          const SizedBox(height: 20),
+          buildFavoriteBoard(),
+        ],
+      ),
     );
   }
 }
