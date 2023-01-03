@@ -81,23 +81,10 @@ class TimeTableScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
-          height: kColumnLength / 2 * kBoxSize + kColumnLength + 4,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey[300]!),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Row(
-            children: [
-              buildTimeColumn(),
-              for (int i = 0; i < 5; i++)
-                Expanded(
-                  child: Row(
-                    children: buildDayColumn(i),
-                  ),
-                ),
-            ],
-          ),
+        child: Column(
+          children: [
+            buildTimeTable(),
+          ],
         ),
       ),
     );
