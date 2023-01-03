@@ -115,6 +115,7 @@ class HomeScreen extends StatelessWidget {
         onPressed: () {},
       ),
       child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: 5,
         itemBuilder: (BuildContext context, int index) {

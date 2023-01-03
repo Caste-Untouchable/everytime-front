@@ -104,6 +104,7 @@ class TimeTableScreen extends StatelessWidget {
         onPressed: () {},
       ),
       child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: 3,
         itemBuilder: (BuildContext context, int index) {
