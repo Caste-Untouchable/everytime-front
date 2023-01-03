@@ -29,7 +29,7 @@ class CustomButtonContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(15.0, 25.0, 15.0, 25.0),
+      padding: const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15.0),
       alignment: Alignment.topLeft,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey[300]!, width: 1),
@@ -46,7 +46,7 @@ class CustomButtonContainer extends StatelessWidget {
             button,
           ],
         ),
-        const SizedBox(height: 20.0),
+        const SizedBox(height: 5.0),
         child,
       ]),
     );

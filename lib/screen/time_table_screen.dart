@@ -72,27 +72,30 @@ class TimeTableScreen extends StatelessWidget {
         icon: const ImageIcon(AssetImage("assets/icons/icn_m_edit_gray800.png")),
         onPressed: () {},
       ),
-      child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: const [
-        Text("평균 학점  ", style: TextStyle(fontSize: 17.0)),
-        Text(
-          "3.92",
-          style: TextStyle(color: EveryTimeColor.red, fontSize: 18.0, fontWeight: FontWeight.bold),
-        ),
-        Text(
-          " / 4.5",
-          style: TextStyle(color: Colors.grey, fontSize: 12.0),
-        ),
-        SizedBox(width: 30.0),
-        Text("취득 학점  ", style: TextStyle(fontSize: 17.0)),
-        Text(
-          "39",
-          style: TextStyle(color: EveryTimeColor.red, fontSize: 18.0, fontWeight: FontWeight.bold),
-        ),
-        Text(
-          " / 150",
-          style: TextStyle(color: Colors.grey, fontSize: 12.0),
-        ),
-      ]),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+        child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: const [
+          Text("평균 학점  ", style: TextStyle(fontSize: 17.0)),
+          Text(
+            "3.92",
+            style: TextStyle(color: EveryTimeColor.red, fontSize: 18.0, fontWeight: FontWeight.bold),
+          ),
+          Text(
+            " / 4.5",
+            style: TextStyle(color: Colors.grey, fontSize: 12.0),
+          ),
+          SizedBox(width: 30.0),
+          Text("취득 학점  ", style: TextStyle(fontSize: 17.0)),
+          Text(
+            "39",
+            style: TextStyle(color: EveryTimeColor.red, fontSize: 18.0, fontWeight: FontWeight.bold),
+          ),
+          Text(
+            " / 150",
+            style: TextStyle(color: Colors.grey, fontSize: 12.0),
+          ),
+        ]),
+      ),
     );
   }
 
@@ -111,7 +114,7 @@ class TimeTableScreen extends StatelessWidget {
           return InkWell(
             onTap: () {},
             child: Container(
-              margin: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+              margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
               child: Text(
                 index.toString(),
                 style: const TextStyle(fontSize: 18.0),

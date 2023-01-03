@@ -108,11 +108,16 @@ class HomeScreen extends StatelessWidget {
     return CustomButtonContainer(
       title: "즐겨찾는 게시판",
       button: TextButton(
+        style: TextButton.styleFrom(
+          minimumSize: Size.zero,
+          padding: EdgeInsets.zero,
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        ),
+        onPressed: () {},
         child: const Text(
           "더 보기 >",
           style: TextStyle(color: EveryTimeColor.red, fontSize: 15.0),
         ),
-        onPressed: () {},
       ),
       child: ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
