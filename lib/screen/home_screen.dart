@@ -1,3 +1,4 @@
+import 'package:clone_everytime/const.dart';
 import 'package:flutter/material.dart';
 
 class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -17,7 +18,7 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
           children: const [
             Text(
               "에브리타임",
-              style: TextStyle(color: Color(0xFFB33423), fontSize: 10.0),
+              style: TextStyle(color: EveryTimeColor.red, fontSize: 10.0),
             ),
             SizedBox(
               height: 4.0,
