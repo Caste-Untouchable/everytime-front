@@ -125,18 +125,15 @@ class TimeTableScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            buildTimeTable(),
-            const SizedBox(height: 15.0),
-            buildGPA(),
-            const SizedBox(height: 15.0),
-            buildFriendTimeTable(),
-            const SizedBox(height: 10.0),
-          ],
-        ),
+      child: Column(
+        children: [
+          buildTimeTable(),
+          const SizedBox(height: 15.0),
+          buildGPA(),
+          const SizedBox(height: 15.0),
+          buildFriendTimeTable(),
+          const SizedBox(height: 10.0),
+        ],
       ),
     );
   }
