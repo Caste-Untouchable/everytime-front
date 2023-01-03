@@ -1,4 +1,5 @@
 import 'package:clone_everytime/const.dart';
+import 'package:clone_everytime/widgets/article_widget.dart';
 import 'package:clone_everytime/widgets/custom_button.dart';
 import 'package:clone_everytime/widgets/custom_card.dart';
 import 'package:clone_everytime/widgets/custom_container.dart';
@@ -105,7 +106,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget buildFavoriteBoard() {
-    return CustomButtonContainer(
+    return CustomTitleContainer(
       title: "즐겨찾는 게시판",
       button: GestureDetector(
         onTap: () {},
@@ -146,6 +147,31 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  Widget buildPopularArticle() {
+    return CustomTitleContainer(
+        title: "실시간 인기 글",
+        child: Column(
+          children: [
+            PopularArticle(
+                writer: "익명",
+                profileImageUrl: null,
+                text: "본문",
+                board: "새내기게시판",
+                date: DateTime(2023, 1, 3, 12, 01),
+                recommend: 69,
+                comment: 6),
+            PopularArticle(
+                writer: "익명",
+                profileImageUrl: null,
+                text: "본문\n본문\n본문",
+                board: "새내기게시판",
+                date: DateTime(2023, 1, 3, 12, 01),
+                recommend: 27,
+                comment: 0),
+          ],
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -157,6 +183,8 @@ class HomeScreen extends StatelessWidget {
           buildQuickBtn(),
           const SizedBox(height: 20),
           buildFavoriteBoard(),
+          const SizedBox(height: 10),
+          buildPopularArticle()
         ],
       ),
     );
