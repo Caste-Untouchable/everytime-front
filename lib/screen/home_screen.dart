@@ -124,7 +124,7 @@ class HomeScreen extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text(
                     "게시판",
