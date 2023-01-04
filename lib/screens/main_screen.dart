@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:clone_everytime/providers/bottom_nav_provider.dart';
 import 'package:clone_everytime/screens/main/board_screen.dart';
 import 'package:clone_everytime/screens/main/home_screen.dart';
+import 'package:clone_everytime/screens/main/noti_screen.dart';
 import 'package:clone_everytime/screens/main/time_table_screen.dart';
 
 class MainScreen extends StatelessWidget {
@@ -20,8 +21,8 @@ class MainScreen extends StatelessWidget {
         return const TimeTableAppBar();
       case 2:
         return BoardAppBar();
-      // case 3:
-      //   return NotifyAppBar();
+      case 3:
+        return NotiAppBar();
       // case 4:
       //   return CampusPickAppBar();
     }
@@ -37,8 +38,8 @@ class MainScreen extends StatelessWidget {
         return const TimeTableScreen();
       case 2:
         return BoardScreen();
-      // case 3:
-      //   return NotifyScreen();
+      case 3:
+        return NotiScreen();
       // case 4:
       //   return CampusPickScreen();
     }
