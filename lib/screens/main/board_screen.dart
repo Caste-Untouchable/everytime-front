@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:clone_everytime/providers/tab_provider.dart';
+import 'package:clone_everytime/screens/main/screens/advertise_tab_screen.dart';
+import 'package:clone_everytime/screens/main/screens/board_tab_screen.dart';
+import 'package:clone_everytime/screens/main/screens/course_tab_screen.dart';
+import 'package:clone_everytime/screens/main/screens/group_tab_screen.dart';
 
 class BoardAppBar extends StatelessWidget with PreferredSizeWidget {
   BoardAppBar({super.key});
@@ -54,10 +58,21 @@ class BoardAppBar extends StatelessWidget with PreferredSizeWidget {
 }
 
 class BoardScreen extends StatelessWidget {
-  const BoardScreen({super.key});
+  BoardScreen({super.key});
+
+  List<Widget> tabScreen = [
+    const BoardTabScreen(),
+    const CourseTabScreen(),
+    const AdvertiseTabScreen(),
+    const GroupTabScreen(),
+  ];
+
+  late TabProvider _tabProvider;
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    _tabProvider = Provider.of<TabProvider>(context);
+
+    return tabScreen[_tabProvider.boardIndex];
   }
 }
