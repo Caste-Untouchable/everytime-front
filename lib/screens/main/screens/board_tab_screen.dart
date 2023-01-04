@@ -43,6 +43,25 @@ class BoardTabScreen extends StatelessWidget {
     );
   }
 
+  Widget buildCampusBoard() {
+    final List<String> boardName = ["오늘의 학식", "강의실", "스터디", "책방"];
+    final List<String> iconName = ["haksik", "classroom", "study", "bookstore"];
+
+    return OutlinedCard(
+      padding: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
+      child: Column(
+        children: [
+          for (int i = 0; i < boardName.length; i++)
+            BoardListButton(
+              boardName: boardName[i],
+              iconName: iconName[i],
+              onTap: () {},
+            ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -52,6 +71,7 @@ class BoardTabScreen extends StatelessWidget {
           const SizedBox(height: 10.0),
           buildPinnedBoard(),
           const SizedBox(height: 10.0),
+          buildCampusBoard(),
         ],
       ),
     );
