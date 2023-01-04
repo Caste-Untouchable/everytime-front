@@ -216,11 +216,13 @@ class BoardListButton extends StatelessWidget {
     required this.boardName,
     required this.iconName,
     required this.onTap,
+    this.isNew = false,
   }) : super(key: key);
 
   String boardName;
   String iconName;
   VoidCallback onTap;
+  bool isNew;
 
   @override
   Widget build(BuildContext context) {
@@ -241,6 +243,8 @@ class BoardListButton extends StatelessWidget {
               boardName,
               style: const TextStyle(fontSize: 16.0),
             ),
+            const SizedBox(width: 5.0),
+            isNew ? SizedBox(width: 10, height: 10, child: Image.asset('assets/icons/icn_e_new.png')) : const SizedBox(),
           ],
         ),
       ),

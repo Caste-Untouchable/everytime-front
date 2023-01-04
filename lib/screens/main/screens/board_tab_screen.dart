@@ -24,12 +24,33 @@ class BoardTabScreen extends StatelessWidget {
     );
   }
 
+  Widget buildPinnedBoard() {
+    final List<String> boardName = ["자유게시판", "비밀게시판", "졸업생게시판", "새내기게시판", "시사이슈", "장터게시판", "정보게시판"];
+
+    return OutlinedCard(
+      padding: const EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
+      child: Column(
+        children: [
+          for (int i = 0; i < boardName.length; i++)
+            BoardListButton(
+              boardName: boardName[i],
+              iconName: i % 2 == 0 ? "pin_on" : "pin_off",
+              isNew: i % 2 == 0 ? true : false,
+              onTap: () {},
+            ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         buildDefaultBoard(),
-        const SizedBox(height: 10),
+        const SizedBox(height: 10.0),
+        buildPinnedBoard(),
+        const SizedBox(height: 10.0),
       ],
     );
   }
