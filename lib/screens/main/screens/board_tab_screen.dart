@@ -83,8 +83,8 @@ class BoardTabScreen extends StatelessWidget {
   }
 
   Widget buildOtherBoard() {
-    final List<String> boardName = ["오늘의 학식", "강의실", "스터디", "책방"];
-    final List<String> boardSubTitle = ["부제목", "부제목", "부제목", "부제목"];
+    final List<String> boardName = ["🙏소원 비는곳🙏", "어둠의 뽕나무숲", "게임 같이하실분~~", "❤️동의인 미팅 남자 소개 & 여자 소개💙"];
+    final List<String> boardSubTitle = ["🌟🙏 🐮☝️ 🙏🌟", "🌌구인글 쓸꺼면 썩나가주세용🌝🌌", "폰게임 컴게임 홍보가능해~", "소개 받고 솔탈 하자!"];
 
     return OutlinedCard(
       padding: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
