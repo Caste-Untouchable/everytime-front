@@ -314,6 +314,33 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  Widget buildMarketArticle(BuildContext context) {
+    return CustomTitleContainer(
+      title: "판매 중인 책",
+      button: GestureDetector(
+        onTap: () {},
+        child: const Text(
+          "더 보기 >",
+          style: TextStyle(color: EveryTimeColor.red, fontSize: 15.0),
+        ),
+      ),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.3,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: 4,
+          itemBuilder: (BuildContext context, int index) {
+            return CustomImageCard(
+              title: "일반기계기사 필기대비",
+              price: 20000,
+              imageUrl: "https://cf-cii.everytime.kr/1bfe7bf4ccf45d9576f1bca717adcc0aa80de21ecce5416ef1a7cc1d6e1d5d43/1672741293471_0.jpg",
+            );
+          },
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -339,6 +366,8 @@ class HomeScreen extends StatelessWidget {
           buildCompetition(context),
           const SizedBox(height: 10),
           buildActivities(context),
+          const SizedBox(height: 10),
+          buildMarketArticle(context),
         ],
       ),
     );

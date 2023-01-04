@@ -66,6 +66,7 @@ class CustomImageCard extends StatelessWidget {
   String? subTitle;
   String imageUrl;
   DateTime? date;
+  int? price;
 
   CustomImageCard({
     Key? key,
@@ -73,10 +74,13 @@ class CustomImageCard extends StatelessWidget {
     required this.imageUrl,
     this.subTitle,
     this.date,
+    this.price,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final formatCurrency = NumberFormat.simpleCurrency(locale: "ko_KR", name: "", decimalDigits: 0);
+
     return Padding(
       padding: const EdgeInsets.only(top: 15.0, right: 10.0),
       child: SizedBox(
@@ -121,6 +125,14 @@ class CustomImageCard extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
                     child: Text(
                       DateFormat('~MM/dd').format(date!),
+                      style: const TextStyle(color: Colors.grey, fontSize: 11.0),
+                    ),
+                  ),
+                if (price != null)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
+                    child: Text(
+                      "${formatCurrency.format(price!)}원",
                       style: const TextStyle(color: Colors.grey, fontSize: 11.0),
                     ),
                   ),
