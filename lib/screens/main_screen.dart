@@ -98,7 +98,10 @@ class MainScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: _navigationAppBar(),
-      body: _navigationBody(),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: _navigationBody(),
+      ),
       bottomNavigationBar: _bottomNavigationBarWidget(),
     );
   }
