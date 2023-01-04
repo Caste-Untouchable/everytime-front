@@ -1,4 +1,4 @@
-import 'package:clone_everytime/provider/tab_provider.dart';
+import 'package:clone_everytime/providers/tab_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -1,7 +1,7 @@
-import 'package:clone_everytime/provider/bottom_nav_provider.dart';
-import 'package:clone_everytime/screen/board_screen.dart';
-import 'package:clone_everytime/screen/home_screen.dart';
-import 'package:clone_everytime/screen/time_table_screen.dart';
+import 'package:clone_everytime/providers/bottom_nav_provider.dart';
+import 'package:clone_everytime/screens/board_screen.dart';
+import 'package:clone_everytime/screens/home_screen.dart';
+import 'package:clone_everytime/screens/time_table_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

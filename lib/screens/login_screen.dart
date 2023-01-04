@@ -1,5 +1,5 @@
 import 'package:clone_everytime/const.dart';
-import 'package:clone_everytime/screen/term_screen.dart';
+import 'package:clone_everytime/screens/term_screen.dart';
 import 'package:clone_everytime/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
