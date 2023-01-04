@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:clone_everytime/screens/main/widgets/board_widget.dart';
 import 'package:clone_everytime/widgets/everytime_card.dart';
-import 'package:flutter/material.dart';
 
 class BoardTabScreen extends StatelessWidget {
   const BoardTabScreen({super.key});
@@ -62,6 +63,25 @@ class BoardTabScreen extends StatelessWidget {
     );
   }
 
+  Widget buildExpansionBoard() {
+    final List<String> courseBoardList = ["취업·진로"];
+    final List<String> advertiseBoardList = ["동아리·학회", "홍보게시판"];
+    final List<String> groupBoardList = ["STAND BY ICT 공과대학", "All:ways 애국 상경대학"];
+    final List<String> deptBoardList = ["간호학과 게시판, 한의학과 게시판"];
+
+    return Column(
+      children: [
+        BoardExpansionTile(title: "진로", boardList: courseBoardList),
+        const SizedBox(height: 10.0),
+        BoardExpansionTile(title: "홍보", boardList: advertiseBoardList),
+        const SizedBox(height: 10.0),
+        BoardExpansionTile(title: "단체", boardList: groupBoardList),
+        const SizedBox(height: 10.0),
+        BoardExpansionTile(title: "학과", boardList: deptBoardList),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -72,6 +92,8 @@ class BoardTabScreen extends StatelessWidget {
           buildPinnedBoard(),
           const SizedBox(height: 10.0),
           buildCampusBoard(),
+          const SizedBox(height: 10.0),
+          buildExpansionBoard(),
         ],
       ),
     );

@@ -1,8 +1,10 @@
+import 'package:configurable_expansion_tile_null_safety/configurable_expansion_tile_null_safety.dart';
 import 'package:ellipsis_overflow_text/ellipsis_overflow_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'package:clone_everytime/const.dart';
+import 'package:clone_everytime/widgets/everytime_card.dart';
 
 class PopularArticle extends StatelessWidget {
   PopularArticle({
@@ -247,6 +249,64 @@ class BoardListButton extends StatelessWidget {
             isNew ? SizedBox(width: 10, height: 10, child: Image.asset('assets/icons/icn_e_new.png')) : const SizedBox(),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class BoardExpansionTile extends StatelessWidget {
+  BoardExpansionTile({super.key, required this.title, required this.boardList});
+
+  String title;
+  String boardName = "";
+  List<String> boardList;
+
+  @override
+  Widget build(BuildContext context) {
+    for (int i = 0; i < boardList.length; i++) {
+      boardName += "${boardList[i]}, ";
+    }
+
+    return OutlinedCard(
+      child: ConfigurableExpansionTile(
+        header: Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(title, style: const TextStyle(color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.bold)),
+              const Icon(Icons.keyboard_arrow_down, color: EveryTimeColor.red)
+            ],
+          ),
+        ),
+        headerExpanded: Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                children: [
+                  Text(title, style: const TextStyle(color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.bold)),
+                  const SizedBox(width: 10.0),
+                  Text(
+                    boardName.substring(0, boardName.length - 2),
+                    style: const TextStyle(color: Colors.grey, fontSize: 12.0, overflow: TextOverflow.ellipsis),
+                  )
+                ],
+              ),
+              const Icon(Icons.keyboard_arrow_up, color: EveryTimeColor.red)
+            ],
+          ),
+        ),
+        childrenBody: Column(children: [
+          const SizedBox(height: 15.0),
+          for (int i = 0; i < boardList.length; i++)
+            BoardListButton(
+              boardName: boardList[i],
+              iconName: i % 2 == 0 ? "pin_on" : "pin_off",
+              isNew: i % 2 == 0 ? true : false,
+              onTap: () {},
+            ),
+        ]),
       ),
     );
   }
