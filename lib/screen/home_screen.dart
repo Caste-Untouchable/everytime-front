@@ -240,6 +240,80 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  Widget buildWelfare(BuildContext context) {
+    return CustomTitleContainer(
+      title: "대학생 복지 혜택",
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.3,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: 4,
+          itemBuilder: (BuildContext context, int index) {
+            return CustomImageCard(
+              title: "대학생 전용 혜택\n합리적인 교육 할인",
+              subTitle: "학생복지스토어",
+              imageUrl: "https://cf-eba.everytime.kr/homecard_230101.png",
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget buildActivities(BuildContext context) {
+    return CustomTitleContainer(
+      title: "대외활동",
+      button: GestureDetector(
+        onTap: () {},
+        child: const Text(
+          "더 보기 >",
+          style: TextStyle(color: EveryTimeColor.red, fontSize: 15.0),
+        ),
+      ),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.3,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: 4,
+          itemBuilder: (BuildContext context, int index) {
+            return CustomImageCard(
+              title: "제 20회 KPR 공모전",
+              subTitle: "KPR",
+              imageUrl: "https://cf-eba.everytime.kr/homecard_230101.png",
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget buildCompetition(BuildContext context) {
+    return CustomTitleContainer(
+      title: "공모전",
+      button: GestureDetector(
+        onTap: () {},
+        child: const Text(
+          "더 보기 >",
+          style: TextStyle(color: EveryTimeColor.red, fontSize: 15.0),
+        ),
+      ),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.3,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: 4,
+          itemBuilder: (BuildContext context, int index) {
+            return CustomImageCard(
+              title: "국제청년센터 본부 홍보국 디자인팀 모집합니다.",
+              subTitle: "국제청년센터",
+              imageUrl: "https://cf-eba.everytime.kr/homecard_230101.png",
+            );
+          },
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -259,6 +333,12 @@ class HomeScreen extends StatelessWidget {
           buildHotArticle(),
           const SizedBox(height: 10),
           buildRecruit(context),
+          const SizedBox(height: 10),
+          buildWelfare(context),
+          const SizedBox(height: 10),
+          buildCompetition(context),
+          const SizedBox(height: 10),
+          buildActivities(context),
         ],
       ),
     );
