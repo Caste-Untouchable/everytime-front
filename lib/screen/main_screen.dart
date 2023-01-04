@@ -1,4 +1,5 @@
 import 'package:clone_everytime/provider/bottom_nav_provider.dart';
+import 'package:clone_everytime/screen/board_screen.dart';
 import 'package:clone_everytime/screen/home_screen.dart';
 import 'package:clone_everytime/screen/time_table_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +17,8 @@ class MainScreen extends StatelessWidget {
         return const HomeAppBar();
       case 1:
         return const TimeTableAppBar();
-      // case 2:
-      //   return BoardAppBar();
+      case 2:
+        return BoardAppBar();
       // case 3:
       //   return NotifyAppBar();
       // case 4:
@@ -33,8 +34,8 @@ class MainScreen extends StatelessWidget {
         return const HomeScreen();
       case 1:
         return const TimeTableScreen();
-      // case 2:
-      //   return BoardScreen();
+      case 2:
+        return const BoardScreen();
       // case 3:
       //   return NotifyScreen();
       // case 4:
