@@ -10,7 +10,7 @@ class BoardTabScreen extends StatelessWidget {
     final List<String> iconName = ["myarticle", "mycomment", "scrap", "hotarticle", "bestarticle"];
 
     return OutlinedCard(
-      padding: const EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
+      padding: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
       child: Column(
         children: [
           for (int i = 0; i < boardName.length; i++)
@@ -28,7 +28,7 @@ class BoardTabScreen extends StatelessWidget {
     final List<String> boardName = ["자유게시판", "비밀게시판", "졸업생게시판", "새내기게시판", "시사이슈", "장터게시판", "정보게시판"];
 
     return OutlinedCard(
-      padding: const EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
+      padding: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
       child: Column(
         children: [
           for (int i = 0; i < boardName.length; i++)
