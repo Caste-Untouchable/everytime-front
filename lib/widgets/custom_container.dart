@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomContainer extends StatelessWidget {
-  final Widget child;
-
   const CustomContainer({super.key, required this.child});
+
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +20,11 @@ class CustomContainer extends StatelessWidget {
 }
 
 class CustomTitleContainer extends StatelessWidget {
-  final String title;
+  const CustomTitleContainer({super.key, required this.title, this.button, required this.child});
+
   final Widget? button;
   final Widget child;
-
-  const CustomTitleContainer({super.key, required this.title, this.button, required this.child});
+  final String title;
 
   @override
   Widget build(BuildContext context) {

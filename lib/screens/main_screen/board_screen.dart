@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:clone_everytime/providers/tab_provider.dart';
 
 class BoardAppBar extends StatelessWidget with PreferredSizeWidget {
-  late TabProvider _tabProvider;
-
   BoardAppBar({super.key});
+
+  late TabProvider _tabProvider;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);

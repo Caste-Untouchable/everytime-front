@@ -5,14 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:clone_everytime/const.dart';
 
 class PopularArticle extends StatelessWidget {
-  String writer;
-  String? profileImageUrl;
-  String text;
-  String board;
-  DateTime date;
-  int recommend;
-  int comment;
-
   PopularArticle({
     Key? key,
     required this.writer,
@@ -23,6 +15,14 @@ class PopularArticle extends StatelessWidget {
     required this.recommend,
     required this.comment,
   }) : super(key: key);
+
+  String board;
+  int comment;
+  DateTime date;
+  String? profileImageUrl;
+  int recommend;
+  String text;
+  String writer;
 
   @override
   Widget build(BuildContext context) {
@@ -94,11 +94,6 @@ class PopularArticle extends StatelessWidget {
 }
 
 class LatestLectureArticle extends StatelessWidget {
-  String lectureName;
-  String profName;
-  String text;
-  int rating;
-
   LatestLectureArticle({
     super.key,
     required this.lectureName,
@@ -106,6 +101,11 @@ class LatestLectureArticle extends StatelessWidget {
     required this.text,
     required this.rating,
   });
+
+  String lectureName;
+  String profName;
+  int rating;
+  String text;
 
   @override
   Widget build(BuildContext context) {
@@ -144,11 +144,6 @@ class LatestLectureArticle extends StatelessWidget {
 }
 
 class HotArticle extends StatelessWidget {
-  String title;
-  DateTime date;
-  int recommend;
-  int comment;
-
   HotArticle({
     Key? key,
     required this.title,
@@ -156,6 +151,11 @@ class HotArticle extends StatelessWidget {
     required this.recommend,
     required this.comment,
   }) : super(key: key);
+
+  int comment;
+  DateTime date;
+  int recommend;
+  String title;
 
   @override
   Widget build(BuildContext context) {

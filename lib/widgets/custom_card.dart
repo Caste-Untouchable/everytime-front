@@ -5,12 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:clone_everytime/widgets/custom_container.dart';
 
 class CustomCard extends StatelessWidget {
-  String title;
-  String subTitle;
-  Color subColor;
-  Widget icon;
-  Widget button;
-
   CustomCard({
     super.key,
     required this.title,
@@ -19,6 +13,12 @@ class CustomCard extends StatelessWidget {
     required this.icon,
     required this.button,
   });
+
+  Widget button;
+  Widget icon;
+  Color subColor;
+  String subTitle;
+  String title;
 
   @override
   Widget build(BuildContext context) {
@@ -62,12 +62,6 @@ class CustomCard extends StatelessWidget {
 }
 
 class CustomImageCard extends StatelessWidget {
-  String title;
-  String? subTitle;
-  String imageUrl;
-  DateTime? date;
-  int? price;
-
   CustomImageCard({
     Key? key,
     required this.title,
@@ -76,6 +70,12 @@ class CustomImageCard extends StatelessWidget {
     this.date,
     this.price,
   }) : super(key: key);
+
+  DateTime? date;
+  String imageUrl;
+  int? price;
+  String? subTitle;
+  String title;
 
   @override
   Widget build(BuildContext context) {

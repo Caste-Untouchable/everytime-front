@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
 class CircleButton extends StatelessWidget {
-  String title;
-  String iconName;
-  Function() onTap;
-
   CircleButton({
     Key? key,
     required this.title,
     required this.iconName,
     required this.onTap,
   }) : super(key: key);
+
+  String iconName;
+  String title;
+
+  Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -55,10 +56,10 @@ class CircleButton extends StatelessWidget {
 }
 
 class NoSplashIconButton extends StatelessWidget {
-  final Function() onPressed;
-  final Widget icon;
-
   const NoSplashIconButton({super.key, required this.onPressed, required this.icon});
+
+  final Widget icon;
+  final Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
