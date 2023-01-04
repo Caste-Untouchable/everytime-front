@@ -1,8 +1,10 @@
+import 'package:configurable_expansion_tile_null_safety/configurable_expansion_tile_null_safety.dart';
 import 'package:ellipsis_overflow_text/ellipsis_overflow_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'package:clone_everytime/const.dart';
+import 'package:clone_everytime/widgets/everytime_card.dart';
 
 class PopularArticle extends StatelessWidget {
   PopularArticle({
@@ -205,6 +207,125 @@ class HotArticle extends StatelessWidget {
             ],
           )
         ],
+      ),
+    );
+  }
+}
+
+class BoardListButton extends StatelessWidget {
+  BoardListButton({
+    Key? key,
+    required this.boardName,
+    this.subTitle,
+    required this.iconName,
+    required this.onTap,
+    this.isNew = false,
+  }) : super(key: key);
+
+  String boardName;
+  String? subTitle;
+  String iconName;
+  VoidCallback onTap;
+  bool isNew;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 30.0,
+              height: 30.0,
+              child: Image.asset("assets/icons/icn_mcr_board_$iconName.png"),
+            ),
+            const SizedBox(width: 15.0),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      boardName,
+                      style: const TextStyle(fontSize: 16.0),
+                    ),
+                    const SizedBox(width: 5.0),
+                    isNew ? SizedBox(width: 10, height: 10, child: Image.asset('assets/icons/icn_e_new.png')) : const SizedBox(),
+                  ],
+                ),
+                subTitle != null
+                    ? Column(
+                        children: [
+                          const SizedBox(height: 4.0),
+                          Text(subTitle!, style: const TextStyle(color: Colors.grey, fontSize: 11.0)),
+                        ],
+                      )
+                    : Container(),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class BoardExpansionTile extends StatelessWidget {
+  BoardExpansionTile({super.key, required this.title, required this.boardList});
+
+  String title;
+  String boardName = "";
+  List<String> boardList;
+
+  @override
+  Widget build(BuildContext context) {
+    for (int i = 0; i < boardList.length; i++) {
+      boardName += "${boardList[i]}, ";
+    }
+
+    return OutlinedCard(
+      child: ConfigurableExpansionTile(
+        header: Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Text(title, style: const TextStyle(color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.bold)),
+                  const SizedBox(width: 10.0),
+                  Text(
+                    boardName.substring(0, boardName.length - 2),
+                    style: const TextStyle(color: Colors.grey, fontSize: 12.0, overflow: TextOverflow.ellipsis),
+                  )
+                ],
+              ),
+              const Icon(Icons.keyboard_arrow_down, color: EveryTimeColor.red)
+            ],
+          ),
+        ),
+        headerExpanded: Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(title, style: const TextStyle(color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.bold)),
+              const Icon(Icons.keyboard_arrow_up, color: EveryTimeColor.red)
+            ],
+          ),
+        ),
+        childrenBody: Column(children: [
+          const SizedBox(height: 15.0),
+          for (int i = 0; i < boardList.length; i++)
+            BoardListButton(
+              boardName: boardList[i],
+              iconName: i % 2 == 0 ? "pin_on" : "pin_off",
+              isNew: i % 2 == 0 ? true : false,
+              onTap: () {},
+            ),
+        ]),
       ),
     );
   }
