@@ -82,6 +82,27 @@ class BoardTabScreen extends StatelessWidget {
     );
   }
 
+  Widget buildOtherBoard() {
+    final List<String> boardName = ["오늘의 학식", "강의실", "스터디", "책방"];
+    final List<String> boardSubTitle = ["부제목", "부제목", "부제목", "부제목"];
+
+    return OutlinedCard(
+      padding: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
+      child: Column(
+        children: [
+          for (int i = 0; i < boardName.length; i++)
+            BoardListButton(
+              boardName: boardName[i],
+              subTitle: boardSubTitle[i],
+              iconName: i % 2 == 0 ? "pin_on" : "pin_off",
+              isNew: i % 2 == 0 ? true : false,
+              onTap: () {},
+            ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -94,6 +115,8 @@ class BoardTabScreen extends StatelessWidget {
           buildCampusBoard(),
           const SizedBox(height: 10.0),
           buildExpansionBoard(),
+          const SizedBox(height: 10.0),
+          buildOtherBoard(),
         ],
       ),
     );
