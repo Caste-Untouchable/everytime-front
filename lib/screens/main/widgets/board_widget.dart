@@ -6,6 +6,99 @@ import 'package:intl/intl.dart';
 import 'package:clone_everytime/const.dart';
 import 'package:clone_everytime/widgets/everytime_card.dart';
 
+class AdvertiseArticle extends StatelessWidget {
+  AdvertiseArticle({
+    Key? key,
+    this.imageUrl,
+    this.title,
+    required this.text,
+    required this.board,
+    this.recommend,
+    this.comment,
+  }) : super(key: key);
+
+  String? imageUrl;
+  String? title;
+  String text;
+  String board;
+  int? recommend;
+  int? comment;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 15.0),
+      child: Row(
+        children: [
+          Flexible(
+            flex: 7,
+            child: Padding(
+              padding: imageUrl != null ? const EdgeInsets.only(right: 10.0) : const EdgeInsets.all(0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (title != null) ...[
+                    Text(
+                      title!,
+                      style: const TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis),
+                    ),
+                  ],
+                  const SizedBox(height: 3.0),
+                  EllipsisOverflowText(
+                    text,
+                    maxLines: 2,
+                    showEllipsisOnBreakLineOverflow: true,
+                  ),
+                  const SizedBox(height: 3.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        board,
+                        style: const TextStyle(color: Colors.grey, fontSize: 12.0),
+                      ),
+                      if (comment != null)
+                        Row(children: [
+                          SizedBox(
+                            width: 11.0,
+                            height: 11.0,
+                            child: Image.asset('assets/icons/icn_s_posvote_red.png'),
+                          ),
+                          const SizedBox(width: 4.0),
+                          Text(
+                            recommend.toString(),
+                            style: const TextStyle(color: EveryTimeColor.red, fontSize: 12.0),
+                          ),
+                          const SizedBox(width: 8.0),
+                          SizedBox(
+                            width: 11.0,
+                            height: 11.0,
+                            child: Image.asset('assets/icons/icn_s_comment_cyan.png'),
+                          ),
+                          const SizedBox(width: 4.0),
+                          Text(
+                            comment.toString(),
+                            style: const TextStyle(color: EveryTimeColor.cyan, fontSize: 12.0),
+                          ),
+                        ])
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+          if (imageUrl != null)
+            Flexible(
+              flex: 3,
+              child: Image.network(imageUrl!),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
 class PopularArticle extends StatelessWidget {
   PopularArticle({
     Key? key,
