@@ -6,6 +6,8 @@ import 'package:clone_everytime/providers/tab_provider.dart';
 class BoardAppBar extends StatelessWidget with PreferredSizeWidget {
   BoardAppBar({super.key});
 
+  List<String> tabBarTitle = ["게시판", "진로", "홍보", "단체"];
+
   late TabProvider _tabProvider;
 
   @override
@@ -18,110 +20,33 @@ class BoardAppBar extends StatelessWidget with PreferredSizeWidget {
       automaticallyImplyLeading: false, // TODO : 구현 완료시 제거
       title: Row(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 15.0),
-            child: GestureDetector(
-              onTap: () {
-                _tabProvider.boardIndex = 0;
-              },
-              child: Column(
-                children: [
-                  Text(
-                    "게시판",
-                    style: TextStyle(
-                      fontSize: 22.0,
-                      fontWeight: FontWeight.w600,
-                      color: _tabProvider.boardIndex == 0 ? Colors.black : Colors.grey,
+          for (int i = 0; i < tabBarTitle.length; i++)
+            Padding(
+              padding: const EdgeInsets.only(left: 15.0),
+              child: GestureDetector(
+                onTap: () {
+                  _tabProvider.boardIndex = i;
+                },
+                child: Column(
+                  children: [
+                    Text(
+                      tabBarTitle[i],
+                      style: TextStyle(
+                        fontSize: 22.0,
+                        fontWeight: FontWeight.w600,
+                        color: _tabProvider.boardIndex == i ? Colors.black : Colors.grey,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 2),
-                  Container(
-                    width: 60.0,
-                    height: 2.0,
-                    color: _tabProvider.boardIndex == 0 ? Colors.black : Colors.transparent,
-                  ),
-                ],
+                    const SizedBox(height: 2),
+                    Container(
+                      width: 20 * tabBarTitle[i].length.toDouble(),
+                      height: 2.0,
+                      color: _tabProvider.boardIndex == i ? Colors.black : Colors.transparent,
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 15.0),
-            child: GestureDetector(
-              onTap: () {
-                _tabProvider.boardIndex = 1;
-              },
-              child: Column(
-                children: [
-                  Text(
-                    "진로",
-                    style: TextStyle(
-                      fontSize: 23.0,
-                      fontWeight: FontWeight.w600,
-                      color: _tabProvider.boardIndex == 1 ? Colors.black : Colors.grey,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Container(
-                    width: 40.0,
-                    height: 2.0,
-                    color: _tabProvider.boardIndex == 1 ? Colors.black : Colors.transparent,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 15.0),
-            child: GestureDetector(
-              onTap: () {
-                _tabProvider.boardIndex = 2;
-              },
-              child: Column(
-                children: [
-                  Text(
-                    "홍보",
-                    style: TextStyle(
-                      fontSize: 23.0,
-                      fontWeight: FontWeight.w600,
-                      color: _tabProvider.boardIndex == 2 ? Colors.black : Colors.grey,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Container(
-                    width: 40.0,
-                    height: 2.0,
-                    color: _tabProvider.boardIndex == 2 ? Colors.black : Colors.transparent,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 15.0),
-            child: GestureDetector(
-              onTap: () {
-                _tabProvider.boardIndex = 3;
-              },
-              child: Column(
-                children: [
-                  Text(
-                    "단체",
-                    style: TextStyle(
-                      fontSize: 23.0,
-                      fontWeight: FontWeight.w600,
-                      color: _tabProvider.boardIndex == 3 ? Colors.black : Colors.grey,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Container(
-                    width: 40.0,
-                    height: 2.0,
-                    color: _tabProvider.boardIndex == 3 ? Colors.black : Colors.transparent,
-                  ),
-                ],
-              ),
-            ),
-          ),
         ],
       ),
     );
