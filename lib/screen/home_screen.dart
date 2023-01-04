@@ -193,6 +193,26 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  Widget buildHotArticle() {
+    return CustomTitleContainer(
+        title: "HOT 게시글",
+        button: GestureDetector(
+          onTap: () {},
+          child: const Text(
+            "더 보기 >",
+            style: TextStyle(color: EveryTimeColor.red, fontSize: 15.0),
+          ),
+        ),
+        child: Column(
+          children: [
+            HotArticle(title: "제에목1", date: DateTime(2023, 1, 3, 12, 00), recommend: 11, comment: 5),
+            HotArticle(title: "제에목2", date: DateTime(2023, 1, 2, 12, 00), recommend: 51, comment: 12),
+            HotArticle(title: "제에목3", date: DateTime(2023, 1, 1, 12, 00), recommend: 23, comment: 4),
+            HotArticle(title: "제에목4", date: DateTime(2023, 1, 4, 12, 00), recommend: 41, comment: 6),
+          ],
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -208,7 +228,8 @@ class HomeScreen extends StatelessWidget {
           buildPopularArticle(),
           const SizedBox(height: 10),
           buildLatestLectureArticle(),
-          const SizedBox(),
+          const SizedBox(height: 10),
+          buildHotArticle(),
         ],
       ),
     );

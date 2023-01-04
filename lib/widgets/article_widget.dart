@@ -142,3 +142,70 @@ class LatestLectureArticle extends StatelessWidget {
     );
   }
 }
+
+class HotArticle extends StatelessWidget {
+  String title;
+  DateTime date;
+  int recommend;
+  int comment;
+
+  HotArticle({
+    Key? key,
+    required this.title,
+    required this.date,
+    required this.recommend,
+    required this.comment,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    String dateString = DateFormat('MM/dd hh:mm').format(date);
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 15.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(fontSize: 15.0),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                dateString,
+                style: const TextStyle(color: Colors.grey, fontSize: 10.0),
+              ),
+              const Flexible(fit: FlexFit.tight, child: SizedBox()),
+              Row(children: [
+                SizedBox(
+                  width: 11.0,
+                  height: 11.0,
+                  child: Image.asset('assets/icons/icn_s_posvote_red.png'),
+                ),
+                const SizedBox(width: 4.0),
+                Text(
+                  recommend.toString(),
+                  style: const TextStyle(color: EveryTimeColor.red, fontSize: 12.0),
+                ),
+                const SizedBox(width: 8.0),
+                SizedBox(
+                  width: 11.0,
+                  height: 11.0,
+                  child: Image.asset('assets/icons/icn_s_comment_cyan.png'),
+                ),
+                const SizedBox(width: 4.0),
+                Text(
+                  comment.toString(),
+                  style: const TextStyle(color: EveryTimeColor.cyan, fontSize: 12.0),
+                ),
+              ])
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
