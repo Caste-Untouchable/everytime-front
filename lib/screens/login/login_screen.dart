@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:clone_everytime/const.dart';
 import 'package:clone_everytime/screens/term_screen.dart';
-import 'package:clone_everytime/widgets/custom_text_field.dart';
+import 'package:clone_everytime/screens/login/widgets/login_text_field.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});

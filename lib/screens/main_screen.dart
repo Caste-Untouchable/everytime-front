@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:clone_everytime/providers/bottom_nav_provider.dart';
-import 'package:clone_everytime/screens/main_screen/board_screen.dart';
-import 'package:clone_everytime/screens/main_screen/home_screen.dart';
-import 'package:clone_everytime/screens/main_screen/time_table_screen.dart';
+import 'package:clone_everytime/screens/main/board_screen.dart';
+import 'package:clone_everytime/screens/main/home_screen.dart';
+import 'package:clone_everytime/screens/main/time_table_screen.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomContainer extends StatelessWidget {
-  const CustomContainer({super.key, required this.child});
+class OutlinedCard extends StatelessWidget {
+  const OutlinedCard({super.key, required this.child});
 
   final Widget child;
 
@@ -19,8 +19,8 @@ class CustomContainer extends StatelessWidget {
   }
 }
 
-class CustomTitleContainer extends StatelessWidget {
-  const CustomTitleContainer({super.key, required this.title, this.button, required this.child});
+class TitleOutlinedCard extends StatelessWidget {
+  const TitleOutlinedCard({super.key, required this.title, this.button, required this.child});
 
   final Widget? button;
   final Widget child;

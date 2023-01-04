@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:clone_everytime/const.dart';
-import 'package:clone_everytime/widgets/article_widget.dart';
+import 'package:clone_everytime/screens/main/widgets/board_widget.dart';
 import 'package:clone_everytime/widgets/custom_button.dart';
-import 'package:clone_everytime/widgets/custom_card.dart';
-import 'package:clone_everytime/widgets/custom_container.dart';
+import 'package:clone_everytime/screens/main/widgets/home_widget.dart';
+import 'package:clone_everytime/widgets/everytime_card.dart';
 
 class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
   const HomeAppBar({super.key});
@@ -71,7 +71,7 @@ class HomeScreen extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return Padding(
               padding: const EdgeInsets.only(right: 15.0),
-              child: CustomCard(
+              child: HomeCard(
                 title: "방학 동안 뭐하지?",
                 subTitle: "인기 공모전, 대외활동 찾아보기",
                 subColor: EveryTimeColor.bulb,
@@ -107,7 +107,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget buildFavoriteBoard() {
-    return CustomTitleContainer(
+    return TitleOutlinedCard(
       title: "즐겨찾는 게시판",
       button: GestureDetector(
         onTap: () {},
@@ -149,7 +149,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget buildPopularArticle() {
-    return CustomTitleContainer(
+    return TitleOutlinedCard(
         title: "실시간 인기 글",
         child: Column(
           children: [
@@ -174,7 +174,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget buildLatestLectureArticle() {
-    return CustomTitleContainer(
+    return TitleOutlinedCard(
       title: "최근 강의평",
       button: GestureDetector(
         onTap: () {},
@@ -195,7 +195,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget buildHotArticle() {
-    return CustomTitleContainer(
+    return TitleOutlinedCard(
         title: "HOT 게시글",
         button: GestureDetector(
           onTap: () {},
@@ -215,7 +215,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget buildRecruit(BuildContext context) {
-    return CustomTitleContainer(
+    return TitleOutlinedCard(
       title: "채용 정보",
       button: GestureDetector(
         onTap: () {},
@@ -230,7 +230,7 @@ class HomeScreen extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: 4,
           itemBuilder: (BuildContext context, int index) {
-            return CustomImageCard(
+            return HomeImageCard(
               title: "호텔롯데",
               date: DateTime(2023, 1, 8),
               imageUrl: "https://cf-eba.everytime.kr/homecard_230101.png",
@@ -242,7 +242,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget buildWelfare(BuildContext context) {
-    return CustomTitleContainer(
+    return TitleOutlinedCard(
       title: "대학생 복지 혜택",
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.3,
@@ -250,7 +250,7 @@ class HomeScreen extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: 4,
           itemBuilder: (BuildContext context, int index) {
-            return CustomImageCard(
+            return HomeImageCard(
               title: "대학생 전용 혜택\n합리적인 교육 할인",
               subTitle: "학생복지스토어",
               imageUrl: "https://cf-eba.everytime.kr/homecard_230101.png",
@@ -262,7 +262,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget buildActivities(BuildContext context) {
-    return CustomTitleContainer(
+    return TitleOutlinedCard(
       title: "대외활동",
       button: GestureDetector(
         onTap: () {},
@@ -277,7 +277,7 @@ class HomeScreen extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: 4,
           itemBuilder: (BuildContext context, int index) {
-            return CustomImageCard(
+            return HomeImageCard(
               title: "제 20회 KPR 공모전",
               subTitle: "KPR",
               imageUrl: "https://cf-eba.everytime.kr/homecard_230101.png",
@@ -289,7 +289,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget buildCompetition(BuildContext context) {
-    return CustomTitleContainer(
+    return TitleOutlinedCard(
       title: "공모전",
       button: GestureDetector(
         onTap: () {},
@@ -304,7 +304,7 @@ class HomeScreen extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: 4,
           itemBuilder: (BuildContext context, int index) {
-            return CustomImageCard(
+            return HomeImageCard(
               title: "국제청년센터 본부 홍보국 디자인팀 모집합니다.",
               subTitle: "국제청년센터",
               imageUrl: "https://cf-eba.everytime.kr/homecard_230101.png",
@@ -316,7 +316,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget buildMarketArticle(BuildContext context) {
-    return CustomTitleContainer(
+    return TitleOutlinedCard(
       title: "판매 중인 책",
       button: GestureDetector(
         onTap: () {},
@@ -331,7 +331,7 @@ class HomeScreen extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: 4,
           itemBuilder: (BuildContext context, int index) {
-            return CustomImageCard(
+            return HomeImageCard(
               title: "일반기계기사 필기대비",
               price: 20000,
               imageUrl: "https://cf-cii.everytime.kr/1bfe7bf4ccf45d9576f1bca717adcc0aa80de21ecce5416ef1a7cc1d6e1d5d43/1672741293471_0.jpg",

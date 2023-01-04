@@ -2,10 +2,65 @@ import 'package:ellipsis_overflow_text/ellipsis_overflow_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import 'package:clone_everytime/widgets/custom_container.dart';
+import 'package:clone_everytime/widgets/everytime_card.dart';
 
-class CustomCard extends StatelessWidget {
-  CustomCard({
+class CircleButton extends StatelessWidget {
+  CircleButton({
+    Key? key,
+    required this.title,
+    required this.iconName,
+    required this.onTap,
+  }) : super(key: key);
+
+  String iconName;
+  String title;
+
+  Function() onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Stack(
+            children: [
+              Container(
+                margin: const EdgeInsets.fromLTRB(5, 10, 5, 10),
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  shape: BoxShape.circle,
+                ),
+              ),
+              Positioned.fill(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    height: 25,
+                    width: 25,
+                    child: Image.asset("assets/icons/$iconName.png"),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 40),
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class HomeCard extends StatelessWidget {
+  HomeCard({
     super.key,
     required this.title,
     required this.subTitle,
@@ -24,7 +79,7 @@ class CustomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.7,
-      child: CustomContainer(
+      child: OutlinedCard(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -61,8 +116,8 @@ class CustomCard extends StatelessWidget {
   }
 }
 
-class CustomImageCard extends StatelessWidget {
-  CustomImageCard({
+class HomeImageCard extends StatelessWidget {
+  HomeImageCard({
     Key? key,
     required this.title,
     required this.imageUrl,
