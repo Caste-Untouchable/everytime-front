@@ -92,3 +92,53 @@ class PopularArticle extends StatelessWidget {
     );
   }
 }
+
+class LatestLectureArticle extends StatelessWidget {
+  String lectureName;
+  String profName;
+  String text;
+  int rating;
+
+  LatestLectureArticle({
+    super.key,
+    required this.lectureName,
+    required this.profName,
+    required this.text,
+    required this.rating,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              for (int i = 0; i < rating; i++)
+                SizedBox(
+                  width: 15,
+                  height: 15,
+                  child: Image.asset('assets/icons/ic_scrap_yellow_24dp.png'),
+                ),
+              for (int i = 0; i < 5 - rating; i++)
+                SizedBox(
+                  width: 15,
+                  height: 15,
+                  child: Image.asset('assets/icons/ic_scrap_black214_24dp.png'),
+                ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Text(
+            "$lectureName : $profName",
+            style: const TextStyle(fontWeight: FontWeight.w600),
+          ),
+          const SizedBox(height: 4),
+          Text(text, maxLines: 2)
+        ],
+      ),
+    );
+  }
+}

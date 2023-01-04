@@ -172,6 +172,27 @@ class HomeScreen extends StatelessWidget {
         ));
   }
 
+  Widget buildLatestLectureArticle() {
+    return CustomTitleContainer(
+      title: "최근 강의평",
+      button: GestureDetector(
+        onTap: () {},
+        child: const Text(
+          "더 보기 >",
+          style: TextStyle(color: EveryTimeColor.red, fontSize: 15.0),
+        ),
+      ),
+      child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: 4,
+        itemBuilder: (BuildContext context, int index) {
+          return LatestLectureArticle(lectureName: "전공탐색과생애설계", profName: "신희승", text: "설명", rating: 4);
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -184,7 +205,10 @@ class HomeScreen extends StatelessWidget {
           const SizedBox(height: 20),
           buildFavoriteBoard(),
           const SizedBox(height: 10),
-          buildPopularArticle()
+          buildPopularArticle(),
+          const SizedBox(height: 10),
+          buildLatestLectureArticle(),
+          const SizedBox(),
         ],
       ),
     );
