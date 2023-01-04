@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 class OutlinedCard extends StatelessWidget {
-  const OutlinedCard({super.key, required this.child});
+  const OutlinedCard({super.key, required this.child, this.padding});
 
   final Widget child;
+  final EdgeInsets? padding;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15.0),
+      padding: padding == null ? padding : const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15.0),
       alignment: Alignment.topLeft,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey[300]!, width: 1),
