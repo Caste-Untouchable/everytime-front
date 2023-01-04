@@ -1,8 +1,8 @@
 import 'package:ellipsis_overflow_text/ellipsis_overflow_text.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'package:clone_everytime/widgets/custom_container.dart';
-import 'package:intl/intl.dart';
 
 class CustomCard extends StatelessWidget {
   String title;

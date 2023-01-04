@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
+
 import 'package:clone_everytime/const.dart';
 import 'package:clone_everytime/widgets/custom_button.dart';
 import 'package:clone_everytime/widgets/custom_container.dart';
 import 'package:clone_everytime/widgets/time_table.dart';
-import 'package:flutter/material.dart';
 
 class TimeTableAppBar extends StatelessWidget with PreferredSizeWidget {
   const TimeTableAppBar({super.key});

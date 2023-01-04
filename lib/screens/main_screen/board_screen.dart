@@ -1,6 +1,7 @@
-import 'package:clone_everytime/providers/tab_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'package:clone_everytime/providers/tab_provider.dart';
 
 class BoardAppBar extends StatelessWidget with PreferredSizeWidget {
   late TabProvider _tabProvider;

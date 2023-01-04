@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
+
 import 'package:clone_everytime/const.dart';
 import 'package:clone_everytime/widgets/article_widget.dart';
 import 'package:clone_everytime/widgets/custom_button.dart';
 import 'package:clone_everytime/widgets/custom_card.dart';
 import 'package:clone_everytime/widgets/custom_container.dart';
-import 'package:flutter/material.dart';
 
 class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
   const HomeAppBar({super.key});
