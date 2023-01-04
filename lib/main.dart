@@ -2,9 +2,14 @@ import 'package:clone_everytime/provider/bottom_nav_provider.dart';
 import 'package:clone_everytime/screen/temp_screen.dart';
 import 'package:clone_everytime/utils/scroll_behavior.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.white,
+    statusBarColor: Colors.white,
+  ));
   runApp(const MyApp());
 }
 

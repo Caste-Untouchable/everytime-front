@@ -64,6 +64,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
+  ellipsis_overflow_text:
+    dependency: "direct main"
+    description:
+      name: ellipsis_overflow_text
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1+1"
   fake_async:
     dependency: transitive
     description:
@@ -135,6 +142,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.15.1"
+  intl:
+    dependency: "direct main"
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.18.0"
   js:
     dependency: transitive
     description:

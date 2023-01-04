@@ -1,16 +1,35 @@
 import 'package:flutter/material.dart';
 
-class CustomButtonContainer extends StatelessWidget {
-  final String title;
-  final Widget button;
+class CustomContainer extends StatelessWidget {
   final Widget child;
 
-  const CustomButtonContainer({super.key, required this.title, required this.button, required this.child});
+  const CustomContainer({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(15.0, 25.0, 15.0, 25.0),
+      padding: const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15.0),
+      alignment: Alignment.topLeft,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey[300]!, width: 1),
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: child,
+    );
+  }
+}
+
+class CustomTitleContainer extends StatelessWidget {
+  final String title;
+  final Widget? button;
+  final Widget child;
+
+  const CustomTitleContainer({super.key, required this.title, this.button, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15.0),
       alignment: Alignment.topLeft,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey[300]!, width: 1),
@@ -24,10 +43,10 @@ class CustomButtonContainer extends StatelessWidget {
               title,
               style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
-            button,
+            button == null ? const SizedBox() : button!,
           ],
         ),
-        const SizedBox(height: 20.0),
+        const SizedBox(height: 5.0),
         child,
       ]),
     );
