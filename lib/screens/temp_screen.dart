@@ -1,6 +1,7 @@
-import 'package:clone_everytime/screen/login_screen.dart';
-import 'package:clone_everytime/screen/main_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'package:clone_everytime/screens/login/login_screen.dart';
+import 'package:clone_everytime/screens/main_screen.dart';
 
 class TempScreen extends StatelessWidget {
   const TempScreen({super.key});

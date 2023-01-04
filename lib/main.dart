@@ -1,5 +1,6 @@
-import 'package:clone_everytime/provider/bottom_nav_provider.dart';
-import 'package:clone_everytime/screen/temp_screen.dart';
+import 'package:clone_everytime/providers/bottom_nav_provider.dart';
+import 'package:clone_everytime/providers/tab_provider.dart';
+import 'package:clone_everytime/screens/temp_screen.dart';
 import 'package:clone_everytime/utils/scroll_behavior.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (BuildContext context) => BottomNavigationProvider()),
+        ChangeNotifierProvider(create: (BuildContext context) => TabProvider()),
       ],
       child: MaterialApp(
         builder: (context, child) {

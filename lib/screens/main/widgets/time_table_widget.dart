@@ -1,5 +1,6 @@
-import 'package:clone_everytime/models/lecture_info.dart';
 import 'package:flutter/material.dart';
+
+import 'package:clone_everytime/models/lecture_info.dart';
 
 final List week = ['월', '화', '수', '목', '금'];
 final List time = [9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7];

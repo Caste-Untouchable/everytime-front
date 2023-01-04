@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
+
 import 'package:clone_everytime/const.dart';
 import 'package:clone_everytime/widgets/custom_button.dart';
-import 'package:clone_everytime/widgets/custom_container.dart';
-import 'package:clone_everytime/widgets/time_table.dart';
-import 'package:flutter/material.dart';
+import 'package:clone_everytime/widgets/everytime_card.dart';
+import 'package:clone_everytime/screens/main/widgets/time_table_widget.dart';
 
 class TimeTableAppBar extends StatelessWidget with PreferredSizeWidget {
   const TimeTableAppBar({super.key});
@@ -66,7 +67,7 @@ class TimeTableScreen extends StatelessWidget {
   const TimeTableScreen({super.key});
 
   Widget buildGPA() {
-    return CustomTitleContainer(
+    return TitleOutlinedCard(
       title: "학점계산기",
       button: NoSplashIconButton(
         icon: const ImageIcon(AssetImage("assets/icons/icn_m_edit_gray800.png")),
@@ -100,7 +101,7 @@ class TimeTableScreen extends StatelessWidget {
   }
 
   Widget buildFriendTimeTable() {
-    return CustomTitleContainer(
+    return TitleOutlinedCard(
       title: "친구 시간표",
       button: NoSplashIconButton(
         icon: const ImageIcon(AssetImage("assets/icons/icn_m_add_gray800.png")),
