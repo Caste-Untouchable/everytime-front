@@ -209,3 +209,41 @@ class HotArticle extends StatelessWidget {
     );
   }
 }
+
+class BoardListButton extends StatelessWidget {
+  BoardListButton({
+    Key? key,
+    required this.boardName,
+    required this.iconName,
+    required this.onTap,
+  }) : super(key: key);
+
+  String boardName;
+  String iconName;
+  VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 30.0,
+              height: 30.0,
+              child: Image.asset("assets/icons/icn_mcr_board_$iconName.png"),
+            ),
+            const SizedBox(width: 15.0),
+            Text(
+              boardName,
+              style: const TextStyle(fontSize: 16.0),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
