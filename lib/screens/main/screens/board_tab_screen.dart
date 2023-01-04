@@ -67,7 +67,7 @@ class BoardTabScreen extends StatelessWidget {
     final List<String> courseBoardList = ["취업·진로"];
     final List<String> advertiseBoardList = ["동아리·학회", "홍보게시판"];
     final List<String> groupBoardList = ["STAND BY ICT 공과대학", "All:ways 애국 상경대학"];
-    final List<String> deptBoardList = ["간호학과 게시판, 한의학과 게시판"];
+    final List<String> deptBoardList = ["간호학과 게시판", "한의학과 게시판"];
 
     return Column(
       children: [
