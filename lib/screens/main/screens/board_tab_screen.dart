@@ -45,13 +45,15 @@ class BoardTabScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        buildDefaultBoard(),
-        const SizedBox(height: 10.0),
-        buildPinnedBoard(),
-        const SizedBox(height: 10.0),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          buildDefaultBoard(),
+          const SizedBox(height: 10.0),
+          buildPinnedBoard(),
+          const SizedBox(height: 10.0),
+        ],
+      ),
     );
   }
 }
