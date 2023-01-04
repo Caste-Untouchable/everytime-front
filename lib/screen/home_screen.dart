@@ -213,6 +213,33 @@ class HomeScreen extends StatelessWidget {
         ));
   }
 
+  Widget buildRecruit(BuildContext context) {
+    return CustomTitleContainer(
+      title: "채용 정보",
+      button: GestureDetector(
+        onTap: () {},
+        child: const Text(
+          "더 보기 >",
+          style: TextStyle(color: EveryTimeColor.red, fontSize: 15.0),
+        ),
+      ),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.28,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: 4,
+          itemBuilder: (BuildContext context, int index) {
+            return CustomImageCard(
+              title: "호텔롯데",
+              date: DateTime(2023, 1, 8),
+              imageUrl: "https://cf-eba.everytime.kr/homecard_230101.png",
+            );
+          },
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -230,6 +257,8 @@ class HomeScreen extends StatelessWidget {
           buildLatestLectureArticle(),
           const SizedBox(height: 10),
           buildHotArticle(),
+          const SizedBox(height: 10),
+          buildRecruit(context),
         ],
       ),
     );

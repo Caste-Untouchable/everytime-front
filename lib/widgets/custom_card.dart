@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:clone_everytime/widgets/custom_container.dart';
+import 'package:intl/intl.dart';
 
 class CustomCard extends StatelessWidget {
   String title;
@@ -53,6 +54,76 @@ class CustomCard extends StatelessWidget {
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class CustomImageCard extends StatelessWidget {
+  String title;
+  String? subTitle;
+  String imageUrl;
+  DateTime? date;
+
+  CustomImageCard({
+    Key? key,
+    required this.title,
+    required this.imageUrl,
+    this.subTitle,
+    this.date,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 15.0, right: 10.0),
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width * 0.35,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10.0),
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey[400]!, width: 1),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.35,
+                  height: MediaQuery.of(context).size.width * 0.35,
+                  child: Image.network(
+                    imageUrl,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    title,
+                    style: const TextStyle(fontSize: 15.0, fontWeight: FontWeight.w600),
+                  ),
+                ),
+                if (subTitle != null)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
+                    child: Text(
+                      subTitle!,
+                      style: const TextStyle(color: Colors.grey, fontSize: 11.0),
+                    ),
+                  ),
+                if (date != null)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
+                    child: Text(
+                      DateFormat('~MM/dd').format(date!),
+                      style: const TextStyle(color: Colors.grey, fontSize: 11.0),
+                    ),
+                  ),
+              ],
+            ),
+          ),
         ),
       ),
     );
