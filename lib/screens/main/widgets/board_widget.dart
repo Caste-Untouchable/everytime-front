@@ -292,16 +292,6 @@ class BoardExpansionTile extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title, style: const TextStyle(color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.bold)),
-              const Icon(Icons.keyboard_arrow_down, color: EveryTimeColor.red)
-            ],
-          ),
-        ),
-        headerExpanded: Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
               Row(
                 children: [
                   Text(title, style: const TextStyle(color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.bold)),
@@ -312,6 +302,16 @@ class BoardExpansionTile extends StatelessWidget {
                   )
                 ],
               ),
+              const Icon(Icons.keyboard_arrow_down, color: EveryTimeColor.red)
+            ],
+          ),
+        ),
+        headerExpanded: Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(title, style: const TextStyle(color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.bold)),
               const Icon(Icons.keyboard_arrow_up, color: EveryTimeColor.red)
             ],
           ),
