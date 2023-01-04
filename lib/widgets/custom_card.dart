@@ -1,3 +1,4 @@
+import 'package:ellipsis_overflow_text/ellipsis_overflow_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:clone_everytime/widgets/custom_container.dart';
@@ -100,8 +101,10 @@ class CustomImageCard extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: Text(
+                  child: EllipsisOverflowText(
                     title,
+                    maxLines: 2,
+                    showEllipsisOnBreakLineOverflow: true,
                     style: const TextStyle(fontSize: 15.0, fontWeight: FontWeight.w600),
                   ),
                 ),
