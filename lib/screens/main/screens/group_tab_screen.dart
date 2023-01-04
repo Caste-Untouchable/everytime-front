@@ -54,7 +54,7 @@ class GroupTabScreen extends StatelessWidget {
           const SizedBox(height: 4.0),
           const Text(
             "총학생회, 단과대 학생회, 공식 언론사 등\n개설을 원하는 교내단체는 문의해주세요.",
-            style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Colors.grey),
           ),
           const SizedBox(height: 10.0),
           SizedBox(
@@ -64,7 +64,7 @@ class GroupTabScreen extends StatelessWidget {
               style: TextButton.styleFrom(
                 splashFactory: NoSplash.splashFactory,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0), side: BorderSide(color: EveryTimeColor.red, width: 1.0)),
+                    borderRadius: BorderRadius.circular(30.0), side: const BorderSide(color: EveryTimeColor.red, width: 1.0)),
               ),
               child: const Text(
                 "개설 요청하기",
