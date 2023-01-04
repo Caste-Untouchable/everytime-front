@@ -216,12 +216,14 @@ class BoardListButton extends StatelessWidget {
   BoardListButton({
     Key? key,
     required this.boardName,
+    this.subTitle,
     required this.iconName,
     required this.onTap,
     this.isNew = false,
   }) : super(key: key);
 
   String boardName;
+  String? subTitle;
   String iconName;
   VoidCallback onTap;
   bool isNew;
@@ -241,12 +243,29 @@ class BoardListButton extends StatelessWidget {
               child: Image.asset("assets/icons/icn_mcr_board_$iconName.png"),
             ),
             const SizedBox(width: 15.0),
-            Text(
-              boardName,
-              style: const TextStyle(fontSize: 16.0),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      boardName,
+                      style: const TextStyle(fontSize: 16.0),
+                    ),
+                    const SizedBox(width: 5.0),
+                    isNew ? SizedBox(width: 10, height: 10, child: Image.asset('assets/icons/icn_e_new.png')) : const SizedBox(),
+                  ],
+                ),
+                subTitle != null
+                    ? Column(
+                        children: [
+                          const SizedBox(height: 4.0),
+                          Text(subTitle!, style: const TextStyle(color: Colors.grey, fontSize: 11.0)),
+                        ],
+                      )
+                    : Container(),
+              ],
             ),
-            const SizedBox(width: 5.0),
-            isNew ? SizedBox(width: 10, height: 10, child: Image.asset('assets/icons/icn_e_new.png')) : const SizedBox(),
           ],
         ),
       ),
