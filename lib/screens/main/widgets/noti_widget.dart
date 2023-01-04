@@ -4,6 +4,75 @@ import 'package:intl/intl.dart';
 
 import 'package:clone_everytime/const.dart';
 
+class NoteTile extends StatelessWidget {
+  NoteTile({super.key, required this.board, required this.text, required this.date, this.unRead = 0});
+
+  String board;
+  String text;
+  DateTime date;
+  int unRead;
+
+  @override
+  Widget build(BuildContext context) {
+    String dateString;
+
+    if (date.year == DateTime.now().year) {
+      dateString = DateFormat('MM/dd hh:mm').format(date);
+    } else {
+      dateString = DateFormat('yy/MM/dd hh:mm').format(date);
+    }
+
+    return Ink(
+      decoration: unRead == 0 ? null : const BoxDecoration(color: EveryTimeColor.accent),
+      child: InkWell(
+        splashColor: unRead == 0 ? null : EveryTimeColor.accentSplash,
+        highlightColor: unRead == 0 ? null : EveryTimeColor.accentSplash,
+        onTap: () {},
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    board,
+                    style: const TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    dateString,
+                    style: const TextStyle(color: Colors.grey, fontSize: 12.0),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 4.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  EllipsisOverflowText(
+                    text,
+                    maxLines: 2,
+                    showEllipsisOnBreakLineOverflow: true,
+                  ),
+                  if (unRead != 0)
+                    Text(
+                      "+$unRead",
+                      style: const TextStyle(
+                        color: EveryTimeColor.red,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class NotiTile extends StatelessWidget {
   NotiTile({super.key, required this.board, required this.title, required this.date, this.isRead = false});
 
