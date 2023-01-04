@@ -73,6 +73,9 @@ class BoardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     _tabProvider = Provider.of<TabProvider>(context);
 
-    return tabScreen[_tabProvider.boardIndex];
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: tabScreen[_tabProvider.boardIndex],
+    );
   }
 }
