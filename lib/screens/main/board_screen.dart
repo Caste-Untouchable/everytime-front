@@ -74,7 +74,7 @@ class BoardScreen extends StatelessWidget {
     _tabProvider = Provider.of<TabProvider>(context);
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
       child: tabScreen[_tabProvider.boardIndex],
     );
   }
