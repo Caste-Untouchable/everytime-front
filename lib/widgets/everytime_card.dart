@@ -9,7 +9,7 @@ class OutlinedCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: padding == null ? padding : const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15.0),
+      padding: padding ?? const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15.0),
       alignment: Alignment.topLeft,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey[300]!, width: 1),
