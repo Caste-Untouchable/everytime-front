@@ -3,11 +3,14 @@ import 'package:clone_everytime/models/school.dart';
 import 'package:requests/requests.dart';
 
 class EveryTimeApi {
-  Future<SchoolList> findSchool() async {
-    var result = await Requests.get("${ApiServer.apiUrl}/school/findAll");
+  static Future<List<School>> findSchool() async {
+    List<School> schoolList = [];
 
-    SchoolList schoolList = SchoolList.fromJson(result.json());
-    print(schoolList);
+    var result = await Requests.get("${ApiServer.apiUrl}/school/findAll").then((value) => value.json());
+
+    for (var school in result) {
+      schoolList.add(School.fromJson(school));
+    }
 
     return schoolList;
   }
