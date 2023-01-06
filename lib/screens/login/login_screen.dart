@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:clone_everytime/const.dart';
+import 'package:clone_everytime/screens/login/select_school_screen.dart';
+import 'package:clone_everytime/screens/login/widgets/login_widget.dart';
 import 'package:clone_everytime/screens/term_screen.dart';
-import 'package:clone_everytime/screens/login/widgets/login_text_field.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -82,8 +83,9 @@ class LoginScreen extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
                 TextButton(
-                  // TODO : 회원가입 기능 구현
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: ((context) => const SelectSchoolScreen())));
+                  },
                   style: TextButton.styleFrom(
                     splashFactory: NoSplash.splashFactory,
                     padding: EdgeInsets.zero,
