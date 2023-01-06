@@ -1,7 +1,11 @@
-import 'package:clone_everytime/provider/bottom_nav_provider.dart';
-import 'package:clone_everytime/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'package:clone_everytime/providers/bottom_nav_provider.dart';
+import 'package:clone_everytime/screens/main/board_screen.dart';
+import 'package:clone_everytime/screens/main/home_screen.dart';
+import 'package:clone_everytime/screens/main/noti_screen.dart';
+import 'package:clone_everytime/screens/main/time_table_screen.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});
@@ -10,15 +14,15 @@ class MainScreen extends StatelessWidget {
 
   PreferredSizeWidget _navigationAppBar() {
     switch (_bottomNavigationProvider.currentPage) {
+      // TODO : Implement AppBar
       case 0:
         return const HomeAppBar();
-      // TODO : Implement AppBar
-      // case 1:
-      //   return TimeTableAppBar();
-      // case 2:
-      //   return BoardAppBar();
-      // case 3:
-      //   return NotifyAppBar();
+      case 1:
+        return const TimeTableAppBar();
+      case 2:
+        return BoardAppBar();
+      case 3:
+        return NotiAppBar();
       // case 4:
       //   return CampusPickAppBar();
     }
@@ -27,15 +31,15 @@ class MainScreen extends StatelessWidget {
 
   Widget _navigationBody() {
     switch (_bottomNavigationProvider.currentPage) {
+      // TODO : Implement Screen
       case 0:
         return const HomeScreen();
-      // TODO : Implement Screen
-      // case 1:
-      //   return TimeTableScreen();
-      // case 2:
-      //   return BoardScreen();
-      // case 3:
-      //   return NotifyScreen();
+      case 1:
+        return const TimeTableScreen();
+      case 2:
+        return BoardScreen();
+      case 3:
+        return NotiScreen();
       // case 4:
       //   return CampusPickScreen();
     }
@@ -95,7 +99,10 @@ class MainScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: _navigationAppBar(),
-      body: _navigationBody(),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: _navigationBody(),
+      ),
       bottomNavigationBar: _bottomNavigationBarWidget(),
     );
   }

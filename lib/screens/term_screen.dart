@@ -6,7 +6,6 @@ class TermScreen extends StatelessWidget {
   TermScreen({super.key, required this.term});
 
   final String term;
-
   Map<String, String> terms = {
     'privacy': "개인정보 처리방침",
     'serviceagreement': "이용약관",

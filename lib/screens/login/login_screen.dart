@@ -1,6 +1,8 @@
-import 'package:clone_everytime/screen/term_screen.dart';
-import 'package:clone_everytime/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
+
+import 'package:clone_everytime/const.dart';
+import 'package:clone_everytime/screens/term_screen.dart';
+import 'package:clone_everytime/screens/login/widgets/login_text_field.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -41,7 +43,7 @@ class LoginScreen extends StatelessWidget {
                       // TODO : 로그인 기능 구현
                       onPressed: () {},
                       style: TextButton.styleFrom(
-                        backgroundColor: const Color(0xFFC62918),
+                        backgroundColor: EveryTimeColor.red,
                         splashFactory: NoSplash.splashFactory,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
