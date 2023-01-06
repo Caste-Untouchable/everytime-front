@@ -1,141 +1,198 @@
 import 'package:flutter/material.dart';
-import 'package:clone_everytime/screens/board/politics_board_search.dart';
-import 'package:clone_everytime/screens/board/politics_board_write.dart';
-import 'package:clone_everytime/screens/board/politics_board_detail.dart';
+import 'package:clone_everytime/screens/board/store_board_search.dart';
+import 'package:clone_everytime/screens/board/store_board_write.dart';
+import 'package:clone_everytime/screens/board/store_board_detail.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 enum SampleItem { itemOne, itemTwo, itemThree }
 
-class PoliticsBoard extends StatefulWidget {
-  const PoliticsBoard({super.key});
+class StoreBoard extends StatefulWidget {
+  const StoreBoard({super.key});
 
   @override
-  State<PoliticsBoard> createState() => _PoliticsBoardState();
+  State<StoreBoard> createState() => _PoliticsBoardState();
 }
 
-class _PoliticsBoardState extends State<PoliticsBoard> {
+class _PoliticsBoardState extends State<StoreBoard>
+    with TickerProviderStateMixin {
+  late TabController _tabController;
+
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        toolbarHeight: 60,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: const [
-              Text('시사·이슈',
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900)),
-              SizedBox(
-                height: 3,
-              ),
-              Text('동의대',
-                  style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w100,
-                      color: Color.fromARGB(255, 142, 141, 141)))
-            ]),
-        actions: [
-          IconButton(
-              icon: Image.asset('assets/icons/icn_m_search_gray800.png',
-                  width: 25, height: 25),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: ((context) => const PoliticsBoardSearch())));
-              }),
-          PopupMenuButton(
-            child: const ImageIcon(
-              AssetImage(
-                'assets/icons/icn_m_more_gray800.png',
-              ),
-              size: 20,
-            ),
-            onSelected: (SampleItem item) async {
-              if (item == SampleItem.itemOne) {
-                //새로 고침 기능 추가
-              }
-              if (item == SampleItem.itemTwo) {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: ((context) => const PoliticsBoardWrite())));
-              }
-              if (item == SampleItem.itemThree) {
-                // 즐겨찾기 기능 추가
-              }
-            },
-            itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
-              const PopupMenuItem<SampleItem>(
-                value: SampleItem.itemOne,
-                child: Text("새로고침          "),
-              ),
-              const PopupMenuItem<SampleItem>(
-                value: SampleItem.itemTwo,
-                child: Text("글 쓰기"),
-              ),
-              const PopupMenuItem<SampleItem>(
-                  value: SampleItem.itemThree,
-                  //즐겨찾기 추가 삭제 기능 추가해야함
-                  child: Text("즐겨찾기")),
-            ],
-          ),
-          const SizedBox(
-            width: 10,
-            height: 10,
-          ),
-        ],
-      ),
-      body: Stack(
-        children: [
-          const PoliticsDB(),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 15.0),
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    side: const BorderSide(
-                        width: 1, // the thickness
-                        color: Color.fromARGB(
-                            255, 194, 194, 194) // the color of the border
+  void initState() {
+    _tabController = TabController(
+      length: 5,
+      vsync: this, //vsync에 this 형태로 전달해야 애니메이션이 정상 처리됨
+    );
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        body: SafeArea(
+          child: NestedScrollView(
+              headerSliverBuilder: (context, innerBoxIsScrolled) => [
+                    SliverAppBar(
+                      title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: const [
+                            Text('장터게시판',
+                                style: TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.w900)),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Text('동의대',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w100,
+                                    color: Color.fromARGB(255, 142, 141, 141)))
+                          ]),
+                      actions: [
+                        IconButton(
+                            icon: Image.asset(
+                                'assets/icons/icn_m_search_gray800.png',
+                                width: 25,
+                                height: 25),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) =>
+                                          const StoreBoardSearch())));
+                            }),
+                        PopupMenuButton(
+                          child: const ImageIcon(
+                            AssetImage(
+                              'assets/icons/icn_m_more_gray800.png',
+                            ),
+                            size: 20,
+                          ),
+                          onSelected: (SampleItem item) async {
+                            if (item == SampleItem.itemOne) {
+                              //새로 고침 기능 추가
+                            }
+                            if (item == SampleItem.itemTwo) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) =>
+                                          const StoreBoardWrite())));
+                            }
+                            if (item == SampleItem.itemThree) {
+                              // 즐겨찾기 기능 추가
+                            }
+                          },
+                          itemBuilder: (BuildContext context) =>
+                              <PopupMenuEntry<SampleItem>>[
+                            const PopupMenuItem<SampleItem>(
+                              value: SampleItem.itemOne,
+                              child: Text("새로고침          "),
+                            ),
+                            const PopupMenuItem<SampleItem>(
+                              value: SampleItem.itemTwo,
+                              child: Text("글 쓰기"),
+                            ),
+                            const PopupMenuItem<SampleItem>(
+                                value: SampleItem.itemThree,
+                                //즐겨찾기 추가 삭제 기능 추가해야함
+                                child: Text("즐겨찾기")),
+                          ],
                         ),
-                    backgroundColor: const Color.fromARGB(255, 242, 242, 242),
-                    minimumSize: const Size(80, 50),
-                    elevation: 0,
-                    maximumSize: const Size(110, 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
+                        const SizedBox(
+                          width: 10,
+                          height: 10,
+                        ),
+                      ],
                     ),
-                  ),
-                  child: Row(
+                  ],
+              body: Stack(
+                children: [
+                  Column(
                     children: [
-                      Image.asset('assets/icons/icn_m_edit_red.png',
-                          width: 25, height: 25),
-                      const Text(
-                        '  글 쓰기',
-                        style: TextStyle(
-                            fontSize: 13.5,
-                            color: Color.fromARGB(255, 62, 62, 62),
-                            fontWeight: FontWeight.bold),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: TabBar(
+                          indicatorPadding:
+                              const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          indicatorColor:
+                              const Color.fromARGB(255, 206, 67, 67),
+                          isScrollable: true,
+                          labelStyle: const TextStyle(fontSize: 15.0),
+                          unselectedLabelStyle: const TextStyle(fontSize: 15.0),
+                          labelColor: const Color.fromARGB(255, 206, 67, 67),
+                          labelPadding:
+                              const EdgeInsets.only(left: 10, right: 10),
+                          unselectedLabelColor: Colors.grey,
+                          controller: _tabController,
+                          tabs: const [
+                            Tab(text: "전체"),
+                            Tab(text: "팝니다"),
+                            Tab(text: "삽니다"),
+                            Tab(text: "나눔"),
+                            Tab(text: "원룸"),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: TabBarView(
+                            controller: _tabController,
+                            children: const [
+                              storeDB(),
+                              storeDB(),
+                              storeDB(),
+                              storeDB(),
+                              storeDB(),
+                            ]),
                       ),
                     ],
                   ),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) =>
-                                const PoliticsBoardWrite())));
-                  }),
-            ),
-          )
-        ],
-      ),
-    );
-  }
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 15.0),
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            side: const BorderSide(
+                                width: 1, // the thickness
+                                color: Color.fromARGB(255, 194, 194,
+                                    194) // the color of the border
+                                ),
+                            backgroundColor:
+                                const Color.fromARGB(255, 242, 242, 242),
+                            minimumSize: const Size(80, 50),
+                            elevation: 0,
+                            maximumSize: const Size(110, 50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              Image.asset('assets/icons/icn_m_edit_red.png',
+                                  width: 25, height: 25),
+                              const Text(
+                                '  글 쓰기',
+                                style: TextStyle(
+                                    fontSize: 13.5,
+                                    color: Color.fromARGB(255, 62, 62, 62),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) =>
+                                        const StoreBoardWrite())));
+                          }),
+                    ),
+                  )
+                ],
+              )),
+        ),
+      );
 }
 
 const title = [
@@ -283,8 +340,8 @@ const image_index = [
   "0",
 ];
 
-class PoliticsDB extends StatelessWidget {
-  const PoliticsDB({super.key});
+class storeDB extends StatelessWidget {
+  const storeDB({super.key});
 
   @override
   Widget build(BuildContext context) {
