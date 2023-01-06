@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:clone_everytime/const.dart';
 import 'package:clone_everytime/models/lecture_info.dart';
 
 final List week = ['월', '화', '수', '목', '금'];
@@ -138,5 +139,29 @@ Widget buildLectureBox(LectureInfo lectureInfo, Color color) {
         ),
       ),
     ),
+  );
+}
+
+Widget buildGPAColumn({required String title, required double gpa, required double maxGPA, bool isTotal = false}) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(title, style: const TextStyle(fontSize: 13.0)),
+      const SizedBox(height: 5.0),
+      RichText(
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: gpa.toStringAsFixed(2),
+              style: const TextStyle(color: EveryTimeColor.red, fontSize: 25.0, fontWeight: FontWeight.w800),
+            ),
+            TextSpan(
+              text: isTotal ? " / ${maxGPA.toStringAsFixed(0)}" : " / $maxGPA",
+              style: const TextStyle(color: Colors.grey, fontSize: 15.0),
+            ),
+          ],
+        ),
+      ),
+    ],
   );
 }

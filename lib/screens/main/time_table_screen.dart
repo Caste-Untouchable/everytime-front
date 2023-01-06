@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:clone_everytime/const.dart';
+import 'package:clone_everytime/screens/main/grade_screen.dart';
+import 'package:clone_everytime/screens/main/widgets/time_table_widget.dart';
 import 'package:clone_everytime/widgets/custom_button.dart';
 import 'package:clone_everytime/widgets/everytime_card.dart';
-import 'package:clone_everytime/screens/main/widgets/time_table_widget.dart';
 
 class TimeTableAppBar extends StatelessWidget with PreferredSizeWidget {
   const TimeTableAppBar({super.key});
@@ -66,12 +67,41 @@ class TimeTableAppBar extends StatelessWidget with PreferredSizeWidget {
 class TimeTableScreen extends StatelessWidget {
   const TimeTableScreen({super.key});
 
-  Widget buildGPA() {
+  Widget buildFriendTimeTable() {
+    return TitleOutlinedCard(
+      title: "친구 시간표",
+      button: NoSplashIconButton(
+        icon: const ImageIcon(AssetImage("assets/icons/icn_m_add_gray800.png")),
+        onPressed: () {},
+      ),
+      child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: 3,
+        itemBuilder: (BuildContext context, int index) {
+          return InkWell(
+            onTap: () {},
+            child: Container(
+              margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+              child: Text(
+                index.toString(),
+                style: const TextStyle(fontSize: 18.0),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget buildGPA(BuildContext context) {
     return TitleOutlinedCard(
       title: "학점계산기",
       button: NoSplashIconButton(
         icon: const ImageIcon(AssetImage("assets/icons/icn_m_edit_gray800.png")),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: ((context) => GradeScreen())));
+        },
       ),
       child: Padding(
         padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
@@ -100,33 +130,6 @@ class TimeTableScreen extends StatelessWidget {
     );
   }
 
-  Widget buildFriendTimeTable() {
-    return TitleOutlinedCard(
-      title: "친구 시간표",
-      button: NoSplashIconButton(
-        icon: const ImageIcon(AssetImage("assets/icons/icn_m_add_gray800.png")),
-        onPressed: () {},
-      ),
-      child: ListView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: 3,
-        itemBuilder: (BuildContext context, int index) {
-          return InkWell(
-            onTap: () {},
-            child: Container(
-              margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-              child: Text(
-                index.toString(),
-                style: const TextStyle(fontSize: 18.0),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -134,7 +137,7 @@ class TimeTableScreen extends StatelessWidget {
         children: [
           buildTimeTable(),
           const SizedBox(height: 15.0),
-          buildGPA(),
+          buildGPA(context),
           const SizedBox(height: 15.0),
           buildFriendTimeTable(),
           const SizedBox(height: 10.0),
