@@ -49,15 +49,15 @@ class _AgreeCheckState extends State<AgreeCheck> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          children: [
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  widget.isAgree = !widget.isAgree;
-                });
-              },
-              child: SizedBox(
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              widget.isAgree = !widget.isAgree;
+            });
+          },
+          child: Row(
+            children: [
+              SizedBox(
                 width: 15.0,
                 height: 15.0,
                 child: widget.isAgree
@@ -67,10 +67,10 @@ class _AgreeCheckState extends State<AgreeCheck> {
                       )
                     : Image.asset('assets/icons/ic_checkbox_off_black166_9dp.png'),
               ),
-            ),
-            const SizedBox(width: 10.0),
-            Text(widget.title, style: TextStyle(fontWeight: widget.isBold ? FontWeight.bold : FontWeight.normal)),
-          ],
+              const SizedBox(width: 10.0),
+              Text(widget.title, style: TextStyle(fontWeight: widget.isBold ? FontWeight.bold : FontWeight.normal)),
+            ],
+          ),
         ),
         const SizedBox(height: 15.0),
         if (!widget.isAgree) ...[

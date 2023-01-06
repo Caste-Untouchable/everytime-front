@@ -63,11 +63,11 @@ class _AgreementScreenState extends State<AgreementScreen> {
                 style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20.0),
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: () => agreeAll(),
-                    child: SizedBox(
+              GestureDetector(
+                onTap: () => agreeAll(),
+                child: Row(
+                  children: [
+                    SizedBox(
                       width: 15.0,
                       height: 15.0,
                       child: isAllAgree
@@ -77,10 +77,10 @@ class _AgreementScreenState extends State<AgreementScreen> {
                             )
                           : Image.asset('assets/icons/ic_checkbox_off_black166_9dp.png'),
                     ),
-                  ),
-                  const SizedBox(width: 10.0),
-                  const Text("아래 약관에 모두 동의합니다.", style: TextStyle(fontWeight: FontWeight.bold)),
-                ],
+                    const SizedBox(width: 10.0),
+                    const Text("아래 약관에 모두 동의합니다.", style: TextStyle(fontWeight: FontWeight.bold)),
+                  ],
+                ),
               ),
               const SizedBox(height: 20.0),
               for (int i = 0; i < isAgreeList.length; i++)
