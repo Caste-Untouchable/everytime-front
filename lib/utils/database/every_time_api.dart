@@ -16,6 +16,16 @@ class EveryTimeApi {
     return schoolList;
   }
 
+  static Future<String> login({required String id, required String pw}) async {
+    var result = await Requests.post("${ApiServer.apiUrl}/user/login", json: {'userID': id, 'pwd': pw});
+
+    if (result.statusCode == 200) {
+      return result.body;
+    } else {
+      return "";
+    }
+  }
+
   static Future<bool> signUp(User userData) async {
     var result = await Requests.post(
       "${ApiServer.apiUrl}/user/signup",
