@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (jwt.isNotEmpty) {
         if (mounted) {
           _tokenProvider.jwt = jwt;
-          Navigator.push(context, MaterialPageRoute(builder: ((context) => MainScreen())));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) => MainScreen())));
         }
       } else {
         setState(() {
