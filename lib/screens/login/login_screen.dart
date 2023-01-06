@@ -50,6 +50,10 @@ class _LoginScreenState extends State<LoginScreen> {
       } else {
         _idTextController.text = savedId;
       }
+    } else {
+      setState(() {
+        isRunLogin = false;
+      });
     }
   }
 
