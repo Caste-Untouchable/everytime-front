@@ -25,7 +25,7 @@ class _SelectSchoolScreenState extends State<SelectSchoolScreen> {
       ),
     );
 
-    for (int i = 1994; i < 2024; i++) {
+    for (int i = 2023; i > 1998; i--) {
       String itemValue = "$i학번";
       stuIdList.add(DropdownMenuItem<String>(value: itemValue, child: Text(itemValue)));
     }
