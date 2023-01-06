@@ -52,7 +52,7 @@ class _DetailScreenState extends State<DetailScreen> {
               actions: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                    backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                     elevation: 0,
                   ),
                   child: const Text(
@@ -65,7 +65,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                    backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                     elevation: 0,
                   ),
                   child: const Text(
@@ -220,7 +220,7 @@ class _DetailScreenState extends State<DetailScreen> {
               actions: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                    backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                     elevation: 0,
                   ),
                   child: const Text(
@@ -233,7 +233,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                    backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                     elevation: 0,
                   ),
                   child: const Text(
@@ -524,7 +524,8 @@ class _DetailScreenState extends State<DetailScreen> {
                               children: [
                                 Image.asset(
                                     'assets/icons/icn_s_star_yellow.png',
-                                    color: Color.fromARGB(255, 62, 62, 62),
+                                    color:
+                                        const Color.fromARGB(255, 62, 62, 62),
                                     width: 12,
                                     height: 12),
                                 const Text(
@@ -561,7 +562,7 @@ class _DetailScreenState extends State<DetailScreen> {
           padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
           child: Container(
             decoration: BoxDecoration(
-                color: Color.fromARGB(255, 240, 240, 240),
+                color: const Color.fromARGB(255, 240, 240, 240),
                 borderRadius: BorderRadius.circular(10)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -599,7 +600,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 Expanded(
                   child: TextField(
                     style: const TextStyle(fontSize: 17.0),
-                    cursorColor: Color.fromARGB(255, 223, 70, 59),
+                    cursorColor: const Color.fromARGB(255, 223, 70, 59),
                     cursorHeight: 22.5,
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
@@ -703,7 +704,7 @@ class _CommentState extends State<Comment> {
               actions: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                    backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                     elevation: 0,
                   ),
                   child: const Text(
@@ -716,7 +717,7 @@ class _CommentState extends State<Comment> {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                    backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                     elevation: 0,
                   ),
                   child: const Text(
@@ -928,7 +929,7 @@ class _CommentState extends State<Comment> {
               actions: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                    backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                     elevation: 0,
                   ),
                   child: const Text(
@@ -941,7 +942,7 @@ class _CommentState extends State<Comment> {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                    backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                     elevation: 0,
                   ),
                   child: const Text(
@@ -986,7 +987,7 @@ class _CommentState extends State<Comment> {
                 child: Container(
                   decoration: BoxDecoration(
                     color: reComment[index]
-                        ? Color.fromARGB(255, 240, 240, 240)
+                        ? const Color.fromARGB(255, 240, 240, 240)
                         : Colors.white,
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -1032,7 +1033,8 @@ class _CommentState extends State<Comment> {
                               padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
                               child: Container(
                                 decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 236, 236, 236),
+                                    color: const Color.fromARGB(
+                                        255, 236, 236, 236),
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
@@ -1053,8 +1055,8 @@ class _CommentState extends State<Comment> {
                                       ),
                                     if (reComment[index] == false)
                                       Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                        padding: const EdgeInsets.fromLTRB(
+                                            0, 0, 0, 0),
                                         child: Container(
                                           height: 12.0,
                                           width: 1.0,
@@ -1131,7 +1133,7 @@ class _CommentState extends State<Comment> {
                             if (CommentPosvote[index] != '0')
                               Row(
                                 children: [
-                                  SizedBox(width: 5),
+                                  const SizedBox(width: 5),
                                   const ImageIcon(
                                       color: Color.fromARGB(255, 209, 31, 19),
                                       AssetImage(
