@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:clone_everytime/screen/board/politics_board_search.dart';
-import 'package:clone_everytime/screen/board/politics_board_write.dart';
-import 'package:clone_everytime/screen/board/board_detail.dart';
+import 'package:clone_everytime/screens/board/politics_board_search.dart';
+import 'package:clone_everytime/screens/board/politics_board_write.dart';
+import 'package:clone_everytime/screens/board/board_detail.dart';
 
 enum SampleItem { itemOne, itemTwo, itemThree }
 
@@ -21,30 +21,18 @@ class _PoliticsBoardState extends State<PoliticsBoard> {
         toolbarHeight: 60,
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
-        title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: const [
-              Text('시사·이슈',
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900)),
-              SizedBox(
-                height: 3,
-              ),
-              Text('동의대',
-                  style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w100,
-                      color: Color.fromARGB(255, 142, 141, 141)))
-            ]),
+        title: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: const [
+          Text('시사·이슈', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900)),
+          SizedBox(
+            height: 3,
+          ),
+          Text('동의대', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w100, color: Color.fromARGB(255, 142, 141, 141)))
+        ]),
         actions: [
           IconButton(
-              icon: Image.asset('assets/icons/icn_m_search_gray800.png',
-                  width: 25, height: 25),
+              icon: Image.asset('assets/icons/icn_m_search_gray800.png', width: 25, height: 25),
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: ((context) => const PoliticsBoardSearch())));
+                Navigator.push(context, MaterialPageRoute(builder: ((context) => const PoliticsBoardSearch())));
               }),
           PopupMenuButton(
             child: const ImageIcon(
@@ -58,10 +46,7 @@ class _PoliticsBoardState extends State<PoliticsBoard> {
                 //새로 고침 기능 추가
               }
               if (item == SampleItem.itemTwo) {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: ((context) => const PoliticsBoardWrite())));
+                Navigator.push(context, MaterialPageRoute(builder: ((context) => const PoliticsBoardWrite())));
               }
               if (item == SampleItem.itemThree) {
                 // 즐겨찾기 기능 추가
@@ -99,8 +84,7 @@ class _PoliticsBoardState extends State<PoliticsBoard> {
                   style: ElevatedButton.styleFrom(
                     side: const BorderSide(
                         width: 1, // the thickness
-                        color: Color.fromARGB(
-                            255, 194, 194, 194) // the color of the border
+                        color: Color.fromARGB(255, 194, 194, 194) // the color of the border
                         ),
                     backgroundColor: const Color.fromARGB(255, 242, 242, 242),
                     minimumSize: const Size(80, 50),
@@ -112,23 +96,15 @@ class _PoliticsBoardState extends State<PoliticsBoard> {
                   ),
                   child: Row(
                     children: [
-                      Image.asset('assets/icons/icn_m_edit_red.png',
-                          width: 25, height: 25),
+                      Image.asset('assets/icons/icn_m_edit_red.png', width: 25, height: 25),
                       const Text(
                         '  글 쓰기',
-                        style: TextStyle(
-                            fontSize: 13.5,
-                            color: Color.fromARGB(255, 62, 62, 62),
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 13.5, color: Color.fromARGB(255, 62, 62, 62), fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) =>
-                                const PoliticsBoardWrite())));
+                    Navigator.push(context, MaterialPageRoute(builder: ((context) => const PoliticsBoardWrite())));
                   }),
             ),
           )
@@ -293,8 +269,7 @@ class PoliticsDB extends StatelessWidget {
       itemBuilder: (BuildContext context, index) {
         return InkWell(
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: ((context) => DetailScreen())));
+            Navigator.push(context, MaterialPageRoute(builder: ((context) => DetailScreen())));
           },
           child: Container(
             padding: const EdgeInsets.only(left: 15, right: 15),
@@ -313,8 +288,7 @@ class PoliticsDB extends StatelessWidget {
                         Text(
                           title[index],
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                              fontSize: 16, color: Colors.black),
+                          style: const TextStyle(fontSize: 16, color: Colors.black),
                         ),
                         const SizedBox(
                           height: 5,
@@ -322,9 +296,7 @@ class PoliticsDB extends StatelessWidget {
                         Text(
                           text[index],
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                              fontSize: 12,
-                              color: Color.fromARGB(255, 142, 141, 141)),
+                          style: const TextStyle(fontSize: 12, color: Color.fromARGB(255, 142, 141, 141)),
                         ),
                         const SizedBox(
                           height: 5,
@@ -336,30 +308,20 @@ class PoliticsDB extends StatelessWidget {
                             Row(children: [
                               Text(
                                 date[index],
-                                style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Color.fromARGB(255, 172, 171, 171)),
+                                style: const TextStyle(fontSize: 12, color: Color.fromARGB(255, 172, 171, 171)),
                               ),
                               const Text(
                                 ' | ',
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: Color.fromARGB(255, 209, 209, 209)),
+                                style: TextStyle(fontSize: 12, color: Color.fromARGB(255, 209, 209, 209)),
                               ),
                               Text(
                                 name[index],
-                                style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Color.fromARGB(255, 172, 171, 171)),
+                                style: const TextStyle(fontSize: 12, color: Color.fromARGB(255, 172, 171, 171)),
                               ),
                             ]),
                             Row(
                               children: [
-                                if (picture[index] != null)
-                                  const ImageIcon(
-                                      AssetImage(
-                                          "assets/icons/icn_s_image_gray500.png"),
-                                      size: 12),
+                                if (picture[index] != null) const ImageIcon(AssetImage("assets/icons/icn_s_image_gray500.png"), size: 12),
                                 if (picture[index] != null)
                                   const Text(
                                     "  ",
@@ -368,8 +330,7 @@ class PoliticsDB extends StatelessWidget {
                                 if (picture[index] != null)
                                   Text(
                                     image_index[index],
-                                    style: const TextStyle(
-                                        fontSize: 12, color: Colors.grey),
+                                    style: const TextStyle(fontSize: 12, color: Colors.grey),
                                   ),
                                 const Text(
                                   "  ",
@@ -387,9 +348,7 @@ class PoliticsDB extends StatelessWidget {
                                 ),
                                 Text(
                                   comment[index],
-                                  style: const TextStyle(
-                                      fontSize: 12,
-                                      color: Color.fromARGB(255, 209, 31, 19)),
+                                  style: const TextStyle(fontSize: 12, color: Color.fromARGB(255, 209, 31, 19)),
                                 ),
                                 const Text(
                                   "  ",
@@ -407,9 +366,7 @@ class PoliticsDB extends StatelessWidget {
                                 ),
                                 Text(
                                   comment[index],
-                                  style: const TextStyle(
-                                      fontSize: 12,
-                                      color: Color.fromARGB(255, 12, 165, 175)),
+                                  style: const TextStyle(fontSize: 12, color: Color.fromARGB(255, 12, 165, 175)),
                                 ),
                                 const Text(
                                   "    ",
@@ -438,8 +395,7 @@ class PoliticsDB extends StatelessWidget {
       separatorBuilder: (BuildContext context, int index) {
         return const Padding(
           padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
-          child:
-              Divider(color: Color.fromARGB(255, 194, 194, 194), thickness: 1),
+          child: Divider(color: Color.fromARGB(255, 194, 194, 194), thickness: 1),
         );
       },
     );

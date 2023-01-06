@@ -1,7 +1,7 @@
 import 'package:clone_everytime/main.dart';
-import 'package:clone_everytime/screen/board/write_note.dart';
+import 'package:clone_everytime/screens/board/write_note.dart';
 import 'package:flutter/material.dart';
-import 'package:clone_everytime/screen/board/politics_board.dart';
+import 'package:clone_everytime/screens/board/politics_board.dart';
 
 enum More { moreOne, moreTwo, moreThree, moreFour }
 
@@ -255,21 +255,13 @@ class _DetailScreenState extends State<DetailScreen> {
         toolbarHeight: 60,
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
-        title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: const [
-              Text('시사·이슈',
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900)),
-              SizedBox(
-                height: 3,
-              ),
-              Text('동의대',
-                  style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w100,
-                      color: Color.fromARGB(255, 142, 141, 141)))
-            ]),
+        title: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: const [
+          Text('시사·이슈', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900)),
+          SizedBox(
+            height: 3,
+          ),
+          Text('동의대', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w100, color: Color.fromARGB(255, 142, 141, 141)))
+        ]),
         actions: [
           isAlarm
               ? IconButton(
@@ -304,10 +296,7 @@ class _DetailScreenState extends State<DetailScreen> {
               if (more == More.moreTwo) {
                 //쪽지 보내기
 
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: ((context) => const WriteNote())));
+                Navigator.push(context, MaterialPageRoute(builder: ((context) => const WriteNote())));
               }
               if (more == More.moreThree) {
                 checkReport();
@@ -374,8 +363,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             ),
                             Text(
                               "01/04 19:24",
-                              style:
-                                  TextStyle(fontSize: 13, color: Colors.grey),
+                              style: TextStyle(fontSize: 13, color: Colors.grey),
                             ),
                           ],
                         ),
@@ -433,9 +421,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         ),
                         Text(
                           "0",
-                          style: TextStyle(
-                              fontSize: 12,
-                              color: Color.fromARGB(255, 209, 31, 19)),
+                          style: TextStyle(fontSize: 12, color: Color.fromARGB(255, 209, 31, 19)),
                         ),
                         Text(
                           "  ",
@@ -453,9 +439,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         ),
                         Text(
                           "12",
-                          style: TextStyle(
-                              fontSize: 12,
-                              color: Color.fromARGB(255, 12, 165, 175)),
+                          style: TextStyle(fontSize: 12, color: Color.fromARGB(255, 12, 165, 175)),
                         ),
                         Text(
                           "  ",
@@ -473,9 +457,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         ),
                         Text(
                           "0",
-                          style: TextStyle(
-                              fontSize: 12,
-                              color: Color.fromARGB(255, 230, 185, 30)),
+                          style: TextStyle(fontSize: 12, color: Color.fromARGB(255, 230, 185, 30)),
                         ),
                       ],
                     ),
@@ -483,8 +465,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       children: [
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromARGB(255, 242, 242, 242),
+                              backgroundColor: const Color.fromARGB(255, 242, 242, 242),
                               elevation: 0,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
@@ -492,18 +473,11 @@ class _DetailScreenState extends State<DetailScreen> {
                             ),
                             child: Row(
                               children: [
-                                Image.asset(
-                                    'assets/icons/icn_s_posvote_red.png',
-                                    color:
-                                        const Color.fromARGB(255, 62, 62, 62),
-                                    width: 12,
-                                    height: 12),
+                                Image.asset('assets/icons/icn_s_posvote_red.png',
+                                    color: const Color.fromARGB(255, 62, 62, 62), width: 12, height: 12),
                                 const Text(
                                   ' 공감',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: Color.fromARGB(255, 62, 62, 62),
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 12, color: Color.fromARGB(255, 62, 62, 62), fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -513,8 +487,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         const SizedBox(width: 5),
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromARGB(255, 242, 242, 242),
+                              backgroundColor: const Color.fromARGB(255, 242, 242, 242),
                               elevation: 0,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
@@ -522,18 +495,11 @@ class _DetailScreenState extends State<DetailScreen> {
                             ),
                             child: Row(
                               children: [
-                                Image.asset(
-                                    'assets/icons/icn_s_star_yellow.png',
-                                    color:
-                                        const Color.fromARGB(255, 62, 62, 62),
-                                    width: 12,
-                                    height: 12),
+                                Image.asset('assets/icons/icn_s_star_yellow.png',
+                                    color: const Color.fromARGB(255, 62, 62, 62), width: 12, height: 12),
                                 const Text(
                                   ' 스크랩',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: Color.fromARGB(255, 62, 62, 62),
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 12, color: Color.fromARGB(255, 62, 62, 62), fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -561,9 +527,7 @@ class _DetailScreenState extends State<DetailScreen> {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
           child: Container(
-            decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 240, 240, 240),
-                borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(color: const Color.fromARGB(255, 240, 240, 240), borderRadius: BorderRadius.circular(10)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -872,10 +836,7 @@ class _CommentState extends State<Comment> {
                   InkWell(
                     onTap: () {
                       Navigator.pop(context);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) => const WriteNote())));
+                      Navigator.push(context, MaterialPageRoute(builder: ((context) => const WriteNote())));
                     },
                     child: Container(
                         margin: const EdgeInsets.fromLTRB(0, 10, 0, 5),
@@ -986,9 +947,7 @@ class _CommentState extends State<Comment> {
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
-                    color: reComment[index]
-                        ? const Color.fromARGB(255, 240, 240, 240)
-                        : Colors.white,
+                    color: reComment[index] ? const Color.fromARGB(255, 240, 240, 240) : Colors.white,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Padding(
@@ -1023,19 +982,15 @@ class _CommentState extends State<Comment> {
                                 ),
                                 Text(
                                   username[index],
-                                  style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w700),
+                                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                                 )
                               ],
                             ),
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
                               child: Container(
-                                decoration: BoxDecoration(
-                                    color: const Color.fromARGB(
-                                        255, 236, 236, 236),
-                                    borderRadius: BorderRadius.circular(10)),
+                                decoration:
+                                    BoxDecoration(color: const Color.fromARGB(255, 236, 236, 236), borderRadius: BorderRadius.circular(10)),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
@@ -1047,21 +1002,18 @@ class _CommentState extends State<Comment> {
                                         },
                                         icon: Image.asset(
                                           'assets/icons/icn_s_comment_cyan.png',
-                                          color: const Color.fromARGB(
-                                              255, 185, 185, 185),
+                                          color: const Color.fromARGB(255, 185, 185, 185),
                                           width: 15,
                                           height: 15,
                                         ),
                                       ),
                                     if (reComment[index] == false)
                                       Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            0, 0, 0, 0),
+                                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                                         child: Container(
                                           height: 12.0,
                                           width: 1.0,
-                                          color: const Color.fromARGB(
-                                              255, 185, 185, 185),
+                                          color: const Color.fromARGB(255, 185, 185, 185),
                                         ),
                                       ),
                                     IconButton(
@@ -1071,20 +1023,17 @@ class _CommentState extends State<Comment> {
                                       },
                                       icon: Image.asset(
                                         'assets/icons/icn_s_posvote_red.png',
-                                        color: const Color.fromARGB(
-                                            255, 185, 185, 185),
+                                        color: const Color.fromARGB(255, 185, 185, 185),
                                         width: 15,
                                         height: 15,
                                       ),
                                     ),
                                     Padding(
-                                      padding:
-                                          const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                                       child: Container(
                                         height: 12.0,
                                         width: 1.0,
-                                        color: const Color.fromARGB(
-                                            255, 185, 185, 185),
+                                        color: const Color.fromARGB(255, 185, 185, 185),
                                       ),
                                     ),
                                     IconButton(
@@ -1094,8 +1043,7 @@ class _CommentState extends State<Comment> {
                                       },
                                       icon: Image.asset(
                                         'assets/icons/icn_m_more_gray800.png',
-                                        color: const Color.fromARGB(
-                                            255, 185, 185, 185),
+                                        color: const Color.fromARGB(255, 185, 185, 185),
                                         width: 15,
                                         height: 15,
                                       ),
@@ -1146,10 +1094,7 @@ class _CommentState extends State<Comment> {
                                   ),
                                   Text(
                                     CommentPosvote[index],
-                                    style: const TextStyle(
-                                        fontSize: 12,
-                                        color:
-                                            Color.fromARGB(255, 209, 31, 19)),
+                                    style: const TextStyle(fontSize: 12, color: Color.fromARGB(255, 209, 31, 19)),
                                   ),
                                 ],
                               )

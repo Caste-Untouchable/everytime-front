@@ -1,4 +1,4 @@
-import 'package:clone_everytime/screen/term_screen.dart';
+import 'package:clone_everytime/screens/term_screen.dart';
 import 'package:flutter/material.dart';
 
 const anonym = [
@@ -49,10 +49,7 @@ class PoliticsBoardWriteState extends State<PoliticsBoardWrite> {
               ),
               child: const Text(
                 '완료',
-                style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
-                    color: Color.fromARGB(255, 255, 255, 255)),
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: Color.fromARGB(255, 255, 255, 255)),
               ),
             ),
           )
@@ -93,11 +90,7 @@ class PoliticsBoardWriteState extends State<PoliticsBoardWrite> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) =>
-                                  TermScreen(term: "community"))));
+                      Navigator.push(context, MaterialPageRoute(builder: ((context) => TermScreen(term: "community"))));
                       //Navigator.push(
                       //    context,
                       //    MaterialPageRoute(
@@ -112,10 +105,7 @@ class PoliticsBoardWriteState extends State<PoliticsBoardWrite> {
                     ),
                     child: const Text(
                       '커뮤니티 이용규칙 전체 보기 >',
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                          color: Color.fromARGB(255, 54, 54, 54)),
+                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: Color.fromARGB(255, 54, 54, 54)),
                     ),
                   )
                 ],
@@ -171,39 +161,34 @@ class PoliticsBoardWriteState extends State<PoliticsBoardWrite> {
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
           child: SizedBox(
             height: 60,
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              IconButton(
+                  icon: Image.asset('assets/icons/icn_m_camera_gray800.png', width: 25, height: 25),
+                  onPressed: () {
+                    //앨범 기능 추가
+                  }),
+              Row(
                 children: [
-                  IconButton(
-                      icon: Image.asset('assets/icons/icn_m_camera_gray800.png',
-                          width: 25, height: 25),
-                      onPressed: () {
-                        //앨범 기능 추가
-                      }),
-                  Row(
-                    children: [
-                      isAnonym
-                          ? IconButton(
-                              iconSize: 50,
-                              icon: Image.asset(anonym[0],
-                                  width: 50, height: 100),
-                              onPressed: () {
-                                setState(() {
-                                  isAnonym = !isAnonym;
-                                });
-                              })
-                          : IconButton(
-                              iconSize: 50,
-                              icon: Image.asset(anonym[1],
-                                  width: 50, height: 100),
-                              onPressed: () {
-                                setState(() {
-                                  isAnonym = !isAnonym;
-                                });
-                              }),
-                    ],
-                  )
-                ]),
+                  isAnonym
+                      ? IconButton(
+                          iconSize: 50,
+                          icon: Image.asset(anonym[0], width: 50, height: 100),
+                          onPressed: () {
+                            setState(() {
+                              isAnonym = !isAnonym;
+                            });
+                          })
+                      : IconButton(
+                          iconSize: 50,
+                          icon: Image.asset(anonym[1], width: 50, height: 100),
+                          onPressed: () {
+                            setState(() {
+                              isAnonym = !isAnonym;
+                            });
+                          }),
+                ],
+              )
+            ]),
           ),
         ),
       ),
