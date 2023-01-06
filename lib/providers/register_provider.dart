@@ -11,12 +11,12 @@ class RegisterProvider extends ChangeNotifier {
     _userData.registeredYear = year;
   }
 
-  void setUser({required userId, required name, required nickName, required pwd}) {
+  void setUser({required userId, required name, required nickName, required email, required pwd}) {
     _userData.userID = userId;
     _userData.name = name;
     _userData.nickname = nickName;
+    _userData.email = email;
     _userData.pwd = pwd;
-    _userData.registeredYear = DateTime.now().year;
     _userData.verified = true;
     _userData.point = 0;
     _userData.status = "ACTIVE";
