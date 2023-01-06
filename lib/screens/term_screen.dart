@@ -9,6 +9,7 @@ class TermScreen extends StatelessWidget {
   Map<String, String> terms = {
     'privacy': "개인정보 처리방침",
     'serviceagreement': "이용약관",
+    'community': "커뮤니티 이용규칙",
   };
 
   Future<String> _loadHtml() async {
@@ -22,7 +23,11 @@ class TermScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        actions: [IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(Icons.close))],
+        actions: [
+          IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: const Icon(Icons.close))
+        ],
         title: Text(terms[term]!),
       ),
       body: FutureBuilder(

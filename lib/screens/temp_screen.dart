@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:clone_everytime/screens/board/politics_board.dart';
 import 'package:clone_everytime/screens/login/login_screen.dart';
 import 'package:clone_everytime/screens/main_screen.dart';
 
@@ -26,6 +27,11 @@ class TempScreen extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: ((context) => MainScreen())));
                 },
                 child: const Text("메인 화면")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: ((context) => PoliticsBoard())));
+                },
+                child: const Text("장터 게시판")),
           ],
         ),
       ),
