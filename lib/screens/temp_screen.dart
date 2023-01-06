@@ -4,6 +4,8 @@ import 'package:clone_everytime/screens/board/politics_board.dart';
 import 'package:clone_everytime/screens/login/login_screen.dart';
 import 'package:clone_everytime/screens/main_screen.dart';
 
+import 'board/free_board.dart';
+
 class TempScreen extends StatelessWidget {
   const TempScreen({super.key});
 
@@ -43,6 +45,12 @@ class TempScreen extends StatelessWidget {
                       MaterialPageRoute(builder: ((context) => StoreBoard())));
                 },
                 child: const Text("장터 게시판")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: ((context) => FreeBoard())));
+                },
+                child: const Text("자유 게시판")),
           ],
         ),
       ),
