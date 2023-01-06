@@ -1,3 +1,4 @@
+import 'package:clone_everytime/providers/register_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:clone_everytime/const.dart';
@@ -5,6 +6,7 @@ import 'package:clone_everytime/models/school.dart';
 import 'package:clone_everytime/screens/login/agreement_screen.dart';
 import 'package:clone_everytime/screens/login/widgets/login_widget.dart';
 import 'package:clone_everytime/utils/database/every_time_api.dart';
+import 'package:provider/provider.dart';
 
 class SelectSchoolScreen extends StatefulWidget {
   const SelectSchoolScreen({super.key});
@@ -48,6 +50,8 @@ class _SelectSchoolScreenState extends State<SelectSchoolScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final RegisterProvider registerProvider = Provider.of<RegisterProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -185,6 +189,7 @@ class _SelectSchoolScreenState extends State<SelectSchoolScreen> {
                   color: EveryTimeColor.red,
                   child: const Text("다음", style: TextStyle(color: Colors.white)),
                   onPressed: () {
+                    registerProvider.setNameYear(_schoolTextController.text, int.parse(stuId.substring(0, 4)));
                     Navigator.push(context, MaterialPageRoute(builder: ((context) => const AgreementScreen())));
                   })
             ],
