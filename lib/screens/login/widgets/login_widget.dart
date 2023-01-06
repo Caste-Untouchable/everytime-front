@@ -25,6 +25,86 @@ Widget LoginTextField({required String hintText, required TextEditingController 
   );
 }
 
+class AgreeCheck extends StatefulWidget {
+  AgreeCheck({super.key, required this.title, required this.htmlName, required this.isBold, required this.isAgree});
+
+  String htmlName;
+  bool isAgree;
+  bool isBold;
+  String title;
+
+  @override
+  State<AgreeCheck> createState() => _AgreeCheckState();
+}
+
+class _AgreeCheckState extends State<AgreeCheck> {
+  Future<String> _loadHtml(String term) async {
+    String termHtml = await rootBundle.loadString('assets/terms/$term.html');
+
+    return termHtml;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  widget.isAgree = !widget.isAgree;
+                });
+              },
+              child: SizedBox(
+                width: 15.0,
+                height: 15.0,
+                child: widget.isAgree
+                    ? Image.asset(
+                        'assets/icons/ic_checkbox_on_yellow_9dp.png',
+                        color: EveryTimeColor.red,
+                      )
+                    : Image.asset('assets/icons/ic_checkbox_off_black166_9dp.png'),
+              ),
+            ),
+            const SizedBox(width: 10.0),
+            Text(widget.title, style: TextStyle(fontWeight: widget.isBold ? FontWeight.bold : FontWeight.normal)),
+          ],
+        ),
+        const SizedBox(height: 15.0),
+        if (!widget.isAgree) ...[
+          Container(
+            height: MediaQuery.of(context).size.height * 0.2,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey[300]!),
+              borderRadius: BorderRadius.circular(10.0),
+              color: Colors.grey[100],
+            ),
+            child: FutureBuilder(
+              future: _loadHtml(widget.htmlName),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SingleChildScrollView(child: Html(data: snapshot.data)),
+                  );
+                } else if (snapshot.hasData == false) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  return const Center(child: Text("약관을 불러오는 중 오류가 발생하였습니다."));
+                }
+              },
+            ),
+          ),
+          const SizedBox(height: 15.0),
+        ],
+      ],
+    );
+  }
+}
+
 class LoginScreenButton extends StatelessWidget {
   LoginScreenButton({
     super.key,
@@ -33,9 +113,9 @@ class LoginScreenButton extends StatelessWidget {
     required this.onPressed,
   });
 
+  Widget child;
   Color color;
   VoidCallback onPressed;
-  Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -56,70 +136,6 @@ class LoginScreenButton extends StatelessWidget {
             onPressed: onPressed,
             child: child),
       ),
-    );
-  }
-}
-
-class AgreeCheck extends StatelessWidget {
-  AgreeCheck({super.key, required this.title, required this.htmlName, required this.isBold, required this.isAgree});
-
-  String title;
-  String htmlName;
-  bool isBold;
-  bool isAgree;
-
-  Future<String> _loadHtml(String term) async {
-    String termHtml = await rootBundle.loadString('assets/terms/$term.html');
-
-    return termHtml;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            SizedBox(
-              width: 13.0,
-              height: 13.0,
-              child: Image.asset(
-                'assets/icons/ic_checkbox_on_yellow_9dp.png',
-                color: EveryTimeColor.red,
-              ),
-            ),
-            const SizedBox(width: 10.0),
-            Text(title, style: TextStyle(fontWeight: isBold ? FontWeight.bold : FontWeight.normal)),
-          ],
-        ),
-        const SizedBox(height: 15.0),
-        Container(
-          height: MediaQuery.of(context).size.height * 0.2,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey[300]!),
-            borderRadius: BorderRadius.circular(10.0),
-            color: Colors.grey[100],
-          ),
-          child: FutureBuilder(
-            future: _loadHtml(htmlName),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.hasData) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SingleChildScrollView(child: Html(data: snapshot.data)),
-                );
-              } else if (snapshot.hasData == false) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else {
-                return const Center(child: Text("약관을 불러오는 중 오류가 발생하였습니다."));
-              }
-            },
-          ),
-        ),
-        const SizedBox(height: 15.0),
-      ],
     );
   }
 }
