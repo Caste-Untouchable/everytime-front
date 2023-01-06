@@ -48,6 +48,9 @@ class _LoginScreenState extends State<LoginScreen> {
           Navigator.push(context, MaterialPageRoute(builder: ((context) => MainScreen())));
         }
       } else {
+        setState(() {
+          isRunLogin = false;
+        });
         _idTextController.text = savedId;
       }
     }
