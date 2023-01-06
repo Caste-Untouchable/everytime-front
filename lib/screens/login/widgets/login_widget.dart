@@ -26,12 +26,13 @@ Widget LoginTextField({required String hintText, required TextEditingController 
 }
 
 class AgreeCheck extends StatefulWidget {
-  AgreeCheck({super.key, required this.title, required this.htmlName, required this.isBold, required this.isAgree});
+  AgreeCheck({super.key, required this.title, required this.htmlName, required this.isBold, required this.isAgree, required this.height});
 
   String htmlName;
   bool isAgree;
   bool isBold;
   String title;
+  double height;
 
   @override
   State<AgreeCheck> createState() => _AgreeCheckState();
@@ -74,7 +75,7 @@ class _AgreeCheckState extends State<AgreeCheck> {
         const SizedBox(height: 15.0),
         if (!widget.isAgree) ...[
           Container(
-            height: MediaQuery.of(context).size.height * 0.2,
+            height: widget.height,
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey[300]!),
               borderRadius: BorderRadius.circular(10.0),

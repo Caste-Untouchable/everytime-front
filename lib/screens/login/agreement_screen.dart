@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:clone_everytime/const.dart';
+import 'package:clone_everytime/screens/login/register_screen.dart';
 import 'package:clone_everytime/screens/login/widgets/login_widget.dart';
 
 class AgreementScreen extends StatefulWidget {
@@ -13,8 +14,9 @@ class AgreementScreen extends StatefulWidget {
 
 class _AgreementScreenState extends State<AgreementScreen> {
   bool isAllAgree = false;
+  bool isAgeAgree = false;
 
-  List<bool> isAgreeList = [false, false, false, false, false, false];
+  List<bool> isAgreeList = [false, false, false, false, false];
   var agreeList = [
     ['serviceagreement', "서비스이용약관 동의 (필수)", false],
     ['privacy_register', "개인정보 수집 및 이용 동의 (필수)", false],
@@ -33,15 +35,16 @@ class _AgreementScreenState extends State<AgreementScreen> {
   @override
   Widget build(BuildContext context) {
     void agreeAll() {
-      setState(() {
-        if (isAgreeList.contains(false)) {
-          isAgreeList = [true, true, true, true, true, true];
-          isAllAgree = true;
-        } else {
-          isAgreeList = [false, false, false, false, false, false];
-          isAllAgree = false;
+      if (isAgreeList.contains(false)) {
+        for (int i = 0; i < 4; i++) {
+          isAgreeList[i] = true;
         }
-      });
+        setState(() {
+          isAllAgree = true;
+          return;
+        });
+      }
+      isAllAgree ? false : true;
     }
 
     return Scaffold(
@@ -80,12 +83,21 @@ class _AgreementScreenState extends State<AgreementScreen> {
                 ],
               ),
               const SizedBox(height: 20.0),
-              for (int i = 0; i < agreeList.length; i++)
+              for (int i = 0; i < isAgreeList.length; i++)
                 AgreeCheck(
-                    title: agreeList[i][1].toString(),
-                    htmlName: agreeList[i][0].toString(),
-                    isBold: agreeList[i][2] == true,
-                    isAgree: isAgreeList[i]),
+                  title: agreeList[i][1].toString(),
+                  htmlName: agreeList[i][0].toString(),
+                  isBold: agreeList[i][2] == true,
+                  isAgree: isAgreeList[i],
+                  height: MediaQuery.of(context).size.height * 0.2,
+                ),
+              AgreeCheck(
+                title: agreeList[5][1].toString(),
+                htmlName: agreeList[5][0].toString(),
+                isBold: agreeList[5][2] == true,
+                isAgree: isAgeAgree,
+                height: MediaQuery.of(context).size.height * 0.1,
+              ),
               const SizedBox(height: 10.0),
               LoginScreenButton(
                 color: EveryTimeColor.red,
