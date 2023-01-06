@@ -173,11 +173,12 @@ class _SelectSchoolScreenState extends State<SelectSchoolScreen> {
                       padding: const EdgeInsets.all(10.0),
                       child: Row(
                         children: [
-                          Text(searchResult[index].substring(0, searchLetterIndex[0]), style: const TextStyle(fontSize: 15.0)),
+                          Text(searchResult[index].substring(0, searchLetterIndex[index]), style: const TextStyle(fontSize: 15.0)),
                           Text(
-                              searchResult[index].substring(searchLetterIndex[0], searchLetterIndex[0] + _schoolTextController.text.length),
+                              searchResult[index]
+                                  .substring(searchLetterIndex[index], searchLetterIndex[index] + _schoolTextController.text.length),
                               style: const TextStyle(color: EveryTimeColor.red, fontSize: 15.0)),
-                          Text(searchResult[index].substring(searchLetterIndex[0] + _schoolTextController.text.length),
+                          Text(searchResult[index].substring(searchLetterIndex[index] + _schoolTextController.text.length),
                               style: const TextStyle(fontSize: 15.0)),
                         ],
                       ),
