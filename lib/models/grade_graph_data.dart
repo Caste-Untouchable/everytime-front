@@ -1,16 +1,16 @@
 import 'dart:convert';
 
-class GradeData {
-  GradeData({
+class GradeGraphData {
+  GradeGraphData({
     required this.x,
     required this.y,
     required this.majorY,
   });
 
-  factory GradeData.fromJson(String source) => GradeData.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory GradeGraphData.fromJson(String source) => GradeGraphData.fromMap(json.decode(source) as Map<String, dynamic>);
 
-  factory GradeData.fromMap(Map<String, dynamic> map) {
-    return GradeData(
+  factory GradeGraphData.fromMap(Map<String, dynamic> map) {
+    return GradeGraphData(
       majorY: map['majorY'] as double,
       x: map['x'] as String,
       y: map['y'] as double,
