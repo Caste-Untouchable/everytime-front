@@ -158,6 +158,7 @@ class _SelectSchoolScreenState extends State<SelectSchoolScreen> {
               ),
               const SizedBox(height: 20.0),
               ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: searchResult.length,
                 itemBuilder: (BuildContext context, int index) {
