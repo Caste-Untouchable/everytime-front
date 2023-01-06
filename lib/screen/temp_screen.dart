@@ -35,7 +35,7 @@ class TempScreen extends StatelessWidget {
                       MaterialPageRoute(
                           builder: ((context) => PoliticsBoard())));
                 },
-                child: const Text("시사 이슈 게시판"))
+                child: const Text("장터 게시판")),
           ],
         ),
       ),
