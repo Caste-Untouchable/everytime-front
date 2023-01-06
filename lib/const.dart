@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ApiServer {
-  static const apiUrl = "https://port-0-everytime-server-3vw25lceo19sl.gksl2.cloudtype.app/";
+  static const apiUrl = "https://port-0-everytime-server-3vw25lceo19sl.gksl2.cloudtype.app";
 }
 
 class EveryTimeColor {
