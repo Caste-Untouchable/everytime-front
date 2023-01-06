@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (BuildContext context) => TabProvider()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         builder: (context, child) {
           return ScrollConfiguration(behavior: MyScrollBehavior(), child: child!);
         },
