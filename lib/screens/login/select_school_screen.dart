@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:clone_everytime/const.dart';
 import 'package:clone_everytime/screens/login/agreement_screen.dart';
+import 'package:clone_everytime/screens/login/widgets/login_widget.dart';
 
 class SelectSchoolScreen extends StatefulWidget {
   const SelectSchoolScreen({super.key});
@@ -121,30 +122,12 @@ class _SelectSchoolScreenState extends State<SelectSchoolScreen> {
               ),
             ),
             const SizedBox(height: 20.0),
-            Padding(
-              padding: const EdgeInsets.only(left: 4.0, right: 4.0),
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: EveryTimeColor.red,
-                    elevation: 0.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      side: BorderSide.none,
-                    ),
-                    splashFactory: NoSplash.splashFactory,
-                  ),
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: ((context) => const AgreementScreen())));
-                  },
-                  child: const Text(
-                    "다음",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
+            LoginScreenButton(
+                color: EveryTimeColor.red,
+                child: const Text("다음", style: TextStyle(color: Colors.white)),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: ((context) => const AgreementScreen())));
+                })
           ],
         ),
       ),
