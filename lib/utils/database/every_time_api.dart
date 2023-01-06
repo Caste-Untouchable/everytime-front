@@ -1,5 +1,6 @@
 import 'package:clone_everytime/const.dart';
 import 'package:clone_everytime/models/school.dart';
+import 'package:clone_everytime/models/user.dart';
 import 'package:requests/requests.dart';
 
 class EveryTimeApi {
@@ -13,5 +14,18 @@ class EveryTimeApi {
     }
 
     return schoolList;
+  }
+
+  static Future<bool> signUp(User userData) async {
+    var result = await Requests.post(
+      "${ApiServer.apiUrl}/user/signup",
+      json: userData.toJson(),
+    );
+
+    if (result.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

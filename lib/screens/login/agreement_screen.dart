@@ -102,12 +102,16 @@ class _AgreementScreenState extends State<AgreementScreen> {
               LoginScreenButton(
                 color: EveryTimeColor.red,
                 child: const Text("휴대폰 인증", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: ((context) => RegisterScreen())));
+                },
               ),
               LoginScreenButton(
                 color: Colors.grey[100]!,
                 child: const Text("아이핀 인증", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: ((context) => RegisterScreen())));
+                },
               ),
             ],
           ),
