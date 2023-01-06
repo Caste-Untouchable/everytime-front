@@ -52,7 +52,7 @@ class RegisterScreen extends StatelessWidget {
                   bool isSuccess = await EveryTimeApi.signUp(registerProvider.userData);
 
                   if (isSuccess) {
-                    Navigator.push(context, MaterialPageRoute(builder: ((context) => LoginScreen())));
+                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: ((context) => LoginScreen())), (route) => false);
                   } else {
                     showDialog(
                         context: context,
