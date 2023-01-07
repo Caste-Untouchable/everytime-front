@@ -23,7 +23,7 @@ class BoardProvider extends ChangeNotifier {
   }
 
   getBoardData(String jwt) async {
-    List<Board> boardList = await EveryTimeApi.getBoard(jwt);
+    List<Board> boardList = await EveryTimeApi.getBoardList(jwt);
 
     clearBoard();
 

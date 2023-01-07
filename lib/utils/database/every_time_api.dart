@@ -17,7 +17,7 @@ class EveryTimeApi {
     return schoolList;
   }
 
-  static Future<List<Board>> getBoard(String jwt) async {
+  static Future<List<Board>> getBoardList(String jwt) async {
     List<Board> boardList = [];
 
     var result = await Requests.get("${ApiServer.apiUrl}/boardType/getBoardTypeBySchoolName", headers: {'jwt': jwt});
