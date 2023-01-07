@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:clone_everytime/const.dart';
 import 'package:clone_everytime/screens/main/widgets/board_widget.dart';
-import 'package:clone_everytime/widgets/custom_button.dart';
 import 'package:clone_everytime/screens/main/widgets/home_widget.dart';
+import 'package:clone_everytime/screens/my_page/my_page_screen.dart';
+import 'package:clone_everytime/widgets/custom_button.dart';
 import 'package:clone_everytime/widgets/everytime_card.dart';
 
 class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -43,7 +44,9 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
                       padding: const EdgeInsets.only(left: 20.0),
                       child: NoSplashIconButton(
                         icon: const Icon(Icons.person_outline),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: ((context) => const MyPageScreen())));
+                        },
                       ),
                     ),
                   ],
