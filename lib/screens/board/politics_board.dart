@@ -147,7 +147,7 @@ class PoliticsDB extends StatelessWidget {
               itemBuilder: (BuildContext context, index) {
                 return InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: ((context) => const DetailScreen())));
+                    Navigator.push(context, MaterialPageRoute(builder: ((context) => DetailScreen(article: snapshot.data[index]))));
                   },
                   child: Container(
                     padding: const EdgeInsets.only(left: 15, right: 15),
@@ -185,7 +185,7 @@ class PoliticsDB extends StatelessWidget {
                                   children: [
                                     Row(children: [
                                       Text(
-                                        DateUtil.dateToString(snapshot.data[index].createdAT!),
+                                        DateUtil.boardTimeToString(snapshot.data[index].createdAT!),
                                         style: const TextStyle(fontSize: 12, color: Color.fromARGB(255, 172, 171, 171)),
                                       ),
                                       const Text(

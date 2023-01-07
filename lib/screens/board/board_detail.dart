@@ -1,7 +1,8 @@
-import 'package:clone_everytime/main.dart';
-import 'package:clone_everytime/screens/board/write_note.dart';
 import 'package:flutter/material.dart';
-import 'package:clone_everytime/screens/board/politics_board.dart';
+import 'package:intl/intl.dart';
+
+import 'package:clone_everytime/models/article.dart';
+import 'package:clone_everytime/screens/board/write_note.dart';
 
 enum More { moreOne, moreTwo, moreThree, moreFour }
 
@@ -18,7 +19,9 @@ const anonym = [
 ];
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({super.key});
+  DetailScreen({super.key, required this.article});
+
+  Article article;
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -34,12 +37,6 @@ class _DetailScreenState extends State<DetailScreen> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              // title: Column(
-              //   children: <Widget>[
-              //     new Text("이 글을 공감하시겠습니까?"),
-              //   ],
-              // ),
-              // //
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -353,8 +350,8 @@ class _DetailScreenState extends State<DetailScreen> {
                         const SizedBox(width: 10),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
+                          children: [
+                            const Text(
                               "익명",
                               style: TextStyle(
                                 fontSize: 15,
@@ -362,17 +359,17 @@ class _DetailScreenState extends State<DetailScreen> {
                               ),
                             ),
                             Text(
-                              "01/04 19:24",
-                              style: TextStyle(fontSize: 13, color: Colors.grey),
+                              DateFormat('MM/dd HH:mm').format(widget.article.createdAT!.add(const Duration(hours: 9))),
+                              style: const TextStyle(fontSize: 13, color: Colors.grey),
                             ),
                           ],
                         ),
                       ],
                     ),
                     const SizedBox(height: 15),
-                    const Text(
-                      '제목임',
-                      style: TextStyle(
+                    Text(
+                      widget.article.boardTitle!,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
                       ),
@@ -380,23 +377,13 @@ class _DetailScreenState extends State<DetailScreen> {
                     const SizedBox(
                       height: 15,
                     ),
-                    const Text(
-                      "내용임",
-                      style: TextStyle(
+                    Text(
+                      widget.article.content!,
+                      style: const TextStyle(
                         fontSize: 15,
                       ),
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
                   ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10.0),
-                  child: Image.asset('assets/images/test.jpg'),
                 ),
               ),
               const SizedBox(
