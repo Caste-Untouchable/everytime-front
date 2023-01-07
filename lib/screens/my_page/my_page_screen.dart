@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:clone_everytime/screens/my_page/screens/certification_screen.dart';
 import 'package:clone_everytime/screens/my_page/widget/my_page_widget.dart';
 import 'package:clone_everytime/widgets/everytime_card.dart';
 
@@ -72,7 +73,13 @@ class MyPageScreen extends StatelessWidget {
             )),
             const SizedBox(height: 10.0),
             MyPageCard(title: "계정", menus: [
-              ["학교 인증", () {}, ""],
+              [
+                "학교 인증",
+                () {
+                  Navigator.push(context, MaterialPageRoute(builder: ((context) => const CertificationScreeen())));
+                },
+                ""
+              ],
               ["비밀번호 변경", () {}, ""],
               ["이메일 변경", () {}, ""],
             ]),

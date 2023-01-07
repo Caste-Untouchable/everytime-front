@@ -58,3 +58,44 @@ class MyPageCard extends StatelessWidget {
     ));
   }
 }
+
+class CertButton extends StatelessWidget {
+  String title;
+  String text;
+
+  CertButton({super.key, required this.title, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10.0),
+      child: Material(
+        child: Ink(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height * 0.1,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            color: Colors.grey[200],
+          ),
+          child: InkWell(
+            onTap: () {},
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(
+                  title,
+                  style: const TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 1.2),
+                Text(
+                  text,
+                  style: const TextStyle(color: Colors.grey, height: 1.2, fontSize: 12.0),
+                ),
+              ]),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
