@@ -1,12 +1,12 @@
-import 'package:clone_everytime/providers/register_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:clone_everytime/const.dart';
 import 'package:clone_everytime/models/school.dart';
+import 'package:clone_everytime/providers/register_provider.dart';
 import 'package:clone_everytime/screens/login/agreement_screen.dart';
-import 'package:clone_everytime/screens/login/widgets/login_widget.dart';
 import 'package:clone_everytime/utils/database/every_time_api.dart';
-import 'package:provider/provider.dart';
+import 'package:clone_everytime/widgets/everytime_widgets.dart';
 
 class SelectSchoolScreen extends StatefulWidget {
   const SelectSchoolScreen({super.key});
@@ -187,7 +187,7 @@ class _SelectSchoolScreenState extends State<SelectSchoolScreen> {
                 },
               ),
               if (searchResult.isNotEmpty) const SizedBox(height: 20.0),
-              LoginScreenButton(
+              EverytimeButton(
                   color: EveryTimeColor.red,
                   child: const Text("다음", style: TextStyle(color: Colors.white)),
                   onPressed: () {

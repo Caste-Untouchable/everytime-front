@@ -105,38 +105,3 @@ class _AgreeCheckState extends State<AgreeCheck> {
     );
   }
 }
-
-class LoginScreenButton extends StatelessWidget {
-  LoginScreenButton({
-    super.key,
-    required this.color,
-    required this.child,
-    required this.onPressed,
-  });
-
-  Widget child;
-  Color color;
-  VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 4.0, right: 4.0),
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.9,
-        child: TextButton(
-            style: TextButton.styleFrom(
-              backgroundColor: color,
-              elevation: 0.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                side: BorderSide.none,
-              ),
-              splashFactory: NoSplash.splashFactory,
-            ),
-            onPressed: onPressed,
-            child: child),
-      ),
-    );
-  }
-}
