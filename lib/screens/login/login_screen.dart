@@ -45,7 +45,10 @@ class _LoginScreenState extends State<LoginScreen> {
       if (jwt.isNotEmpty) {
         if (mounted) {
           _tokenProvider.jwt = jwt;
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) => MainScreen())));
+          _tokenProvider.user = await EveryTimeApi.getUserData(jwt);
+          if (mounted) {
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) => MainScreen())));
+          }
         }
       } else {
         _idTextController.text = savedId;
@@ -112,8 +115,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             _tokenProvider.jwt = jwt;
                             _storage.write(key: 'id', value: _idTextController.text);
                             _storage.write(key: 'pw', value: _pwTextController.text);
-
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) => MainScreen())));
+                            _tokenProvider.user = await EveryTimeApi.getUserData(jwt);
+                            if (mounted) {
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) => MainScreen())));
+                            }
                           } else {
                             setState(() {
                               isRunLogin = false;

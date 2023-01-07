@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:provider/provider.dart';
 
+import 'package:clone_everytime/providers/token_provider.dart';
+import 'package:clone_everytime/screens/login/login_screen.dart';
 import 'package:clone_everytime/screens/my_page/screens/certification_screen.dart';
 import 'package:clone_everytime/screens/my_page/screens/password_chage_screen.dart';
 import 'package:clone_everytime/screens/my_page/widget/my_page_widget.dart';
 import 'package:clone_everytime/widgets/everytime_card.dart';
 
 class MyPageScreen extends StatelessWidget {
-  const MyPageScreen({super.key});
+  late TokenProvider _tokenProvider;
+
+  MyPageScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    _tokenProvider = Provider.of<TokenProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("내 정보"),
@@ -39,17 +47,17 @@ class MyPageScreen extends StatelessWidget {
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text("jins4218"),
-                            SizedBox(height: 2.0),
+                          children: [
+                            Text(_tokenProvider.user.userID!),
+                            const SizedBox(height: 2.0),
                             Text(
-                              "진희륜 / qwertycv",
-                              style: TextStyle(color: Colors.grey, fontSize: 12.0),
+                              "${_tokenProvider.user.name} / ${_tokenProvider.user.nickname}",
+                              style: const TextStyle(color: Colors.grey, fontSize: 12.0),
                             ),
-                            SizedBox(height: 2.0),
+                            const SizedBox(height: 2.0),
                             Text(
-                              "동의대 18학번",
-                              style: TextStyle(color: Colors.grey, fontSize: 12.0),
+                              "${_tokenProvider.user.schoolName!.substring(0, _tokenProvider.user.schoolName!.length - 2)} ${_tokenProvider.user.registeredYear.toString().substring(2, 4)}학번",
+                              style: const TextStyle(color: Colors.grey, fontSize: 12.0),
                             ),
                           ],
                         ),
@@ -118,7 +126,18 @@ class MyPageScreen extends StatelessWidget {
             MyPageCard(title: "기타", menus: [
               ["정보 동의 설정", () {}, ""],
               ["회원 탈퇴", () {}, ""],
-              ["로그아웃", () {}, ""],
+              [
+                "로그아웃",
+                () {
+                  const storage = FlutterSecureStorage();
+
+                  storage.delete(key: 'id');
+                  storage.delete(key: 'pw');
+
+                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: ((context) => const LoginScreen())), (route) => false);
+                },
+                ""
+              ],
             ]),
           ]),
         ),

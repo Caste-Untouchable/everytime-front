@@ -45,7 +45,7 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
                       child: NoSplashIconButton(
                         icon: const Icon(Icons.person_outline),
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: ((context) => const MyPageScreen())));
+                          Navigator.push(context, MaterialPageRoute(builder: ((context) => MyPageScreen())));
                         },
                       ),
                     ),

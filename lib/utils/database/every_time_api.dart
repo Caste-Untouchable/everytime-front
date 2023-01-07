@@ -44,6 +44,16 @@ class EveryTimeApi {
     }
   }
 
+  static Future<User> getUserData(String jwt) async {
+    var result = await Requests.get("${ApiServer.apiUrl}/user/info", headers: {'jwt': jwt});
+
+    if (result.statusCode == 200) {
+      return User.fromJson(result.json());
+    } else {
+      return User();
+    }
+  }
+
   static Future<String> login({required String id, required String pw}) async {
     var result = await Requests.post("${ApiServer.apiUrl}/user/login", json: {'userID': id, 'pwd': pw});
 
