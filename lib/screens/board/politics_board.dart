@@ -83,7 +83,7 @@ class _PoliticsBoardState extends State<PoliticsBoard> {
       ),
       body: Stack(
         children: [
-          PoliticsDB(jwt: widget.jwt),
+          PoliticsDB(boardTypePK: widget.boardTypeId, jwt: widget.jwt),
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
@@ -123,12 +123,13 @@ class _PoliticsBoardState extends State<PoliticsBoard> {
 }
 
 class PoliticsDB extends StatelessWidget {
-  PoliticsDB({super.key, required this.jwt});
+  PoliticsDB({super.key, required this.boardTypePK, required this.jwt});
 
+  int boardTypePK;
   String jwt;
 
   Future<List<Article>> getArticle() async {
-    List<Article> articleList = await EveryTimeApi.getBoardArticle(1, jwt);
+    List<Article> articleList = await EveryTimeApi.getBoardArticle(boardTypePK, jwt);
 
     return articleList;
   }
