@@ -8,6 +8,7 @@ import 'package:clone_everytime/screens/my_page/screens/certification_screen.dar
 import 'package:clone_everytime/screens/my_page/screens/email_change_screen.dart';
 import 'package:clone_everytime/screens/my_page/screens/nick_change_screen.dart';
 import 'package:clone_everytime/screens/my_page/screens/password_chage_screen.dart';
+import 'package:clone_everytime/screens/my_page/screens/restrict_screen.dart';
 import 'package:clone_everytime/screens/my_page/widget/my_page_widget.dart';
 import 'package:clone_everytime/widgets/everytime_card.dart';
 
