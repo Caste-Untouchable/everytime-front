@@ -6,6 +6,7 @@ import 'package:clone_everytime/providers/token_provider.dart';
 import 'package:clone_everytime/screens/login/login_screen.dart';
 import 'package:clone_everytime/screens/my_page/screens/certification_screen.dart';
 import 'package:clone_everytime/screens/my_page/screens/email_change_screen.dart';
+import 'package:clone_everytime/screens/my_page/screens/nick_change_screen.dart';
 import 'package:clone_everytime/screens/my_page/screens/password_chage_screen.dart';
 import 'package:clone_everytime/screens/my_page/widget/my_page_widget.dart';
 import 'package:clone_everytime/widgets/everytime_card.dart';
@@ -114,7 +115,18 @@ class MyPageScreen extends StatelessWidget {
             ]),
             const SizedBox(height: 10.0),
             MyPageCard(title: "커뮤니티", menus: [
-              ["닉네임 설정", () {}, ""],
+              [
+                "닉네임 설정",
+                () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => NickChangeScreen(
+                                nick: _tokenProvider.user.nickname!,
+                              ))));
+                },
+                ""
+              ],
               ["프로필 이미지 변경", () {}, ""],
               ["이용 제한 내역", () {}, ""],
               ["쪽지 설정", () {}, ""],
