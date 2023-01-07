@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class EverytimeTextField extends StatelessWidget {
-  EverytimeTextField({super.key, required this.title, required this.controller, this.isObscure = false});
+  EverytimeTextField({super.key, required this.title, required this.controller, this.isObscure = false, this.hint});
 
   String title;
+  String? hint;
   TextEditingController controller;
   bool isObscure;
 
@@ -13,10 +14,10 @@ class EverytimeTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
           child: Text(
             title,
-            style: const TextStyle(color: Colors.grey, fontWeight: FontWeight.w700),
+            style: const TextStyle(color: Colors.black54, fontWeight: FontWeight.w700, fontSize: 13.0),
           ),
         ),
         Padding(
@@ -25,6 +26,7 @@ class EverytimeTextField extends StatelessWidget {
             alignment: Alignment.center,
             height: MediaQuery.of(context).size.height * 0.05,
             decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey[300]!, width: 1.0),
               borderRadius: BorderRadius.circular(10.0),
               color: Colors.grey[100],
             ),
@@ -34,12 +36,14 @@ class EverytimeTextField extends StatelessWidget {
                   controller: controller,
                   obscureText: isObscure,
                   textAlignVertical: TextAlignVertical.center,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                       isDense: true,
                       isCollapsed: true,
                       border: InputBorder.none,
                       focusedBorder: InputBorder.none,
-                      hoverColor: Colors.grey)),
+                      hoverColor: Colors.grey,
+                      hintText: hint,
+                      hintStyle: const TextStyle(color: Colors.grey))),
             ),
           ),
         ),
