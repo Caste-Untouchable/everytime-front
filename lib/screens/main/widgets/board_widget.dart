@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'package:clone_everytime/const.dart';
+import 'package:clone_everytime/models/board.dart';
 import 'package:clone_everytime/widgets/everytime_card.dart';
 
 class AdvertiseArticle extends StatelessWidget {
@@ -371,12 +372,12 @@ class BoardExpansionTile extends StatelessWidget {
 
   String title;
   String boardName = "";
-  List<String> boardList;
+  List<Board> boardList;
 
   @override
   Widget build(BuildContext context) {
     for (int i = 0; i < boardList.length; i++) {
-      boardName += "${boardList[i]}, ";
+      boardName += "${boardList[i].boardType}, ";
     }
 
     return OutlinedCard(
@@ -413,7 +414,7 @@ class BoardExpansionTile extends StatelessWidget {
           const SizedBox(height: 15.0),
           for (int i = 0; i < boardList.length; i++)
             BoardListButton(
-              boardName: boardList[i],
+              boardName: boardList[i].boardType!,
               iconName: i % 2 == 0 ? "pin_on" : "pin_off",
               isNew: i % 2 == 0 ? true : false,
               onTap: () {},

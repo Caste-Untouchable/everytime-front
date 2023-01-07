@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'package:clone_everytime/models/board.dart';
+import 'package:clone_everytime/providers/board_provider.dart';
+import 'package:clone_everytime/providers/token_provider.dart';
 import 'package:clone_everytime/screens/main/widgets/board_widget.dart';
 import 'package:clone_everytime/widgets/everytime_card.dart';
 
 class BoardTabScreen extends StatelessWidget {
-  const BoardTabScreen({super.key});
+  BoardTabScreen({super.key});
+
+  late BoardProvider _boardProvider;
+  late TokenProvider _tokenProvider;
 
   Widget buildDefaultBoard() {
     final List<String> boardName = ["내가 쓴 글", "댓글 단 글", "스크랩", "HOT 게시판", "BEST 게시판"];
@@ -26,22 +33,24 @@ class BoardTabScreen extends StatelessWidget {
   }
 
   Widget buildPinnedBoard() {
-    final List<String> boardName = ["자유게시판", "비밀게시판", "졸업생게시판", "새내기게시판", "시사이슈", "장터게시판", "정보게시판"];
+    List<Board> boardList = _boardProvider.generalBoardList;
 
-    return OutlinedCard(
-      padding: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
-      child: Column(
-        children: [
-          for (int i = 0; i < boardName.length; i++)
-            BoardListButton(
-              boardName: boardName[i],
-              iconName: i % 2 == 0 ? "pin_on" : "pin_off",
-              isNew: i % 2 == 0 ? true : false,
-              onTap: () {},
-            ),
-        ],
-      ),
-    );
+    return Consumer(builder: (context, provider, child) {
+      return OutlinedCard(
+        padding: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
+        child: Column(
+          children: [
+            for (int i = 0; i < boardList.length; i++)
+              BoardListButton(
+                boardName: boardList[i].boardType!,
+                iconName: i % 2 == 0 ? "pin_on" : "pin_off",
+                isNew: i % 2 == 0 ? true : false,
+                onTap: () {},
+              ),
+          ],
+        ),
+      );
+    });
   }
 
   Widget buildCampusBoard() {
@@ -64,36 +73,30 @@ class BoardTabScreen extends StatelessWidget {
   }
 
   Widget buildExpansionBoard() {
-    final List<String> courseBoardList = ["취업·진로"];
-    final List<String> advertiseBoardList = ["동아리·학회", "홍보게시판"];
-    final List<String> groupBoardList = ["STAND BY ICT 공과대학", "All:ways 애국 상경대학"];
-    final List<String> deptBoardList = ["간호학과 게시판", "한의학과 게시판"];
-
     return Column(
       children: [
-        BoardExpansionTile(title: "진로", boardList: courseBoardList),
+        BoardExpansionTile(title: "진로", boardList: _boardProvider.careerBoardList),
         const SizedBox(height: 10.0),
-        BoardExpansionTile(title: "홍보", boardList: advertiseBoardList),
+        BoardExpansionTile(title: "홍보", boardList: _boardProvider.noticeBoardList),
         const SizedBox(height: 10.0),
-        BoardExpansionTile(title: "단체", boardList: groupBoardList),
+        BoardExpansionTile(title: "단체", boardList: _boardProvider.groupBoardList),
         const SizedBox(height: 10.0),
-        BoardExpansionTile(title: "학과", boardList: deptBoardList),
+        BoardExpansionTile(title: "학과", boardList: _boardProvider.degreeBoardList),
       ],
     );
   }
 
   Widget buildOtherBoard() {
-    final List<String> boardName = ["🙏소원 비는곳🙏", "어둠의 뽕나무숲", "게임 같이하실분~~", "❤️동의인 미팅 남자 소개 & 여자 소개💙"];
-    final List<String> boardSubTitle = ["🌟🙏 🐮☝️ 🙏🌟", "🌌구인글 쓸꺼면 썩나가주세용🌝🌌", "폰게임 컴게임 홍보가능해~", "소개 받고 솔탈 하자!"];
+    List<Board> boardList = _boardProvider.etcBoardList;
 
     return OutlinedCard(
       padding: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
       child: Column(
         children: [
-          for (int i = 0; i < boardName.length; i++)
+          for (int i = 0; i < boardList.length; i++)
             BoardListButton(
-              boardName: boardName[i],
-              subTitle: boardSubTitle[i],
+              boardName: boardList[i].boardType!,
+              subTitle: boardList[i].boardDescription,
               iconName: i % 2 == 0 ? "pin_on" : "pin_off",
               isNew: i % 2 == 0 ? true : false,
               onTap: () {},
@@ -105,6 +108,10 @@ class BoardTabScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _boardProvider = Provider.of<BoardProvider>(context);
+    _tokenProvider = Provider.of<TokenProvider>(context);
+    _boardProvider.getBoardData(_tokenProvider.jwt);
+
     return SingleChildScrollView(
       child: Column(
         children: [
