@@ -5,6 +5,7 @@ import 'package:clone_everytime/screens/login/login_screen.dart';
 import 'package:clone_everytime/screens/main_screen.dart';
 
 import 'board/free_board.dart';
+import 'board/secret_board.dart';
 
 class TempScreen extends StatelessWidget {
   const TempScreen({super.key});
@@ -51,6 +52,12 @@ class TempScreen extends StatelessWidget {
                       MaterialPageRoute(builder: ((context) => FreeBoard())));
                 },
                 child: const Text("자유 게시판")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: ((context) => SecretBoard())));
+                },
+                child: const Text("비밀 게시판")),
           ],
         ),
       ),
