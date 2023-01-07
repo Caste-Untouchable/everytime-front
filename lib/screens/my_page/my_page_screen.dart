@@ -7,6 +7,7 @@ import 'package:clone_everytime/screens/login/login_screen.dart';
 import 'package:clone_everytime/screens/my_page/screens/certification_screen.dart';
 import 'package:clone_everytime/screens/my_page/screens/email_change_screen.dart';
 import 'package:clone_everytime/screens/my_page/screens/nick_change_screen.dart';
+import 'package:clone_everytime/screens/my_page/screens/noti_setting_screen.dart';
 import 'package:clone_everytime/screens/my_page/screens/password_chage_screen.dart';
 import 'package:clone_everytime/screens/my_page/screens/restrict_screen.dart';
 import 'package:clone_everytime/screens/my_page/widget/my_page_widget.dart';
