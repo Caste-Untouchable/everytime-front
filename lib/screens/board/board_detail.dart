@@ -1068,8 +1068,8 @@ class _CommentState extends State<Comment> {
                         ),
                         Row(
                           children: [
-                            Text(date[index],
-                                style: const TextStyle(
+                            const Text('1/1',
+                                style: TextStyle(
                                   fontSize: 13,
                                   color: Color.fromARGB(255, 189, 188, 188),
                                 )),
