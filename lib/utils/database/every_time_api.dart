@@ -1,6 +1,7 @@
 import 'package:clone_everytime/const.dart';
 import 'package:clone_everytime/models/article.dart';
 import 'package:clone_everytime/models/board.dart';
+import 'package:clone_everytime/models/comment.dart';
 import 'package:clone_everytime/models/school.dart';
 import 'package:clone_everytime/models/user.dart';
 import 'package:requests/requests.dart';
@@ -42,6 +43,20 @@ class EveryTimeApi {
     } else {
       return [];
     }
+  }
+
+  static Future<List<Comment>> getComment(int articleId, String jwt) async {
+    List<Comment> commentList = [];
+
+    var result = await Requests.get("${ApiServer.apiUrl}/boardComment/Board/$articleId", headers: {'jwt': jwt});
+
+    if (result.statusCode == 200) {
+      for (var comment in result.json()) {
+        commentList.add(Comment.fromJson(comment));
+      }
+    }
+
+    return commentList;
   }
 
   static Future<String> login({required String id, required String pw}) async {
