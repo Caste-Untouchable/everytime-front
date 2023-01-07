@@ -16,6 +16,47 @@ class MyPageScreen extends StatelessWidget {
 
   MyPageScreen({super.key});
 
+  changeProfileImg(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            contentPadding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+            content: Builder(builder: (context) {
+              return SizedBox(
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      child: InkWell(
+                        onTap: () {},
+                        child: const Padding(
+                          padding: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15.0),
+                          child: Text("프로필 이미지 변경"),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: InkWell(
+                        onTap: () {},
+                        child: const Padding(
+                          padding: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15.0),
+                          child: Text("프로필 이미지 삭제"),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     _tokenProvider = Provider.of<TokenProvider>(context);
@@ -127,7 +168,13 @@ class MyPageScreen extends StatelessWidget {
                 },
                 ""
               ],
-              ["프로필 이미지 변경", () {}, ""],
+              [
+                "프로필 이미지 변경",
+                () {
+                  changeProfileImg(context);
+                },
+                ""
+              ],
               ["이용 제한 내역", () {}, ""],
               ["쪽지 설정", () {}, ""],
               ["커뮤니티 이용규칙", () {}, ""],
