@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 
 import 'package:clone_everytime/const.dart';
+import 'package:clone_everytime/screens/my_page/widget/my_page_widget.dart';
 import 'package:clone_everytime/widgets/everytime_widgets.dart';
 
-class PasswordChangeScreen extends StatelessWidget {
-  PasswordChangeScreen({super.key});
+class PasswordChangeScreen extends StatefulWidget {
+  const PasswordChangeScreen({super.key});
 
+  @override
+  State<PasswordChangeScreen> createState() => _PasswordChangeScreenState();
+}
+
+class _PasswordChangeScreenState extends State<PasswordChangeScreen> {
   final TextEditingController _pwTextController = TextEditingController();
   final TextEditingController _pwCheckTextController = TextEditingController();
   final TextEditingController _pwNowTextController = TextEditingController();
@@ -41,77 +47,9 @@ class PasswordChangeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                Focus(
-                  child: Builder(builder: (context) {
-                    final FocusNode focusNode = Focus.of(context);
-                    final bool hasFocus = focusNode.hasFocus;
-
-                    return Padding(
-                      padding: const EdgeInsets.only(left: 4.0, right: 4.0),
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey[300]!, width: 1.0),
-                          borderRadius: BorderRadius.circular(10.0),
-                          color: hasFocus ? Colors.white : Colors.grey[100],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10.0, 8.0, 10.0, 8.0),
-                          child: TextField(
-                              controller: _pwTextController,
-                              obscureText: true,
-                              textAlignVertical: TextAlignVertical.center,
-                              decoration: const InputDecoration(
-                                  isDense: true,
-                                  isCollapsed: true,
-                                  border: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  hoverColor: Colors.grey,
-                                  hintText: "새 비밀번호",
-                                  hintStyle: TextStyle(color: Colors.grey))),
-                        ),
-                      ),
-                    );
-                  }),
-                ),
+                PasswordTextField(pwController: _pwTextController, hint: "새 비밀번호"),
                 const SizedBox(height: 5.0),
-                FocusScope(
-                  child: Focus(
-                    child: Builder(builder: (context) {
-                      final FocusNode focusNode = Focus.of(context);
-                      final bool hasFocus = focusNode.hasFocus;
-
-                      return Padding(
-                        padding: const EdgeInsets.only(left: 4.0, right: 4.0),
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: MediaQuery.of(context).size.height * 0.05,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey[300]!, width: 1.0),
-                            borderRadius: BorderRadius.circular(10.0),
-                            color: hasFocus ? Colors.white : Colors.grey[100],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(10.0, 8.0, 10.0, 8.0),
-                            child: TextField(
-                                controller: _pwCheckTextController,
-                                obscureText: true,
-                                textAlignVertical: TextAlignVertical.center,
-                                decoration: const InputDecoration(
-                                    isDense: true,
-                                    isCollapsed: true,
-                                    border: InputBorder.none,
-                                    focusedBorder: InputBorder.none,
-                                    hoverColor: Colors.grey,
-                                    hintText: "새 비밀번호 확인",
-                                    hintStyle: TextStyle(color: Colors.grey))),
-                          ),
-                        ),
-                      );
-                    }),
-                  ),
-                ),
+                PasswordTextField(pwController: _pwCheckTextController, pwCheckController: _pwTextController, hint: "새 비밀번호 확인"),
                 const SizedBox(height: 20.0),
                 EverytimeTextField(title: "현재 비밀번호", hint: "현재 비밀번호", controller: _pwNowTextController),
                 Padding(
