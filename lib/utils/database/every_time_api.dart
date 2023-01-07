@@ -76,4 +76,14 @@ class EveryTimeApi {
       return false;
     }
   }
+
+  static Future<bool> updatePassword(User userData, String jwt) async {
+    var result = await Requests.patch("${ApiServer.apiUrl}/user/update", headers: {'jwt': jwt}, json: userData.toJson());
+
+    if (result.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

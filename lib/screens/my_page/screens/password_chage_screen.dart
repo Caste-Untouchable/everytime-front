@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:provider/provider.dart';
 
 import 'package:clone_everytime/const.dart';
+import 'package:clone_everytime/providers/user_provider.dart';
+import 'package:clone_everytime/screens/login/login_screen.dart';
 import 'package:clone_everytime/screens/my_page/widget/my_page_widget.dart';
+import 'package:clone_everytime/utils/database/every_time_api.dart';
 import 'package:clone_everytime/widgets/everytime_widgets.dart';
 
 class PasswordChangeScreen extends StatefulWidget {
@@ -12,12 +17,50 @@ class PasswordChangeScreen extends StatefulWidget {
 }
 
 class _PasswordChangeScreenState extends State<PasswordChangeScreen> {
+  late UserProvider _userProvider;
+
   final TextEditingController _pwTextController = TextEditingController();
   final TextEditingController _pwCheckTextController = TextEditingController();
   final TextEditingController _pwNowTextController = TextEditingController();
 
+  checkChangeDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 0.0),
+            content: const Text(
+              "비밀번호를 변경하면 모든 디바이스에서 즉시 로그아웃 처리됩니다.\n변경하시겠습니까?",
+              style: TextStyle(fontSize: 14.0),
+            ),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text("취소", style: TextStyle(color: EveryTimeColor.red))),
+              TextButton(
+                  onPressed: () {
+                    const storage = FlutterSecureStorage();
+
+                    storage.delete(key: 'id');
+                    storage.delete(key: 'pw');
+
+                    _userProvider.user.pwd = _pwTextController.text;
+                    EveryTimeApi.updatePassword(_userProvider.user, _userProvider.jwt);
+
+                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: ((context) => const LoginScreen())), (route) => false);
+                  },
+                  child: const Text("확인", style: TextStyle(color: EveryTimeColor.red))),
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
+    _userProvider = Provider.of<UserProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -93,7 +136,9 @@ class _PasswordChangeScreenState extends State<PasswordChangeScreen> {
                       "비밀번호 변경",
                       style: TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.bold),
                     ),
-                    onPressed: () {})
+                    onPressed: () {
+                      checkChangeDialog(context);
+                    })
               ],
             ),
           ),
