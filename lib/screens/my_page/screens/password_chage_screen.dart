@@ -94,7 +94,7 @@ class _PasswordChangeScreenState extends State<PasswordChangeScreen> {
                 const SizedBox(height: 5.0),
                 PasswordTextField(pwController: _pwCheckTextController, pwCheckController: _pwTextController, hint: "새 비밀번호 확인"),
                 const SizedBox(height: 20.0),
-                EverytimeTextField(title: "현재 비밀번호", hint: "현재 비밀번호", controller: _pwNowTextController),
+                EverytimeTextField(title: "현재 비밀번호", hint: "현재 비밀번호", controller: _pwNowTextController, isObscure: true),
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                   child: RichText(
