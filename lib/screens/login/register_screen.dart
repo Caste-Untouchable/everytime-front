@@ -6,6 +6,7 @@ import 'package:clone_everytime/providers/register_provider.dart';
 import 'package:clone_everytime/screens/login/login_screen.dart';
 import 'package:clone_everytime/screens/login/widgets/login_widget.dart';
 import 'package:clone_everytime/utils/database/every_time_api.dart';
+import 'package:clone_everytime/widgets/everytime_textfield.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
@@ -36,11 +37,11 @@ class RegisterScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20.0),
-              RegisterTextField(title: "아이디", controller: _idTextController),
-              RegisterTextField(title: "비밀번호", controller: _pwTextController, isObscure: true),
-              RegisterTextField(title: "이름", controller: _nameTextController),
-              RegisterTextField(title: "닉네임", controller: _nickNameTextController),
-              RegisterTextField(title: "이메일", controller: _emailTextController),
+              EverytimeTextField(title: "아이디", controller: _idTextController),
+              EverytimeTextField(title: "비밀번호", controller: _pwTextController, isObscure: true),
+              EverytimeTextField(title: "이름", controller: _nameTextController),
+              EverytimeTextField(title: "닉네임", controller: _nickNameTextController),
+              EverytimeTextField(title: "이메일", controller: _emailTextController),
               LoginScreenButton(
                 onPressed: () async {
                   registerProvider.setUser(
