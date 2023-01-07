@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:clone_everytime/providers/token_provider.dart';
 import 'package:clone_everytime/screens/login/login_screen.dart';
 import 'package:clone_everytime/screens/my_page/screens/certification_screen.dart';
+import 'package:clone_everytime/screens/my_page/screens/email_change_screen.dart';
 import 'package:clone_everytime/screens/my_page/screens/password_chage_screen.dart';
 import 'package:clone_everytime/screens/my_page/widget/my_page_widget.dart';
 import 'package:clone_everytime/widgets/everytime_card.dart';
@@ -98,7 +99,18 @@ class MyPageScreen extends StatelessWidget {
                 },
                 ""
               ],
-              ["이메일 변경", () {}, ""],
+              [
+                "이메일 변경",
+                () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => EmailChangeScreen(
+                                email: _tokenProvider.user.email!,
+                              ))));
+                },
+                ""
+              ],
             ]),
             const SizedBox(height: 10.0),
             MyPageCard(title: "커뮤니티", menus: [
