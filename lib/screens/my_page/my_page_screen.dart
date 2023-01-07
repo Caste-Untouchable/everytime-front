@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 
-import 'package:clone_everytime/providers/token_provider.dart';
+import 'package:clone_everytime/providers/user_provider.dart';
 import 'package:clone_everytime/screens/login/login_screen.dart';
 import 'package:clone_everytime/screens/my_page/screens/certification_screen.dart';
 import 'package:clone_everytime/screens/my_page/screens/email_change_screen.dart';
@@ -15,7 +15,7 @@ import 'package:clone_everytime/screens/term_screen.dart';
 import 'package:clone_everytime/widgets/everytime_card.dart';
 
 class MyPageScreen extends StatelessWidget {
-  late TokenProvider _tokenProvider;
+  late UserProvider _tokenProvider;
 
   MyPageScreen({super.key});
 
@@ -62,7 +62,7 @@ class MyPageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _tokenProvider = Provider.of<TokenProvider>(context);
+    _tokenProvider = Provider.of<UserProvider>(context);
 
     return Scaffold(
       appBar: AppBar(

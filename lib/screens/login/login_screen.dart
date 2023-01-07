@@ -3,7 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 
 import 'package:clone_everytime/const.dart';
-import 'package:clone_everytime/providers/token_provider.dart';
+import 'package:clone_everytime/providers/user_provider.dart';
 import 'package:clone_everytime/screens/login/select_school_screen.dart';
 import 'package:clone_everytime/screens/login/widgets/login_widget.dart';
 import 'package:clone_everytime/screens/main_screen.dart';
@@ -22,14 +22,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final _idTextController = TextEditingController();
   final _pwTextController = TextEditingController();
-  late TokenProvider _tokenProvider;
+  late UserProvider _tokenProvider;
 
   bool isRunLogin = true;
 
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      _tokenProvider = Provider.of<TokenProvider>(context, listen: false);
+      _tokenProvider = Provider.of<UserProvider>(context, listen: false);
       await _getAccountData();
     });
     super.initState();
