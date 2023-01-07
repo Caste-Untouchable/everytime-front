@@ -62,6 +62,8 @@ class MyPageScreen extends StatelessWidget {
                           ],
                         ),
                         Container(
+                          width: MediaQuery.of(context).size.width * 0.15,
+                          height: MediaQuery.of(context).size.width * 0.15,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
                             color: Colors.grey[100],
