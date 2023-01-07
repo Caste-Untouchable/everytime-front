@@ -14,18 +14,23 @@ class BoardTabScreen extends StatelessWidget {
   late TokenProvider _tokenProvider;
 
   Widget buildDefaultBoard() {
-    final List<String> boardName = ["내가 쓴 글", "댓글 단 글", "스크랩", "HOT 게시판", "BEST 게시판"];
+    final List<Board> boardList = [
+      Board(boardType: "내가 쓴 글"),
+      Board(boardType: "댓글 단 글"),
+      Board(boardType: "스크랩"),
+      Board(boardType: "HOT 게시판"),
+      Board(boardType: "BEST 게시판")
+    ];
     final List<String> iconName = ["myarticle", "mycomment", "scrap", "hotarticle", "bestarticle"];
 
     return OutlinedCard(
       padding: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
       child: Column(
         children: [
-          for (int i = 0; i < boardName.length; i++)
+          for (int i = 0; i < boardList.length; i++)
             BoardListButton(
-              boardName: boardName[i],
+              board: boardList[i],
               iconName: iconName[i],
-              onTap: () {},
             ),
         ],
       ),
@@ -42,10 +47,9 @@ class BoardTabScreen extends StatelessWidget {
           children: [
             for (int i = 0; i < boardList.length; i++)
               BoardListButton(
-                boardName: boardList[i].boardType!,
+                board: boardList[i],
                 iconName: i % 2 == 0 ? "pin_on" : "pin_off",
                 isNew: i % 2 == 0 ? true : false,
-                onTap: () {},
               ),
           ],
         ),
@@ -54,7 +58,12 @@ class BoardTabScreen extends StatelessWidget {
   }
 
   Widget buildCampusBoard() {
-    final List<String> boardName = ["오늘의 학식", "강의실", "스터디", "책방"];
+    final List<Board> boardName = [
+      Board(boardType: "오늘의 학식"),
+      Board(boardType: "강의실"),
+      Board(boardType: "스터디"),
+      Board(boardType: "책방"),
+    ];
     final List<String> iconName = ["haksik", "classroom", "study", "bookstore"];
 
     return OutlinedCard(
@@ -63,9 +72,8 @@ class BoardTabScreen extends StatelessWidget {
         children: [
           for (int i = 0; i < boardName.length; i++)
             BoardListButton(
-              boardName: boardName[i],
+              board: boardName[i],
               iconName: iconName[i],
-              onTap: () {},
             ),
         ],
       ),
@@ -95,11 +103,10 @@ class BoardTabScreen extends StatelessWidget {
         children: [
           for (int i = 0; i < boardList.length; i++)
             BoardListButton(
-              boardName: boardList[i].boardType!,
+              board: boardList[i],
               subTitle: boardList[i].boardDescription,
               iconName: i % 2 == 0 ? "pin_on" : "pin_off",
               isNew: i % 2 == 0 ? true : false,
-              onTap: () {},
             ),
         ],
       ),

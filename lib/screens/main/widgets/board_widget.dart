@@ -2,9 +2,12 @@ import 'package:configurable_expansion_tile_null_safety/configurable_expansion_t
 import 'package:ellipsis_overflow_text/ellipsis_overflow_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import 'package:clone_everytime/const.dart';
 import 'package:clone_everytime/models/board.dart';
+import 'package:clone_everytime/providers/token_provider.dart';
+import 'package:clone_everytime/screens/board/politics_board.dart';
 import 'package:clone_everytime/widgets/everytime_card.dart';
 
 class AdvertiseArticle extends StatelessWidget {
@@ -309,23 +312,33 @@ class HotArticle extends StatelessWidget {
 class BoardListButton extends StatelessWidget {
   BoardListButton({
     Key? key,
-    required this.boardName,
+    required this.board,
     this.subTitle,
     required this.iconName,
-    required this.onTap,
     this.isNew = false,
   }) : super(key: key);
 
-  String boardName;
+  late TokenProvider _tokenProvider;
+  Board board;
   String? subTitle;
   String iconName;
-  VoidCallback onTap;
   bool isNew;
 
   @override
   Widget build(BuildContext context) {
+    _tokenProvider = Provider.of<TokenProvider>(context);
+
     return InkWell(
-      onTap: onTap,
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: ((context) => PoliticsBoard(
+                      boardTitle: board.boardType!,
+                      boardTypeId: board.boardTypePK!,
+                      jwt: _tokenProvider.jwt,
+                    ))));
+      },
       child: Padding(
         padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
         child: Row(
@@ -343,7 +356,7 @@ class BoardListButton extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      boardName,
+                      board.boardType!,
                       style: const TextStyle(fontSize: 16.0),
                     ),
                     const SizedBox(width: 5.0),
@@ -414,10 +427,9 @@ class BoardExpansionTile extends StatelessWidget {
           const SizedBox(height: 15.0),
           for (int i = 0; i < boardList.length; i++)
             BoardListButton(
-              boardName: boardList[i].boardType!,
+              board: boardList[i],
               iconName: i % 2 == 0 ? "pin_on" : "pin_off",
               isNew: i % 2 == 0 ? true : false,
-              onTap: () {},
             ),
         ]),
       ),
