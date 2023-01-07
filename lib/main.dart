@@ -1,5 +1,5 @@
 import 'package:clone_everytime/providers/board_provider.dart';
-import 'package:clone_everytime/providers/token_provider.dart';
+import 'package:clone_everytime/providers/user_provider.dart';
 import 'package:clone_everytime/providers/bottom_nav_provider.dart';
 import 'package:clone_everytime/providers/grade_provider.dart';
 import 'package:clone_everytime/providers/register_provider.dart';
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (BuildContext context) => TokenProvider()),
+        ChangeNotifierProvider(create: (BuildContext context) => UserProvider()),
         ChangeNotifierProvider(create: (BuildContext context) => BoardProvider()),
         ChangeNotifierProvider(create: (BuildContext context) => BottomNavigationProvider()),
         ChangeNotifierProvider(create: (BuildContext context) => GradeProvider()),

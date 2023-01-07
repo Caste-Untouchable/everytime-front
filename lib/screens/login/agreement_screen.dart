@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:clone_everytime/const.dart';
 import 'package:clone_everytime/screens/login/register_screen.dart';
 import 'package:clone_everytime/screens/login/widgets/login_widget.dart';
+import 'package:clone_everytime/widgets/everytime_widgets.dart';
 
 class AgreementScreen extends StatefulWidget {
   const AgreementScreen({super.key});
@@ -99,14 +100,14 @@ class _AgreementScreenState extends State<AgreementScreen> {
                 height: MediaQuery.of(context).size.height * 0.1,
               ),
               const SizedBox(height: 10.0),
-              LoginScreenButton(
+              EverytimeButton(
                 color: EveryTimeColor.red,
                 child: const Text("휴대폰 인증", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: ((context) => RegisterScreen())));
                 },
               ),
-              LoginScreenButton(
+              EverytimeButton(
                 color: Colors.grey[100]!,
                 child: const Text("아이핀 인증", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
                 onPressed: () {

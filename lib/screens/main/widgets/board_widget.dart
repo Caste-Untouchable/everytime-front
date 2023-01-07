@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 import 'package:clone_everytime/const.dart';
 import 'package:clone_everytime/models/board.dart';
-import 'package:clone_everytime/providers/token_provider.dart';
+import 'package:clone_everytime/providers/user_provider.dart';
 import 'package:clone_everytime/screens/board/politics_board.dart';
 import 'package:clone_everytime/widgets/everytime_card.dart';
 
@@ -318,7 +318,7 @@ class BoardListButton extends StatelessWidget {
     this.isNew = false,
   }) : super(key: key);
 
-  late TokenProvider _tokenProvider;
+  late UserProvider _tokenProvider;
   Board board;
   String? subTitle;
   String iconName;
@@ -326,7 +326,7 @@ class BoardListButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _tokenProvider = Provider.of<TokenProvider>(context);
+    _tokenProvider = Provider.of<UserProvider>(context);
 
     return InkWell(
       onTap: () {

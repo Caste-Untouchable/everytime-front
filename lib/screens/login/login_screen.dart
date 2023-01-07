@@ -3,7 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 
 import 'package:clone_everytime/const.dart';
-import 'package:clone_everytime/providers/token_provider.dart';
+import 'package:clone_everytime/providers/user_provider.dart';
 import 'package:clone_everytime/screens/login/select_school_screen.dart';
 import 'package:clone_everytime/screens/login/widgets/login_widget.dart';
 import 'package:clone_everytime/screens/main_screen.dart';
@@ -22,20 +22,20 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final _idTextController = TextEditingController();
   final _pwTextController = TextEditingController();
-  late TokenProvider _tokenProvider;
+  late UserProvider _tokenProvider;
 
   bool isRunLogin = true;
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _tokenProvider = Provider.of<TokenProvider>(context, listen: false);
-      _getAccountData();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      _tokenProvider = Provider.of<UserProvider>(context, listen: false);
+      await _getAccountData();
     });
     super.initState();
   }
 
-  void _getAccountData() async {
+  Future<bool> _getAccountData() async {
     String? savedId = await _storage.read(key: 'id');
     String? savedPw = await _storage.read(key: 'pw');
 
@@ -45,7 +45,10 @@ class _LoginScreenState extends State<LoginScreen> {
       if (jwt.isNotEmpty) {
         if (mounted) {
           _tokenProvider.jwt = jwt;
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) => MainScreen())));
+          _tokenProvider.user = await EveryTimeApi.getUserData(jwt);
+          if (mounted) {
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) => MainScreen())));
+          }
         }
       } else {
         _idTextController.text = savedId;
@@ -55,6 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
         isRunLogin = false;
       });
     }
+    return true;
   }
 
   loginFailure(BuildContext context) {
@@ -111,8 +115,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             _tokenProvider.jwt = jwt;
                             _storage.write(key: 'id', value: _idTextController.text);
                             _storage.write(key: 'pw', value: _pwTextController.text);
-
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) => MainScreen())));
+                            _tokenProvider.user = await EveryTimeApi.getUserData(jwt);
+                            if (mounted) {
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) => MainScreen())));
+                            }
                           } else {
                             setState(() {
                               isRunLogin = false;
