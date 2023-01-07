@@ -11,6 +11,7 @@ import 'package:clone_everytime/screens/my_page/screens/noti_setting_screen.dart
 import 'package:clone_everytime/screens/my_page/screens/password_chage_screen.dart';
 import 'package:clone_everytime/screens/my_page/screens/restrict_screen.dart';
 import 'package:clone_everytime/screens/my_page/widget/my_page_widget.dart';
+import 'package:clone_everytime/screens/term_screen.dart';
 import 'package:clone_everytime/widgets/everytime_card.dart';
 
 class MyPageScreen extends StatelessWidget {
@@ -177,9 +178,32 @@ class MyPageScreen extends StatelessWidget {
                 },
                 ""
               ],
-              ["이용 제한 내역", () {}, ""],
-              ["쪽지 설정", () {}, ""],
-              ["커뮤니티 이용규칙", () {}, ""],
+              [
+                "이용 제한 내역",
+                () {
+                  Navigator.push(context, MaterialPageRoute(builder: ((context) => const RestrictScreen())));
+                },
+                ""
+              ],
+              [
+                "쪽지 설정",
+                () {
+                  Navigator.push(context, MaterialPageRoute(builder: ((context) => const NotiSettingScreen())));
+                },
+                ""
+              ],
+              [
+                "커뮤니티 이용규칙",
+                () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => TermScreen(
+                                term: "community",
+                              ))));
+                },
+                ""
+              ],
             ]),
             const SizedBox(height: 10.0),
             MyPageCard(title: "앱 설정", menus: [
