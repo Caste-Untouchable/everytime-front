@@ -28,14 +28,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       _tokenProvider = Provider.of<TokenProvider>(context, listen: false);
-      _getAccountData();
+      await _getAccountData();
     });
     super.initState();
   }
 
-  void _getAccountData() async {
+  Future<bool> _getAccountData() async {
     String? savedId = await _storage.read(key: 'id');
     String? savedPw = await _storage.read(key: 'pw');
 
@@ -55,6 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
         isRunLogin = false;
       });
     }
+    return true;
   }
 
   loginFailure(BuildContext context) {
