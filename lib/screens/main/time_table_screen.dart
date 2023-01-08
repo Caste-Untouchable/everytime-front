@@ -17,7 +17,6 @@ class TimeTableAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      automaticallyImplyLeading: false, // TODO : 구현 완료시 제거
       title: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

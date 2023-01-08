@@ -4,7 +4,7 @@ import 'package:clone_everytime/providers/bottom_nav_provider.dart';
 import 'package:clone_everytime/providers/grade_provider.dart';
 import 'package:clone_everytime/providers/register_provider.dart';
 import 'package:clone_everytime/providers/tab_provider.dart';
-import 'package:clone_everytime/screens/temp_screen.dart';
+import 'package:clone_everytime/screens/login/login_screen.dart';
 import 'package:clone_everytime/utils/scroll_behavior.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           scaffoldBackgroundColor: Colors.white,
         ),
-        home: const TempScreen(),
+        home: const LoginScreen(),
       ),
     );
   }
