@@ -8,6 +8,7 @@ import 'package:clone_everytime/screens/temp_screen.dart';
 import 'package:clone_everytime/utils/scroll_behavior.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -38,6 +39,8 @@ class MyApp extends StatelessWidget {
           return ScrollConfiguration(behavior: MyScrollBehavior(), child: child!);
         },
         title: '에브리타임',
+        localizationsDelegates: const [GlobalMaterialLocalizations.delegate, GlobalWidgetsLocalizations.delegate],
+        supportedLocales: const [Locale('ko', 'KR')],
         theme: ThemeData(
           appBarTheme: const AppBarTheme(
             backgroundColor: Colors.white,

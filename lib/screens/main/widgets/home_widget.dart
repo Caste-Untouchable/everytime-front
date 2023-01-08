@@ -86,11 +86,12 @@ class HomeCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                width: 40.0,
-                height: 40.0,
+                width: 25.0,
+                height: 25.0,
                 child: icon,
               ),
             ),
+            const SizedBox(width: 5.0),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

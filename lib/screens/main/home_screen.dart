@@ -6,6 +6,7 @@ import 'package:clone_everytime/screens/main/widgets/home_widget.dart';
 import 'package:clone_everytime/screens/my_page/my_page_screen.dart';
 import 'package:clone_everytime/widgets/custom_button.dart';
 import 'package:clone_everytime/widgets/everytime_card.dart';
+import 'package:intl/intl.dart';
 
 class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
   const HomeAppBar({super.key});
@@ -64,32 +65,69 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   Widget buildNotiCard(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.2,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 15.0),
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: 3,
-          itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding: const EdgeInsets.only(right: 15.0),
-              child: HomeCard(
-                title: "방학 동안 뭐하지?",
-                subTitle: "인기 공모전, 대외활동 찾아보기",
-                subColor: EveryTimeColor.bulb,
-                icon: Image.asset("assets/icons/icn_mcb_home_dinner.png"),
-                button: ActionChip(
-                  label: const Text(
-                    "자세히 >",
-                    style: TextStyle(fontSize: 12.0),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.2,
+        child: Padding(
+            padding: const EdgeInsets.only(left: 15.0),
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 15.0),
+                  child: HomeCard(
+                    title: "방학 동안 뭐하지?",
+                    subTitle: "인기 공모전, 대외활동 찾아보기",
+                    subColor: EveryTimeColor.bulb,
+                    icon: Image.asset("assets/icons/icn_mcb_home_bulb.png"),
+                    button: ActionChip(
+                      backgroundColor: Colors.grey[200],
+                      label: const Text(
+                        "자세히 >",
+                        style: TextStyle(fontSize: 12.0),
+                      ),
+                      onPressed: () {},
+                    ),
                   ),
-                  onPressed: () {},
                 ),
-              ),
-            );
-          },
-        ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 15.0),
+                  child: HomeCard(
+                    title: "오늘의 할 일",
+                    subTitle: DateFormat('MM월 dd일 (E)', 'ko').format(DateTime.now()),
+                    subColor: EveryTimeColor.todo,
+                    icon: Image.asset("assets/icons/icn_mcb_home_todo.png"),
+                    button: Row(
+                      children: [
+                        ActionChip(
+                          backgroundColor: Colors.grey[200],
+                          label: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: const [
+                              Text(
+                                "추가 ",
+                                style: TextStyle(fontSize: 12.0),
+                              ),
+                              Icon(Icons.add_box_outlined, color: Colors.grey, size: 20)
+                            ],
+                          ),
+                          onPressed: () {},
+                        ),
+                        const SizedBox(width: 5),
+                        ActionChip(
+                          backgroundColor: Colors.grey[200],
+                          label: const Text(
+                            "자세히 >",
+                            style: TextStyle(fontSize: 12.0),
+                          ),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            )),
       ),
     );
   }
