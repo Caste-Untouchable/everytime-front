@@ -1,12 +1,8 @@
-import 'package:clone_everytime/screens/board/book_board.dart';
 import 'package:flutter/material.dart';
-import 'package:clone_everytime/screens/board/store_board.dart';
+
 import 'package:clone_everytime/screens/board/politics_board.dart';
 import 'package:clone_everytime/screens/login/login_screen.dart';
 import 'package:clone_everytime/screens/main_screen.dart';
-
-import 'board/free_board.dart';
-import 'board/secret_board.dart';
 
 class TempScreen extends StatelessWidget {
   const TempScreen({super.key});
@@ -23,14 +19,12 @@ class TempScreen extends StatelessWidget {
           children: [
             ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => LoginScreen())));
+                  Navigator.push(context, MaterialPageRoute(builder: ((context) => LoginScreen())));
                 },
                 child: const Text("로그인 화면")),
             ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => MainScreen())));
+                  Navigator.push(context, MaterialPageRoute(builder: ((context) => MainScreen())));
                 },
                 child: const Text("메인 화면")),
             ElevatedButton(
@@ -38,36 +32,17 @@ class TempScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: ((context) => PoliticsBoard())));
-                },
-                child: const Text("시사 이슈 게시판")),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => StoreBoard())));
+                          builder: ((context) => const PoliticsBoard(
+                                boardTitle: "자유게시판",
+                                boardTypeId: 1,
+                                jwt: "",
+                              ))));
                 },
                 child: const Text("장터 게시판")),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => FreeBoard())));
-                },
-                child: const Text("자유 게시판")),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => SecretBoard())));
-                },
-                child: const Text("비밀 게시판")),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => BookBoard())));
-                },
-                child: const Text("책방")),
           ],
         ),
       ),
     );
   }
 }
+

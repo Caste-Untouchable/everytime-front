@@ -61,7 +61,7 @@ class BoardScreen extends StatelessWidget {
   BoardScreen({super.key});
 
   List<Widget> tabScreen = [
-    const BoardTabScreen(),
+    BoardTabScreen(),
     const CourseTabScreen(),
     const AdvertiseTabScreen(),
     const GroupTabScreen(),
