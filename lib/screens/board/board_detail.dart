@@ -1,7 +1,11 @@
-import 'package:clone_everytime/main.dart';
-import 'package:clone_everytime/screens/board/write_note.dart';
 import 'package:flutter/material.dart';
-import 'package:clone_everytime/screens/board/politics_board.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+
+import 'package:clone_everytime/models/article.dart';
+import 'package:clone_everytime/providers/token_provider.dart';
+import 'package:clone_everytime/screens/board/write_note.dart';
+import 'package:clone_everytime/utils/database/every_time_api.dart';
 
 enum More { moreOne, moreTwo, moreThree, moreFour }
 
@@ -18,28 +22,37 @@ const anonym = [
 ];
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({super.key});
+  DetailScreen({super.key, required this.article});
+
+  Article article;
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
 }
 
 class _DetailScreenState extends State<DetailScreen> {
+  late TokenProvider _tokenProvider;
+
   bool isAnonym = false;
   bool isAlarm = false;
+
+  @override
+  void initState() {
+    EveryTimeApi.getComment(261,
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJTQ0hPT0wiOiLrj5nsnZjrjIDtlZnqtZAiLCJzdWIiOiJ1c2VyIiwiTklDS05BTUUiOiJzdHJpbmciLCJJRCI6InRlc3QiLCJleHAiOjE2NzMxMDczOTUsIk5BTUUiOiJzdHJpbmcifQ.unwgwVWARoMlU1Y6EWoTS9-eAjbywaDBWzml5HZ29yo");
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    _tokenProvider = Provider.of<TokenProvider>(context, listen: false);
+
     void checkPosvote() {
       showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              // title: Column(
-              //   children: <Widget>[
-              //     new Text("이 글을 공감하시겠습니까?"),
-              //   ],
-              // ),
-              // //
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -353,8 +366,8 @@ class _DetailScreenState extends State<DetailScreen> {
                         const SizedBox(width: 10),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
+                          children: [
+                            const Text(
                               "익명",
                               style: TextStyle(
                                 fontSize: 15,
@@ -362,17 +375,17 @@ class _DetailScreenState extends State<DetailScreen> {
                               ),
                             ),
                             Text(
-                              "01/04 19:24",
-                              style: TextStyle(fontSize: 13, color: Colors.grey),
+                              DateFormat('MM/dd HH:mm').format(widget.article.createdAT!.add(const Duration(hours: 9))),
+                              style: const TextStyle(fontSize: 13, color: Colors.grey),
                             ),
                           ],
                         ),
                       ],
                     ),
                     const SizedBox(height: 15),
-                    const Text(
-                      '제목임',
-                      style: TextStyle(
+                    Text(
+                      widget.article.boardTitle!,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
                       ),
@@ -380,23 +393,13 @@ class _DetailScreenState extends State<DetailScreen> {
                     const SizedBox(
                       height: 15,
                     ),
-                    const Text(
-                      "내용임",
-                      style: TextStyle(
+                    Text(
+                      widget.article.content!,
+                      style: const TextStyle(
                         fontSize: 15,
                       ),
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
                   ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10.0),
-                  child: Image.asset('assets/images/test.jpg'),
                 ),
               ),
               const SizedBox(
@@ -511,7 +514,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     const SizedBox(
                       height: 5,
                     ),
-                    const Comment(),
+                    Comment(articleId: widget.article.boardPK!, jwt: _tokenProvider.jwt),
                     const SizedBox(
                       height: 80,
                     )
@@ -604,26 +607,6 @@ const List<Widget> icons = <Widget>[
   Icon(Icons.ac_unit),
 ];
 
-const username = ["익명1", "익명2", "익명2", "익명1", "익명2", "익명2"];
-
-const checkAnonym = [
-  true,
-  true,
-  true,
-  true,
-  true,
-  true,
-];
-
-const commentText = [
-  "댓글 입니다.",
-  "댓글 입니다22.",
-  "대댓글입니다.",
-  "댓글 입니다.",
-  "댓글 입니다22.",
-  "대댓글입니다.",
-];
-
 const CommentPosvote = ['0', '0', '1', '0', '2', '0'];
 
 List<bool> reComment = [
@@ -636,7 +619,10 @@ List<bool> reComment = [
 ];
 
 class Comment extends StatefulWidget {
-  const Comment({super.key});
+  Comment({super.key, required this.articleId, required this.jwt});
+
+  int articleId;
+  String jwt;
 
   @override
   State<Comment> createState() => _CommentState();
@@ -922,196 +908,204 @@ class _CommentState extends State<Comment> {
           });
     }
 
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: username.length,
-      itemBuilder: (BuildContext context, index) {
-        return Padding(
-          padding: const EdgeInsets.all(2.0),
-          child: Row(
-            children: [
-              Column(
-                children: [
-                  if (reComment[index] == true)
-                    const Icon(
-                      Icons.subdirectory_arrow_right_rounded,
-                      color: Color.fromARGB(255, 228, 228, 228),
-                    ),
-                  if (reComment[index] == true)
-                    const SizedBox(
-                      height: 50,
-                    )
-                ],
-              ),
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: reComment[index] ? const Color.fromARGB(255, 240, 240, 240) : Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(6, 0, 0, 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (reComment[index] == false)
-                          Container(
-                            height: 1.0,
-                            color: const Color.fromARGB(255, 212, 210, 210),
+    return FutureBuilder(
+        future: EveryTimeApi.getComment(widget.articleId, widget.jwt),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasData) {
+            return ListView.separated(
+              separatorBuilder: (context, index) {
+                return Divider();
+              },
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: snapshot.data.length,
+              itemBuilder: (BuildContext context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Row(
+                    children: [
+                      Column(
+                        children: [
+                          if (reComment[index] == true)
+                            const Icon(
+                              Icons.subdirectory_arrow_right_rounded,
+                              color: Color.fromARGB(255, 228, 228, 228),
+                            ),
+                          if (reComment[index] == true)
+                            const SizedBox(
+                              height: 50,
+                            )
+                        ],
+                      ),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: reComment[index] ? const Color.fromARGB(255, 240, 240, 240) : Colors.white,
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(6, 0, 0, 0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                if (checkAnonym[index] == true)
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.asset(
-                                      'assets/icons/anonymous_icon.png',
-                                      width: 30,
-                                      height: 30,
-                                    ),
+                                if (reComment[index] == false)
+                                  Container(
+                                    height: 1.0,
+                                    color: const Color.fromARGB(255, 212, 210, 210),
                                   ),
                                 const SizedBox(
-                                  width: 5,
+                                  height: 5,
                                 ),
-                                Text(
-                                  username[index],
-                                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-                                )
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                              child: Container(
-                                decoration:
-                                    BoxDecoration(color: const Color.fromARGB(255, 236, 236, 236), borderRadius: BorderRadius.circular(10)),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    if (reComment[index] == false)
-                                      IconButton(
-                                        constraints: const BoxConstraints(),
-                                        onPressed: () {
-                                          checkRecomment();
-                                        },
-                                        icon: Image.asset(
-                                          'assets/icons/icn_s_comment_cyan.png',
-                                          color: const Color.fromARGB(255, 185, 185, 185),
-                                          width: 15,
-                                          height: 15,
+                                    Row(
+                                      children: [
+                                        if (snapshot.data[index].anonymity == true)
+                                          ClipRRect(
+                                            borderRadius: BorderRadius.circular(8.0),
+                                            child: Image.asset(
+                                              'assets/icons/anonymous_icon.png',
+                                              width: 30,
+                                              height: 30,
+                                            ),
+                                          ),
+                                        const SizedBox(
+                                          width: 5,
                                         ),
-                                      ),
-                                    if (reComment[index] == false)
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                        child: Container(
-                                          height: 12.0,
-                                          width: 1.0,
-                                          color: const Color.fromARGB(255, 185, 185, 185),
-                                        ),
-                                      ),
-                                    IconButton(
-                                      constraints: const BoxConstraints(),
-                                      onPressed: () {
-                                        commentPosvote();
-                                      },
-                                      icon: Image.asset(
-                                        'assets/icons/icn_s_posvote_red.png',
-                                        color: const Color.fromARGB(255, 185, 185, 185),
-                                        width: 15,
-                                        height: 15,
-                                      ),
+                                        Text(
+                                          snapshot.data[index].nickname,
+                                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                                        )
+                                      ],
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                      padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
                                       child: Container(
-                                        height: 12.0,
-                                        width: 1.0,
-                                        color: const Color.fromARGB(255, 185, 185, 185),
-                                      ),
-                                    ),
-                                    IconButton(
-                                      constraints: const BoxConstraints(),
-                                      onPressed: () {
-                                        commentMore();
-                                      },
-                                      icon: Image.asset(
-                                        'assets/icons/icn_m_more_gray800.png',
-                                        color: const Color.fromARGB(255, 185, 185, 185),
-                                        width: 15,
-                                        height: 15,
+                                        decoration: BoxDecoration(
+                                            color: const Color.fromARGB(255, 236, 236, 236), borderRadius: BorderRadius.circular(10)),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            if (reComment[index] == false)
+                                              IconButton(
+                                                constraints: const BoxConstraints(),
+                                                onPressed: () {
+                                                  checkRecomment();
+                                                },
+                                                icon: Image.asset(
+                                                  'assets/icons/icn_s_comment_cyan.png',
+                                                  color: const Color.fromARGB(255, 185, 185, 185),
+                                                  width: 15,
+                                                  height: 15,
+                                                ),
+                                              ),
+                                            if (reComment[index] == false)
+                                              Padding(
+                                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                                child: Container(
+                                                  height: 12.0,
+                                                  width: 1.0,
+                                                  color: const Color.fromARGB(255, 185, 185, 185),
+                                                ),
+                                              ),
+                                            IconButton(
+                                              constraints: const BoxConstraints(),
+                                              onPressed: () {
+                                                commentPosvote();
+                                              },
+                                              icon: Image.asset(
+                                                'assets/icons/icn_s_posvote_red.png',
+                                                color: const Color.fromARGB(255, 185, 185, 185),
+                                                width: 15,
+                                                height: 15,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                              child: Container(
+                                                height: 12.0,
+                                                width: 1.0,
+                                                color: const Color.fromARGB(255, 185, 185, 185),
+                                              ),
+                                            ),
+                                            IconButton(
+                                              constraints: const BoxConstraints(),
+                                              onPressed: () {
+                                                commentMore();
+                                              },
+                                              icon: Image.asset(
+                                                'assets/icons/icn_m_more_gray800.png',
+                                                color: const Color.fromARGB(255, 185, 185, 185),
+                                                width: 15,
+                                                height: 15,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
-                              ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  snapshot.data[index].content,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Row(
+                                  children: [
+                                    Text(DateFormat('MM/dd HH:mm').format(snapshot.data[index].createdAT.add(const Duration(hours: 9))),
+                                        style: const TextStyle(
+                                          fontSize: 13,
+                                          color: Color.fromARGB(255, 189, 188, 188),
+                                        )),
+                                    if (CommentPosvote[index] != '0')
+                                      Row(
+                                        children: [
+                                          const SizedBox(width: 5),
+                                          const ImageIcon(
+                                              color: Color.fromARGB(255, 209, 31, 19),
+                                              AssetImage(
+                                                "assets/icons/icn_s_posvote_red.png",
+                                              ),
+                                              size: 12),
+                                          const Text(
+                                            " ",
+                                            style: TextStyle(fontSize: 12),
+                                          ),
+                                          Text(
+                                            CommentPosvote[index],
+                                            style: const TextStyle(fontSize: 12, color: Color.fromARGB(255, 209, 31, 19)),
+                                          ),
+                                        ],
+                                      )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          commentText[index],
-                          style: const TextStyle(
-                            fontSize: 16,
                           ),
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Row(
-                          children: [
-                            const Text('1/1',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: Color.fromARGB(255, 189, 188, 188),
-                                )),
-                            const Text(" 18:24",
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: Color.fromARGB(255, 189, 188, 188),
-                                )),
-                            if (CommentPosvote[index] != '0')
-                              Row(
-                                children: [
-                                  const SizedBox(width: 5),
-                                  const ImageIcon(
-                                      color: Color.fromARGB(255, 209, 31, 19),
-                                      AssetImage(
-                                        "assets/icons/icn_s_posvote_red.png",
-                                      ),
-                                      size: 12),
-                                  const Text(
-                                    " ",
-                                    style: TextStyle(fontSize: 12),
-                                  ),
-                                  Text(
-                                    CommentPosvote[index],
-                                    style: const TextStyle(fontSize: 12, color: Color.fromARGB(255, 209, 31, 19)),
-                                  ),
-                                ],
-                              )
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
+                );
+              },
+            );
+          } else {
+            return const SizedBox();
+          }
+        });
   }
 }
