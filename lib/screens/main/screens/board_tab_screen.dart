@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:clone_everytime/models/board.dart';
 import 'package:clone_everytime/providers/board_provider.dart';
-import 'package:clone_everytime/providers/token_provider.dart';
+import 'package:clone_everytime/providers/user_provider.dart';
 import 'package:clone_everytime/screens/main/widgets/board_widget.dart';
 import 'package:clone_everytime/widgets/everytime_card.dart';
 
@@ -11,7 +11,7 @@ class BoardTabScreen extends StatelessWidget {
   BoardTabScreen({super.key});
 
   late BoardProvider _boardProvider;
-  late TokenProvider _tokenProvider;
+  late UserProvider _tokenProvider;
 
   Widget buildDefaultBoard() {
     final List<Board> boardList = [
@@ -49,7 +49,7 @@ class BoardTabScreen extends StatelessWidget {
               BoardListButton(
                 board: boardList[i],
                 iconName: i % 2 == 0 ? "pin_on" : "pin_off",
-                isNew: i % 2 == 0 ? true : false,
+                isNew: true,
               ),
           ],
         ),
@@ -105,7 +105,7 @@ class BoardTabScreen extends StatelessWidget {
             BoardListButton(
               board: boardList[i],
               subTitle: boardList[i].boardDescription,
-              iconName: i % 2 == 0 ? "pin_on" : "pin_off",
+              iconName: "pin_off",
               isNew: i % 2 == 0 ? true : false,
             ),
         ],
@@ -113,12 +113,7 @@ class BoardTabScreen extends StatelessWidget {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    _boardProvider = Provider.of<BoardProvider>(context);
-    _tokenProvider = Provider.of<TokenProvider>(context);
-    _boardProvider.getBoardData(_tokenProvider.jwt);
-
+  Widget buildAllBoard() {
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -134,5 +129,26 @@ class BoardTabScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _boardProvider = Provider.of<BoardProvider>(context);
+    _tokenProvider = Provider.of<UserProvider>(context);
+    _boardProvider.getBoardData(_tokenProvider.jwt);
+
+    if (_boardProvider.generalBoardList.isEmpty) {
+      return FutureBuilder(
+          future: _boardProvider.getBoardData(_tokenProvider.jwt),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              return buildAllBoard();
+            }
+          });
+    } else {
+      return buildAllBoard();
+    }
   }
 }

@@ -19,7 +19,6 @@ class NotiAppBar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     _tabProvider = Provider.of<TabProvider>(context);
     return AppBar(
-      automaticallyImplyLeading: false, // TODO : 구현 완료시 제거
       title: Row(
         children: [
           for (int i = 0; i < tabBarTitle.length; i++)

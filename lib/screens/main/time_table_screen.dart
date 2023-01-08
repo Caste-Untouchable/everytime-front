@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:clone_everytime/const.dart';
 import 'package:clone_everytime/screens/main/grade_screen.dart';
 import 'package:clone_everytime/screens/main/widgets/time_table_widget.dart';
+import 'package:clone_everytime/providers/grade_provider.dart';
 import 'package:clone_everytime/widgets/custom_button.dart';
 import 'package:clone_everytime/widgets/everytime_card.dart';
+import 'package:provider/provider.dart';
 
 class TimeTableAppBar extends StatelessWidget with PreferredSizeWidget {
   const TimeTableAppBar({super.key});
@@ -15,14 +17,13 @@ class TimeTableAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      automaticallyImplyLeading: false, // TODO : 구현 완료시 제거
       title: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "2022년 1학기",
+              "2022년 겨울학기",
               style: TextStyle(color: Color(0xFFB33423), fontSize: 10.0),
             ),
             Row(
@@ -30,7 +31,7 @@ class TimeTableAppBar extends StatelessWidget with PreferredSizeWidget {
               mainAxisSize: MainAxisSize.max,
               children: [
                 const Text(
-                  "기말",
+                  "시간표",
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
@@ -65,7 +66,11 @@ class TimeTableAppBar extends StatelessWidget with PreferredSizeWidget {
 }
 
 class TimeTableScreen extends StatelessWidget {
-  const TimeTableScreen({super.key});
+  TimeTableScreen({super.key});
+
+  late GradeProvider _gradeProvider;
+
+  final List<String> _friendList = ["김남주", "윤채민", "이선학"];
 
   Widget buildFriendTimeTable() {
     return TitleOutlinedCard(
@@ -84,7 +89,7 @@ class TimeTableScreen extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
               child: Text(
-                index.toString(),
+                _friendList[index],
                 style: const TextStyle(fontSize: 18.0),
               ),
             ),
@@ -105,24 +110,24 @@ class TimeTableScreen extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-        child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: const [
-          Text("평균 학점  ", style: TextStyle(fontSize: 17.0)),
+        child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+          const Text("평균 학점  ", style: TextStyle(fontSize: 17.0)),
           Text(
-            "3.92",
-            style: TextStyle(color: EveryTimeColor.red, fontSize: 18.0, fontWeight: FontWeight.bold),
+            "${_gradeProvider.totalGpa}",
+            style: const TextStyle(color: EveryTimeColor.red, fontSize: 18.0, fontWeight: FontWeight.bold),
           ),
-          Text(
+          const Text(
             " / 4.5",
             style: TextStyle(color: Colors.grey, fontSize: 12.0),
           ),
-          SizedBox(width: 30.0),
-          Text("취득 학점  ", style: TextStyle(fontSize: 17.0)),
+          const SizedBox(width: 30.0),
+          const Text("취득 학점  ", style: TextStyle(fontSize: 17.0)),
           Text(
-            "39",
-            style: TextStyle(color: EveryTimeColor.red, fontSize: 18.0, fontWeight: FontWeight.bold),
+            _gradeProvider.smtCredit.toStringAsFixed(1),
+            style: const TextStyle(color: EveryTimeColor.red, fontSize: 18.0, fontWeight: FontWeight.bold),
           ),
-          Text(
-            " / 150",
+          const Text(
+            " / 130",
             style: TextStyle(color: Colors.grey, fontSize: 12.0),
           ),
         ]),
@@ -132,6 +137,8 @@ class TimeTableScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _gradeProvider = Provider.of<GradeProvider>(context);
+
     return SingleChildScrollView(
       child: Column(
         children: [
