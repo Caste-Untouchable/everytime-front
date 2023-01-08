@@ -188,7 +188,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
+                  height: MediaQuery.of(context).size.height * 0.22,
                 ),
                 Align(
                   alignment: FractionalOffset.bottomCenter,
@@ -208,7 +208,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {},
                         child: const Text(
                           "문의하기",
-                          style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
+                          style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w600, fontSize: 13.0),
                         ),
                       ),
                       TextButton(
@@ -217,7 +217,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         child: const Text(
                           "이용약관",
-                          style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
+                          style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w600, fontSize: 13.0),
                         ),
                       ),
                     ],

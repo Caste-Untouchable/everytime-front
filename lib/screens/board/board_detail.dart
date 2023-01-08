@@ -367,7 +367,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               ),
                             ),
                             Text(
-                              DateFormat('MM/dd HH:mm').format(widget.article.createdAT!.add(const Duration(hours: 9))),
+                              DateFormat('MM/dd HH:mm').format(widget.article.createdAT!),
                               style: const TextStyle(fontSize: 13, color: Colors.grey),
                             ),
                           ],
@@ -906,10 +906,7 @@ class _CommentState extends State<Comment> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasData) {
-            return ListView.separated(
-              separatorBuilder: (context, index) {
-                return Divider();
-              },
+            return ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: snapshot.data.length,
