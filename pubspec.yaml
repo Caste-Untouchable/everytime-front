@@ -42,6 +42,7 @@ dependencies:
   provider: ^6.0.5
   requests: ^4.7.0
   syncfusion_flutter_charts: ^20.4.42
+  webview_flutter: ^2.0.4
 
 dev_dependencies:
   flutter_lints: ^2.0.0
