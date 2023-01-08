@@ -113,12 +113,7 @@ class BoardTabScreen extends StatelessWidget {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    _boardProvider = Provider.of<BoardProvider>(context);
-    _tokenProvider = Provider.of<UserProvider>(context);
-    _boardProvider.getBoardData(_tokenProvider.jwt);
-
+  Widget buildAllBoard() {
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -134,5 +129,26 @@ class BoardTabScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _boardProvider = Provider.of<BoardProvider>(context);
+    _tokenProvider = Provider.of<UserProvider>(context);
+    _boardProvider.getBoardData(_tokenProvider.jwt);
+
+    if (_boardProvider.generalBoardList.isEmpty) {
+      return FutureBuilder(
+          future: _boardProvider.getBoardData(_tokenProvider.jwt),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              return buildAllBoard();
+            }
+          });
+    } else {
+      return buildAllBoard();
+    }
   }
 }
