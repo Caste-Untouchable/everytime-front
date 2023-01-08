@@ -124,17 +124,21 @@ class HomeImageCard extends StatelessWidget {
   HomeImageCard({
     Key? key,
     required this.title,
+    this.url,
     required this.imageUrl,
     this.subTitle,
     this.date,
     this.price,
+    this.webViewTitle = "",
   }) : super(key: key);
 
   DateTime? date;
+  String? url;
   String imageUrl;
   int? price;
   String? subTitle;
   String title;
+  String webViewTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -146,56 +150,63 @@ class HomeImageCard extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.35,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10.0),
-          child: Container(
+          child: Ink(
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey[400]!, width: 1),
               borderRadius: BorderRadius.circular(10.0),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.35,
-                  height: MediaQuery.of(context).size.width * 0.35,
-                  child: Image.network(
-                    imageUrl,
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: EllipsisOverflowText(
-                    title,
-                    maxLines: 2,
-                    showEllipsisOnBreakLineOverflow: true,
-                    style: const TextStyle(fontSize: 15.0, fontWeight: FontWeight.w600),
-                  ),
-                ),
-                if (subTitle != null)
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
-                    child: Text(
-                      subTitle!,
-                      style: const TextStyle(color: Colors.grey, fontSize: 11.0),
+            child: InkWell(
+              onTap: (() {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: ((context) => WebviewScreen(url: url!, title: webViewTitle, isCampus: true))));
+              }),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.35,
+                    height: MediaQuery.of(context).size.width * 0.35,
+                    child: Image.network(
+                      imageUrl,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                if (date != null)
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
-                    child: Text(
-                      DateFormat('~MM/dd').format(date!),
-                      style: const TextStyle(color: Colors.grey, fontSize: 11.0),
+                    padding: const EdgeInsets.all(10.0),
+                    child: EllipsisOverflowText(
+                      title,
+                      maxLines: 2,
+                      showEllipsisOnBreakLineOverflow: true,
+                      style: const TextStyle(fontSize: 15.0, fontWeight: FontWeight.w600),
                     ),
                   ),
-                if (price != null)
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
-                    child: Text(
-                      "${formatCurrency.format(price!)}원",
-                      style: const TextStyle(color: Colors.grey, fontSize: 11.0),
+                  if (subTitle != null)
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
+                      child: EllipsisOverflowText(
+                        subTitle!,
+                        maxLines: 1,
+                        style: const TextStyle(color: Colors.grey, fontSize: 11.0),
+                      ),
                     ),
-                  ),
-              ],
+                  if (date != null)
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
+                      child: Text(
+                        DateFormat('~ MM/dd').format(date!),
+                        style: const TextStyle(color: Colors.grey, fontSize: 11.0),
+                      ),
+                    ),
+                  if (price != null)
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
+                      child: Text(
+                        "${formatCurrency.format(price!)}원",
+                        style: const TextStyle(color: Colors.grey, fontSize: 11.0),
+                      ),
+                    ),
+                ],
+              ),
             ),
           ),
         ),

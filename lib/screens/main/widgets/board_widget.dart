@@ -235,7 +235,7 @@ class LatestLectureArticle extends StatelessWidget {
             style: const TextStyle(fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 4),
-          Text(text, maxLines: 2)
+          EllipsisOverflowText(text, maxLines: 2)
         ],
       ),
     );
@@ -267,8 +267,9 @@ class HotArticle extends StatelessWidget {
         children: [
           Text(
             title,
-            style: const TextStyle(fontSize: 15.0),
+            style: const TextStyle(fontSize: 13.0),
           ),
+          const SizedBox(height: 2.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
