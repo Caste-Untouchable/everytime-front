@@ -19,11 +19,7 @@ class _BookBoardState extends State<BookBoard> {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          actions: [
-            IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: const Icon(Icons.close))
-          ],
+          actions: [IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(Icons.close))],
           title: const Text("책방"),
         ),
         body: Column(
@@ -35,19 +31,15 @@ class _BookBoardState extends State<BookBoard> {
                 cursorColor: const Color.fromARGB(255, 219, 53, 41),
                 decoration: InputDecoration(
                   hintText: '구매할 책을 검색하세요!',
-                  border: InputBorder.none,
-                  //focusedBorder: InputBorder.none,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(
-                        color: Color.fromARGB(255, 243, 243, 243)),
+                    borderSide: const BorderSide(color: Color.fromARGB(255, 243, 243, 243)),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   filled: true,
                   fillColor: const Color.fromARGB(255, 243, 243, 243),
-                  contentPadding: const EdgeInsets.only(left: 14.0),
+                  contentPadding: const EdgeInsets.all(14.0),
                   enabledBorder: UnderlineInputBorder(
-                    borderSide: const BorderSide(
-                        color: Color.fromARGB(255, 243, 243, 243)),
+                    borderSide: const BorderSide(color: Color.fromARGB(255, 243, 243, 243)),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   suffixIcon: Transform.scale(
@@ -77,17 +69,14 @@ class _BookBoardState extends State<BookBoard> {
                       InkWell(
                         child: Container(
                           decoration: BoxDecoration(
-                            border: Border.all(
-                                color:
-                                    const Color.fromARGB(255, 206, 206, 206)),
+                            border: Border.all(color: const Color.fromARGB(255, 206, 206, 206)),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: const Padding(
                             padding: EdgeInsets.all(6.0),
                             child: Text(
                               "동의대 ∨",
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 206, 206, 206)),
+                              style: TextStyle(color: Color.fromARGB(255, 206, 206, 206)),
                             ),
                           ),
                         ),
@@ -107,10 +96,7 @@ class _BookBoardState extends State<BookBoard> {
             children: [
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((context) => const BookBoard())));
+                  Navigator.push(context, MaterialPageRoute(builder: ((context) => const BookBoard())));
                 },
                 child: SizedBox(
                   height: 60,
@@ -130,10 +116,7 @@ class _BookBoardState extends State<BookBoard> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((context) => const BookSell())));
+                  Navigator.push(context, MaterialPageRoute(builder: ((context) => const BookSell())));
                 },
                 child: SizedBox(
                   height: 60,
@@ -155,10 +138,7 @@ class _BookBoardState extends State<BookBoard> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((context) => const BookMyPage())));
+                  Navigator.push(context, MaterialPageRoute(builder: ((context) => const BookMyPage())));
                 },
                 child: SizedBox(
                   height: 60,
@@ -264,10 +244,7 @@ class BookList extends StatelessWidget {
                       children: [
                         Text(
                           "${sale[index]}원",
-                          style: const TextStyle(
-                              fontSize: 16,
-                              color: Colors.red,
-                              fontWeight: FontWeight.w700),
+                          style: const TextStyle(fontSize: 16, color: Colors.red, fontWeight: FontWeight.w700),
                         ),
                         const SizedBox(
                           width: 5,
@@ -275,10 +252,7 @@ class BookList extends StatelessWidget {
                         Text(
                           "${money[index]}원",
                           style: const TextStyle(
-                              fontSize: 16,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w700,
-                              decoration: TextDecoration.lineThrough),
+                              fontSize: 16, color: Colors.grey, fontWeight: FontWeight.w700, decoration: TextDecoration.lineThrough),
                         ),
                       ],
                     )
@@ -292,8 +266,7 @@ class BookList extends StatelessWidget {
       separatorBuilder: (BuildContext context, int index) {
         return const Padding(
           padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
-          child:
-              Divider(color: Color.fromARGB(255, 194, 194, 194), thickness: 1),
+          child: Divider(color: Color.fromARGB(255, 194, 194, 194), thickness: 1),
         );
       },
     );
