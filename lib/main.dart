@@ -39,7 +39,11 @@ class MyApp extends StatelessWidget {
           return ScrollConfiguration(behavior: MyScrollBehavior(), child: child!);
         },
         title: '에브리타임',
-        localizationsDelegates: const [GlobalMaterialLocalizations.delegate, GlobalWidgetsLocalizations.delegate],
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
         supportedLocales: const [Locale('ko', 'KR')],
         theme: ThemeData(
           appBarTheme: const AppBarTheme(

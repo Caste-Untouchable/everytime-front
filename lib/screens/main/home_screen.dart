@@ -1,4 +1,5 @@
 import 'package:clone_everytime/providers/bottom_nav_provider.dart';
+import 'package:clone_everytime/screens/board/book_board.dart';
 import 'package:clone_everytime/screens/main/screens/webview_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -577,7 +578,9 @@ class HomeScreen extends StatelessWidget {
     return TitleOutlinedCard(
       title: "판매 중인 책",
       button: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: ((context) => const BookBoard())));
+        },
         child: const Text(
           "더 보기 >",
           style: TextStyle(color: EveryTimeColor.red, fontSize: 15.0),

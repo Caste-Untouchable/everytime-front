@@ -15,7 +15,19 @@ class AdvertiseTabScreen extends StatelessWidget {
           child: Column(
             children: [
               AdvertiseArticle(
-                imageUrl: "https://cf-eba.everytime.kr/20230103_PUMA_BACKTOSCHOOL_card.jpg",
+                title: "당감동 CU 22일 대타 구합니다!(시급1만)",
+                text: "오전10~오후5시\n업무는 할거 정말 없습니다 청소 안해도 상관없어요\n물류(삼각김밥,빵,커피) 한두박스 들어오면 그거 체크하는게 거의 전부예요! (30분정도면 다 함)",
+                board: "홍보게시판",
+              ),
+              const SizedBox(height: 10.0),
+              AdvertiseArticle(
+                title: "같이 시험공부!",
+                text: "이번 시험 준비 잘하고 계신가요,,",
+                board: "자율 스터디",
+              ),
+              const SizedBox(height: 10.0),
+              AdvertiseArticle(
+                imagePath: "assets/images/adv_2.jpg",
                 title: "청소년과 함께하실 봉사자를 모집합니다",
                 text: "안녕하세요!\n사상구 청소년 수련관에서 23년 학습멘토를 모집중입니다!",
                 board: "홍보게시판",
@@ -24,21 +36,12 @@ class AdvertiseTabScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10.0),
               AdvertiseArticle(
-                title: "청소년과 함께하실 봉사자를 모집합니다",
-                text: "안녕하세요!\n사상구 청소년 수련관에서 23년 학습멘토를 모집중입니다!",
+                imagePath: "assets/images/adv_1.jpg",
+                title: "태연동",
+                text: "🥋태연동🥋부원 모집\n안녕하십니까! 동의대학교 제 38대 총 동아리 연합회 생활체육 2분과 소속 중앙동아리 태연동입니다!!",
                 board: "홍보게시판",
-              ),
-              const SizedBox(height: 10.0),
-              AdvertiseArticle(
-                title: "청소년과 함께하실 봉사자를 모집합니다",
-                text: "안녕하세요!\n사상구 청소년 수련관에서 23년 학습멘토를 모집중입니다!",
-                board: "홍보게시판",
-              ),
-              const SizedBox(height: 10.0),
-              AdvertiseArticle(
-                title: "청소년과 함께하실 봉사자를 모집합니다",
-                text: "안녕하세요!\n사상구 청소년 수련관에서 23년 학습멘토를 모집중입니다!",
-                board: "홍보게시판",
+                recommend: 2,
+                comment: 0,
               ),
             ],
           ),

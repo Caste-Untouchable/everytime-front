@@ -14,19 +14,23 @@ class AdvertiseArticle extends StatelessWidget {
   AdvertiseArticle({
     Key? key,
     this.imageUrl,
+    this.imagePath,
     this.title,
     required this.text,
     required this.board,
     this.recommend,
     this.comment,
+    this.hasImage = false,
   }) : super(key: key);
 
   String? imageUrl;
+  String? imagePath;
   String? title;
   String text;
   String board;
   int? recommend;
   int? comment;
+  bool hasImage;
 
   @override
   Widget build(BuildContext context) {
@@ -37,65 +41,73 @@ class AdvertiseArticle extends StatelessWidget {
           Flexible(
             flex: 7,
             child: Padding(
-              padding: imageUrl != null ? const EdgeInsets.only(right: 10.0) : const EdgeInsets.all(0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (title != null) ...[
-                    Text(
-                      title!,
-                      style: const TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis),
-                    ),
-                  ],
-                  const SizedBox(height: 3.0),
-                  EllipsisOverflowText(
-                    text,
-                    maxLines: 2,
-                    showEllipsisOnBreakLineOverflow: true,
-                  ),
-                  const SizedBox(height: 3.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+              padding: hasImage ? const EdgeInsets.only(right: 10.0) : const EdgeInsets.all(0),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (title != null) ...[
                       Text(
-                        board,
-                        style: const TextStyle(color: Colors.grey, fontSize: 12.0),
+                        title!,
+                        style: const TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis),
                       ),
-                      if (comment != null)
-                        Row(children: [
-                          SizedBox(
-                            width: 11.0,
-                            height: 11.0,
-                            child: Image.asset('assets/icons/icn_s_posvote_red.png'),
-                          ),
-                          const SizedBox(width: 4.0),
-                          Text(
-                            recommend.toString(),
-                            style: const TextStyle(color: EveryTimeColor.red, fontSize: 12.0),
-                          ),
-                          const SizedBox(width: 8.0),
-                          SizedBox(
-                            width: 11.0,
-                            height: 11.0,
-                            child: Image.asset('assets/icons/icn_s_comment_cyan.png'),
-                          ),
-                          const SizedBox(width: 4.0),
-                          Text(
-                            comment.toString(),
-                            style: const TextStyle(color: EveryTimeColor.cyan, fontSize: 12.0),
-                          ),
-                        ])
                     ],
-                  )
-                ],
+                    const SizedBox(height: 3.0),
+                    EllipsisOverflowText(
+                      text,
+                      maxLines: 2,
+                      showEllipsisOnBreakLineOverflow: true,
+                    ),
+                    const SizedBox(height: 3.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          board,
+                          style: const TextStyle(color: Colors.grey, fontSize: 12.0),
+                        ),
+                        if (comment != null)
+                          Row(children: [
+                            SizedBox(
+                              width: 11.0,
+                              height: 11.0,
+                              child: Image.asset('assets/icons/icn_s_posvote_red.png'),
+                            ),
+                            const SizedBox(width: 4.0),
+                            Text(
+                              recommend.toString(),
+                              style: const TextStyle(color: EveryTimeColor.red, fontSize: 12.0),
+                            ),
+                            const SizedBox(width: 8.0),
+                            SizedBox(
+                              width: 11.0,
+                              height: 11.0,
+                              child: Image.asset('assets/icons/icn_s_comment_cyan.png'),
+                            ),
+                            const SizedBox(width: 4.0),
+                            Text(
+                              comment.toString(),
+                              style: const TextStyle(color: EveryTimeColor.cyan, fontSize: 12.0),
+                            ),
+                          ])
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),
           if (imageUrl != null)
             Flexible(
               flex: 3,
-              child: Image.network(imageUrl!),
+              child: Image.network(imageUrl!, fit: BoxFit.cover),
+            ),
+          if (imagePath != null)
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.1,
+              child: Image.asset(imagePath!, fit: BoxFit.fill),
             ),
         ],
       ),

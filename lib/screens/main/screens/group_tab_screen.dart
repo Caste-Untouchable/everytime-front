@@ -28,10 +28,10 @@ class GroupTabScreen extends StatelessWidget {
             padding: const EdgeInsets.only(top: 15.0),
             child: Row(
               children: const [
-                Text("공과대학 학생회"),
+                Text("상경대학 학생회"),
                 SizedBox(width: 10.0),
                 Text(
-                  "💙제 9대 STAND BY ROYAL ICT공과대학 학생회💙",
+                  "🙌🏻 3900 효경인이 가는 모든 길에 언제나 함께 하겠..",
                   style: TextStyle(color: Colors.grey, fontSize: 11.0, overflow: TextOverflow.ellipsis),
                 ),
               ],
