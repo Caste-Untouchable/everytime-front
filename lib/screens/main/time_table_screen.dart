@@ -24,7 +24,7 @@ class TimeTableAppBar extends StatelessWidget with PreferredSizeWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "2022년 1학기",
+              "2022년 겨울학기",
               style: TextStyle(color: Color(0xFFB33423), fontSize: 10.0),
             ),
             Row(
@@ -32,7 +32,7 @@ class TimeTableAppBar extends StatelessWidget with PreferredSizeWidget {
               mainAxisSize: MainAxisSize.max,
               children: [
                 const Text(
-                  "기말",
+                  "시간표",
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
