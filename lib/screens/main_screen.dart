@@ -35,7 +35,7 @@ class MainScreen extends StatelessWidget {
       case 0:
         return HomeScreen();
       case 1:
-        return const TimeTableScreen();
+        return TimeTableScreen();
       case 2:
         return BoardScreen();
       case 3:
