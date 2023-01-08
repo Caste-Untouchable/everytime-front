@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.clone_everytime">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="clone_everytime"
+        android:label="에브리타임"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
