@@ -113,7 +113,7 @@ class TimeTableScreen extends StatelessWidget {
         child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
           const Text("평균 학점  ", style: TextStyle(fontSize: 17.0)),
           Text(
-            "${_gradeProvider.totalGpa}",
+            _gradeProvider.totalGpa.toStringAsFixed(2),
             style: const TextStyle(color: EveryTimeColor.red, fontSize: 18.0, fontWeight: FontWeight.bold),
           ),
           const Text(
@@ -123,7 +123,7 @@ class TimeTableScreen extends StatelessWidget {
           const SizedBox(width: 30.0),
           const Text("취득 학점  ", style: TextStyle(fontSize: 17.0)),
           Text(
-            _gradeProvider.smtCredit.toStringAsFixed(1),
+            _gradeProvider.totalCredit.toStringAsFixed(2),
             style: const TextStyle(color: EveryTimeColor.red, fontSize: 18.0, fontWeight: FontWeight.bold),
           ),
           const Text(

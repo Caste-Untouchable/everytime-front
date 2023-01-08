@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'package:clone_everytime/models/article.dart';
-import 'package:clone_everytime/providers/token_provider.dart';
+import 'package:clone_everytime/providers/user_provider.dart';
 import 'package:clone_everytime/screens/board/write_note.dart';
 import 'package:clone_everytime/utils/database/every_time_api.dart';
 
@@ -31,22 +31,14 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  late TokenProvider _tokenProvider;
+  late UserProvider _tokenProvider;
 
   bool isAnonym = false;
   bool isAlarm = false;
 
   @override
-  void initState() {
-    EveryTimeApi.getComment(261,
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJTQ0hPT0wiOiLrj5nsnZjrjIDtlZnqtZAiLCJzdWIiOiJ1c2VyIiwiTklDS05BTUUiOiJzdHJpbmciLCJJRCI6InRlc3QiLCJleHAiOjE2NzMxMDczOTUsIk5BTUUiOiJzdHJpbmcifQ.unwgwVWARoMlU1Y6EWoTS9-eAjbywaDBWzml5HZ29yo");
-
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    _tokenProvider = Provider.of<TokenProvider>(context, listen: false);
+    _tokenProvider = Provider.of<UserProvider>(context, listen: false);
 
     void checkPosvote() {
       showDialog(
@@ -441,7 +433,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           style: TextStyle(fontSize: 12),
                         ),
                         Text(
-                          "12",
+                          "3",
                           style: TextStyle(fontSize: 12, color: Color.fromARGB(255, 12, 165, 175)),
                         ),
                         Text(

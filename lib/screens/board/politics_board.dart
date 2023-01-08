@@ -232,7 +232,7 @@ class PoliticsDB extends StatelessWidget {
                                           style: TextStyle(fontSize: 12),
                                         ),
                                         const Text(
-                                          '7',
+                                          '3',
                                           style: TextStyle(fontSize: 12, color: Color.fromARGB(255, 12, 165, 175)),
                                         ),
                                         const Text(
