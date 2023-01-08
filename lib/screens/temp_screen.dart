@@ -1,3 +1,4 @@
+import 'package:clone_everytime/screens/board/book_board.dart';
 import 'package:flutter/material.dart';
 import 'package:clone_everytime/screens/board/store_board.dart';
 import 'package:clone_everytime/screens/board/politics_board.dart';
@@ -58,6 +59,12 @@ class TempScreen extends StatelessWidget {
                       MaterialPageRoute(builder: ((context) => SecretBoard())));
                 },
                 child: const Text("비밀 게시판")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: ((context) => BookBoard())));
+                },
+                child: const Text("책방")),
           ],
         ),
       ),
