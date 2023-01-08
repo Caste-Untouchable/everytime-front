@@ -55,7 +55,7 @@ class _BookBoardState extends State<BookBoard> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 4, 8, 0),
+              padding: const EdgeInsets.fromLTRB(8, 4, 8, 8),
               child: Container(
                 height: 40,
                 color: const Color.fromARGB(255, 243, 243, 243),
@@ -163,34 +163,34 @@ class _BookBoardState extends State<BookBoard> {
 }
 
 const bookIcon = [
-  "assets/images/test.jpg",
-  "assets/images/test.jpg",
-  "assets/images/test.jpg",
+  "https://cf-cii.everytime.kr/1357aa849d7bee3291b1a83dad649fefffb32a15ef05728154186f7a9e5a4683/1673112503313_0_thumb.jpg",
+  "https://cf-cii.everytime.kr/3deeece5abfa6b4b5abcc279bdc88393ac9103596d26889e1c156ee2adc839a0/1673112347498_0_thumb.jpg",
+  "https://cf-cii.everytime.kr/0c7f6a0212f65b6dfc4520dc9c1818e51aa50151d45cd41cf9a6f4aaae8f152c/1673112108650_0_thumb.jpg",
+  "https://cf-cii.everytime.kr/c219a600756dd787ce87c28e939fd9265b93e41f88cf77cb8e9ff10784444e62/1673074141301_0_thumb.jpg",
+  "https://cf-cii.everytime.kr/f7b3bab765e8187532bc1e145765a77a21546d5cabe8f8ef1e559fb1b286efe5/1673074010111_0_thumb.jpg",
 ];
-const bookTitle = [
-  "book1",
-  "book2",
-  "book1",
-];
+const bookTitle = ["전자상거래(디지털 트랜스포메이션..", "물류관리와 SCM(5판)", "제품개발과 브랜드구축(고객가치를..", "영양판정(3판)", "생애주기영양학"];
 const bookWriter = [
-  "작가1",
-  "작가2",
-  "작가3",
+  "노규성, 김의창, 문용은, 박성택, 이승희, 임기흥정기호 지음",
+  "Martin Christopher 지음",
+  "아오끼 유끼히로 지음",
+  "김화영, 강명희, 양은주, 이현숙 지음",
+  "이연숙, 임현숙, 장남수, 안홍석, 김창임, 김기남 지음"
 ];
-const bookCompany = [
-  "출판사1",
-  "출판사2",
-  "출판사3",
-];
+const bookCompany = ["생능", "청람", "한경사", "교문사", "교문사"];
 const sale = [
-  "12,000",
+  "16,000",
+  "16,000",
+  "10,000",
   "12,000",
   "12,000",
 ];
 const money = [
-  "23,000",
-  "23,000",
-  "23,000",
+  "28,000",
+  "29,000",
+  "15,000",
+  "25,000",
+  "25,000",
 ];
 
 class BookList extends StatelessWidget {
@@ -214,7 +214,7 @@ class BookList extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(
+                Image.network(
                   bookIcon[index],
                   width: 100,
                   height: 100,
@@ -230,7 +230,7 @@ class BookList extends StatelessWidget {
                     ),
                     Text(
                       bookTitle[index],
-                      style: const TextStyle(fontSize: 18),
+                      style: const TextStyle(fontSize: 18, overflow: TextOverflow.ellipsis),
                     ),
                     Text(
                       bookWriter[index],
