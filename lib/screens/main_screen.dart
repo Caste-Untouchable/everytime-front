@@ -33,7 +33,7 @@ class MainScreen extends StatelessWidget {
     switch (_bottomNavigationProvider.currentPage) {
       // TODO : Implement Screen
       case 0:
-        return const HomeScreen();
+        return HomeScreen();
       case 1:
         return const TimeTableScreen();
       case 2:
