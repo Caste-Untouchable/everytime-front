@@ -2,6 +2,7 @@ import 'package:ellipsis_overflow_text/ellipsis_overflow_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'package:clone_everytime/screens/main/screens/webview_screen.dart';
 import 'package:clone_everytime/widgets/everytime_card.dart';
 
 class CircleButton extends StatelessWidget {
@@ -9,18 +10,19 @@ class CircleButton extends StatelessWidget {
     Key? key,
     required this.title,
     required this.iconName,
-    required this.onTap,
+    required this.url,
   }) : super(key: key);
 
   String iconName;
   String title;
-
-  Function() onTap;
+  String url;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: ((context) => WebviewScreen(url: url))));
+      },
       child: Column(
         children: [
           Stack(
@@ -50,6 +52,7 @@ class CircleButton extends StatelessWidget {
             constraints: const BoxConstraints(maxWidth: 40),
             child: Text(
               title,
+              style: const TextStyle(fontSize: 14.0),
               textAlign: TextAlign.center,
             ),
           ),

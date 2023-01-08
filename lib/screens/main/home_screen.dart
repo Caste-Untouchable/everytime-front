@@ -133,17 +133,20 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget buildQuickBtn() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        CircleButton(title: "학교\n홈", iconName: "icn_mcr_home_home", onTap: () {}),
-        CircleButton(title: "열람실\n현황", iconName: "icn_mcr_home_library", onTap: () {}),
-        CircleButton(title: "셔틀\n버스", iconName: "icn_mcr_home_bus", onTap: () {}),
-        CircleButton(title: "학사\n공지", iconName: "icn_mcb_home_news", onTap: () {}),
-        CircleButton(title: "학사\n일정", iconName: "icn_mcr_home_calendar", onTap: () {}),
-        CircleButton(title: "도서관", iconName: "icn_mcr_home_library", onTap: () {}),
-      ],
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CircleButton(title: "학교\n홈", iconName: "icn_mcr_home_home", url: "https://www.deu.ac.kr/www"),
+          CircleButton(title: "열람실\n현황", iconName: "icn_mcr_home_library", url: "https://lib.deu.ac.kr/lib/SlimaPlus.csp"),
+          CircleButton(title: "셔틀\n버스", iconName: "icn_mcr_home_bus", url: "https://www.deu.ac.kr/www/content/13"),
+          CircleButton(title: "학사\n공지", iconName: "icn_mcb_home_news", url: "https://www.deu.ac.kr/www/board/3"),
+          CircleButton(title: "학사\n일정", iconName: "icn_mcr_home_calendar", url: "https://www.deu.ac.kr/www/academic_calendar"),
+          CircleButton(title: "도서관", iconName: "icn_mcr_home_library", url: "https://lib.deu.ac.kr/lib/SlimaPlus.csp"),
+        ],
+      ),
     );
   }
 
