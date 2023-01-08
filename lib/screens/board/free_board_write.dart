@@ -11,14 +11,14 @@ const question = [
   "assets/icons/icn_e_question_on.png",
 ];
 
-class PoliticsBoardWrite extends StatefulWidget {
-  const PoliticsBoardWrite({super.key});
+class FreeBoardWrite extends StatefulWidget {
+  const FreeBoardWrite({super.key});
 
   @override
-  State<PoliticsBoardWrite> createState() => PoliticsBoardWriteState();
+  State<FreeBoardWrite> createState() => FreeBoardWriteState();
 }
 
-class PoliticsBoardWriteState extends State<PoliticsBoardWrite> {
+class FreeBoardWriteState extends State<FreeBoardWrite> {
   bool isAnonym = false;
   bool isQuestion = false;
   @override
@@ -131,11 +131,27 @@ class PoliticsBoardWriteState extends State<PoliticsBoardWrite> {
                     style: TextStyle(fontSize: 12, color: Colors.grey),
                   ),
                   Text(
-                    "\n※ 시사·이슈 게시판 작성 금지 게시물",
+                    "\n※정치·사회 관련 행위 금지",
                     style: TextStyle(fontSize: 12, color: Colors.grey),
                   ),
                   Text(
-                    "- 언론·시민단체 등 관련 단체 옹호, 추천, 반대, 비하 행위\n- 특정 정당·후보에 대한 지지, 비방, 투표 독려 행위\n- 다른 이용자를 특정 정치 단체 관련자 및 특정 이념 옹호자로 몰아가는 행위\n- 다양한 의견을 배척하고 여론을 하나로 수렴하는 행위\n- 다른 이용자나 게시물에 대한 욕설, 비난, 비꼬는 행위\n- 기타 정치·사회 관련 갈등을 조장할 수 있는 행위 일체",
+                    "- 국가기관(정부·공무원), 정치 관련 단체(정치인·정당·시민단체), 언론, 시민단체에 대한 언급 혹은 이와 관련한 행위\n- 정책·외교 또는 정치·정파에 대한 의견, 주장 및 이념, 가치관을 드러내는 행위\n- 성별, 종교, 인종, 출신, 지역, 직업, 이념 등 사회적 이슈에 대한 언급 혹은 이와 관련한 행위\n- 위와 같은 내용으로 유추될 수 있는 비유, 은어 사용 행위",
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                  Text(
+                    "*해당 게시물은 시사·이슈 게시판에만 작성 가능합니다.",
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                  Text(
+                    "\n※홍보 및 판매 관련 금지 행위",
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                  Text(
+                    "- 영리 여부와 관계없이 사업체·기관·단체·개인에게 직간접적으로 영향을 줄 수 있는 게시물 작성 행위\n- 위와 관련된 것으로 의심되거나 예상될 수 있는 바이럴 홍보 및 명칭·단어 언급 행위",
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                  Text(
+                    "*해당 게시물은 홍보게시판에만 작성 가능합니다.",
                     style: TextStyle(fontSize: 12, color: Colors.grey),
                   ),
                   Text(
@@ -178,6 +194,25 @@ class PoliticsBoardWriteState extends State<PoliticsBoardWrite> {
                       }),
                   Row(
                     children: [
+                      isQuestion
+                          ? IconButton(
+                              iconSize: 50,
+                              icon: Image.asset(question[0],
+                                  width: 50, height: 100),
+                              onPressed: () {
+                                setState(() {
+                                  isQuestion = !isQuestion;
+                                });
+                              })
+                          : IconButton(
+                              iconSize: 50,
+                              icon: Image.asset(question[1],
+                                  width: 50, height: 100),
+                              onPressed: () {
+                                setState(() {
+                                  isQuestion = !isQuestion;
+                                });
+                              }),
                       isAnonym
                           ? IconButton(
                               iconSize: 50,
