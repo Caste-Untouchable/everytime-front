@@ -49,7 +49,7 @@ class BoardTabScreen extends StatelessWidget {
               BoardListButton(
                 board: boardList[i],
                 iconName: i % 2 == 0 ? "pin_on" : "pin_off",
-                isNew: i % 2 == 0 ? true : false,
+                isNew: true,
               ),
           ],
         ),
@@ -105,7 +105,7 @@ class BoardTabScreen extends StatelessWidget {
             BoardListButton(
               board: boardList[i],
               subTitle: boardList[i].boardDescription,
-              iconName: i % 2 == 0 ? "pin_on" : "pin_off",
+              iconName: "pin_off",
               isNew: i % 2 == 0 ? true : false,
             ),
         ],
