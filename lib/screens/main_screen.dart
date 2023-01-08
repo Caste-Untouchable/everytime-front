@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -48,20 +49,20 @@ class MainScreen extends StatelessWidget {
 
   Widget _bottomNavigationBarWidget() {
     return BottomNavigationBar(
-      items: const [
-        BottomNavigationBarItem(
+      items: [
+        const BottomNavigationBarItem(
           label: "홈",
           icon: ImageIcon(
             AssetImage("assets/icons/icn_tab_home_active.png"),
           ),
         ),
-        BottomNavigationBarItem(
+        const BottomNavigationBarItem(
           label: "시간표",
           icon: ImageIcon(
             AssetImage("assets/icons/icn_tab_timetable_active.png"),
           ),
         ),
-        BottomNavigationBarItem(
+        const BottomNavigationBarItem(
           label: "게시판",
           icon: ImageIcon(
             AssetImage("assets/icons/icn_tab_board_active.png"),
@@ -69,11 +70,15 @@ class MainScreen extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           label: "알림",
-          icon: ImageIcon(
-            AssetImage("assets/icons/icn_tab_notification_active.png"),
+          icon: Badge(
+            badgeContent: const Text("3", style: TextStyle(color: Colors.white, fontSize: 9.0)),
+            padding: const EdgeInsets.all(4.0),
+            child: const ImageIcon(
+              AssetImage("assets/icons/icn_tab_notification_active.png"),
+            ),
           ),
         ),
-        BottomNavigationBarItem(
+        const BottomNavigationBarItem(
           label: "캠퍼스픽",
           icon: ImageIcon(
             AssetImage("assets/icons/icn_tab_campuspick_active.png"),
