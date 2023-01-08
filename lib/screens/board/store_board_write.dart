@@ -1,5 +1,6 @@
 import 'package:clone_everytime/screens/term_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 const anonym = [
   "assets/icons/icn_e_anonym_off.png",
@@ -11,16 +12,17 @@ const question = [
   "assets/icons/icn_e_question_on.png",
 ];
 
-class PoliticsBoardWrite extends StatefulWidget {
-  const PoliticsBoardWrite({super.key});
+class StoreBoardWrite extends StatefulWidget {
+  const StoreBoardWrite({super.key});
 
   @override
-  State<PoliticsBoardWrite> createState() => PoliticsBoardWriteState();
+  State<StoreBoardWrite> createState() => StoreBoardWriteState();
 }
 
-class PoliticsBoardWriteState extends State<PoliticsBoardWrite> {
+class StoreBoardWriteState extends State<StoreBoardWrite> {
   bool isAnonym = false;
   bool isQuestion = false;
+  int _value = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +63,69 @@ class PoliticsBoardWriteState extends State<PoliticsBoardWrite> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(0),
+                  child: Radio(
+                      fillColor: MaterialStateColor.resolveWith(
+                          (states) => const Color.fromARGB(255, 201, 28, 28)),
+                      value: 1,
+                      groupValue: _value,
+                      onChanged: (value) {
+                        setState(() {
+                          _value = value!;
+                        });
+                      }),
+                ),
+                const Text(
+                  "팝니다",
+                  style: TextStyle(fontSize: 13),
+                ),
+                Radio(
+                    fillColor: MaterialStateColor.resolveWith(
+                        (states) => const Color.fromARGB(255, 201, 28, 28)),
+                    value: 2,
+                    groupValue: _value,
+                    onChanged: (value) {
+                      setState(() {
+                        _value = value!;
+                      });
+                    }),
+                const Text(
+                  "삽니다",
+                  style: TextStyle(fontSize: 13),
+                ),
+                Radio(
+                    fillColor: MaterialStateColor.resolveWith(
+                        (states) => const Color.fromARGB(255, 201, 28, 28)),
+                    value: 3,
+                    groupValue: _value,
+                    onChanged: (value) {
+                      setState(() {
+                        _value = value!;
+                      });
+                    }),
+                const Text(
+                  "나눔",
+                  style: TextStyle(fontSize: 13),
+                ),
+                Radio(
+                    fillColor: MaterialStateColor.resolveWith(
+                        (states) => const Color.fromARGB(255, 201, 28, 28)),
+                    value: 4,
+                    groupValue: _value,
+                    onChanged: (value) {
+                      setState(() {
+                        _value = value!;
+                      });
+                    }),
+                const Text(
+                  "원룸",
+                  style: TextStyle(fontSize: 13),
+                ),
+              ],
+            ),
             const Padding(
                 padding: EdgeInsets.fromLTRB(20, 0, 20, 15),
                 child: TextField(
@@ -87,7 +152,7 @@ class PoliticsBoardWriteState extends State<PoliticsBoardWrite> {
                   ),
                 )),
             Padding(
-              padding: EdgeInsets.fromLTRB(20, 30, 20, 10),
+              padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -131,27 +196,35 @@ class PoliticsBoardWriteState extends State<PoliticsBoardWrite> {
                     style: TextStyle(fontSize: 12, color: Colors.grey),
                   ),
                   Text(
-                    "\n※ 시사·이슈 게시판 작성 금지 게시물",
+                    "\n※ 장터게시판 이용안내",
                     style: TextStyle(fontSize: 12, color: Colors.grey),
                   ),
                   Text(
-                    "- 언론·시민단체 등 관련 단체 옹호, 추천, 반대, 비하 행위\n- 특정 정당·후보에 대한 지지, 비방, 투표 독려 행위\n- 다른 이용자를 특정 정치 단체 관련자 및 특정 이념 옹호자로 몰아가는 행위\n- 다양한 의견을 배척하고 여론을 하나로 수렴하는 행위\n- 다른 이용자나 게시물에 대한 욕설, 비난, 비꼬는 행위\n- 기타 정치·사회 관련 갈등을 조장할 수 있는 행위 일체",
+                    "- 비상업적 목적의 일상 생활과 관련된 중고 품목 이외의 품목 판매 행위\n- 에브리타임은 이용자 간 합의한 거래에 대해 책임을 지지 않습니다. 허위 사실, 사기 등에 유의하시기 바랍니다.",
                     style: TextStyle(fontSize: 12, color: Colors.grey),
                   ),
                   Text(
-                    "\n※불법촬영물 유통 금지",
+                    "\n※ 개인간 거래 불가능 품목 거래 금지",
                     style: TextStyle(fontSize: 12, color: Colors.grey),
                   ),
                   Text(
-                    "불법촬영물등을 기재할 경우 전기통신사업법에 따라 삭제 조치 및 서비스 이용이 영구적으로 제한될 수 있으며 관련 법률에 따라 처벌받을 수 있습니다.",
+                    "1. 주류, 담배, 마약류\n2. 안경, 콘택트렌즈, 의약품, 헌혈증\n3. 이미테이션 제품, 저작물 복사본\n4. 이미테이션 제품, 저작물 복사본",
                     style: TextStyle(fontSize: 12, color: Colors.grey),
                   ),
                   Text(
-                    "\n※그 밖의 규칙 위반",
+                    "\n※ 홍보 및 판매 관련 금지 행위",
                     style: TextStyle(fontSize: 12, color: Colors.grey),
                   ),
                   Text(
-                    "- 타인의 권리 침해하거나 불쾌감을 주는 행위\n- 범죄,불법 행위 등 법형을 위반하는 행위\n- 욕설,비하,차별,혐오,자살,폭력 관련 애용을 포함한 게시물 작성 행위",
+                    "- 영리 여부와 관계없이 사업체·기관·단체·개인에게 직간접적으로 영향을 줄 수 있는 게시물 작성 행위\n- 범죄,불법 행위 등 법형을 위반하는 행위\n- 위와 관련된 것으로 의심되거나 예상될 수 있는 바이럴 홍보 및 명칭·단어 언급 행위",
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                  Text(
+                    "\n※ 불법촬영물 유통 금지",
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                  Text(
+                    "- 불법촬영물등 유해정보를 게재할 경우 전기통신사업법에 따라 게시물 삭제 조치 및 회원 자격이 영구적으로 해지되며, 관련 법률에 따라 처벌받을 수 있습니다.",
                     style: TextStyle(fontSize: 12, color: Colors.grey),
                   ),
                 ],
